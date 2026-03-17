@@ -277,11 +277,11 @@ export default function Home() {
               border: `1px solid ${searchFocused ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}`,
               borderRadius: "14px",
               overflow: "hidden",
-              padding: searchFocused ? "10px 5px" : "2px 5px",
+              padding: "6px 5px",
               boxShadow: searchFocused
                 ? "0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)"
                 : "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)",
-              transition: "padding 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
+              transition: "box-shadow 0.25s ease, border-color 0.25s ease",
             }}>
               <div style={{ padding: "0 16px", color: "rgba(255,255,255,0.35)", flexShrink: 0 }}>
                 <SearchIcon size={20} />
@@ -298,9 +298,8 @@ export default function Home() {
                 style={{
                   flex: 1, padding: "10px 0",
                   background: "transparent", border: "none", outline: "none",
-                  color: "#fff", fontSize: searchFocused ? "22px" : "18px",
+                  color: "#fff", fontSize: "20px",
                   fontWeight: 400, fontFamily: "'Dongle', sans-serif",
-                  transition: "font-size 0.25s ease",
                 }}
               />
               <button

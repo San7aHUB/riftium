@@ -144,6 +144,8 @@ body::after {
   background: #fff;
   pointer-events: none;
   bottom: 5%;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
 }
 .particle:nth-child(1) { width: 8px;  height: 8px;  left: 8%;  animation: rise        7s  0s    ease-in infinite; box-shadow: 0 0 14px #fff; }
 .particle:nth-child(2) { width: 5px;  height: 5px;  left: 22%; animation: rise-left   5s  1.4s  ease-in infinite; box-shadow: 0 0 10px #fff; }
