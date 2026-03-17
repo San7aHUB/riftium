@@ -44,21 +44,6 @@ function buildQuery(text: string, filters: Filters): string {
   return parts.join(" ") || "*";
 }
 
-function LogoMark({ size = 32 }: { size?: number }) {
-  return (
-    <div style={{
-      width: size, height: size,
-      border: `${size > 24 ? 2 : 1.5}px solid var(--gold)`,
-      borderRadius: size * 0.22,
-      display: "flex", alignItems: "center", justifyContent: "center",
-      transform: "rotate(45deg)",
-      boxShadow: "0 0 16px rgba(201,168,76,0.3)",
-      flexShrink: 0,
-    }}>
-      <div style={{ width: size * 0.33, height: size * 0.33, background: "var(--gold)", borderRadius: size * 0.07 }} />
-    </div>
-  );
-}
 
 function SearchIcon({ size = 16 }: { size?: number }) {
   return (
@@ -157,14 +142,6 @@ export default function Home() {
         gap: "16px",
         overflow: "hidden",
       }}>
-        {/* Scan line */}
-        <div style={{
-          position: "absolute", top: 0, left: 0,
-          width: "20%", height: "100%",
-          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent)",
-          animation: "scan 4s linear infinite",
-          pointerEvents: "none",
-        }} />
 
         {/* Logo */}
         <button
@@ -318,7 +295,6 @@ export default function Home() {
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
                 placeholder='Try "lightning bolt" or "o:flying t:creature c:u"'
-                autoFocus
                 style={{
                   flex: 1, padding: "10px 0",
                   background: "transparent", border: "none", outline: "none",

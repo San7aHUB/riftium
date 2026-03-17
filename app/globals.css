@@ -63,7 +63,7 @@ body::before {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  filter: brightness(1.0) saturate(0.1);
+  filter: brightness(1.0) saturate(0.2);
   pointer-events: none;
   z-index: 0;
 }
@@ -112,35 +112,51 @@ body::after {
   50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.3); }
 }
 
-@keyframes bob {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-20px); }
+/* Particelle che salgono dal basso */
+@keyframes rise {
+  0%   { transform: translateY(0)      translateX(0);    opacity: 0;   }
+  8%   {                                                  opacity: 0.7; }
+  85%  {                                                  opacity: 0.4; }
+  100% { transform: translateY(-90vh)  translateX(18px);  opacity: 0;   }
+}
+@keyframes rise-left {
+  0%   { transform: translateY(0)      translateX(0);    opacity: 0;   }
+  8%   {                                                  opacity: 0.6; }
+  85%  {                                                  opacity: 0.3; }
+  100% { transform: translateY(-90vh)  translateX(-22px); opacity: 0;   }
+}
+@keyframes rise-wide {
+  0%   { transform: translateY(0)      translateX(0);    opacity: 0;   }
+  8%   {                                                  opacity: 0.8; }
+  85%  {                                                  opacity: 0.4; }
+  100% { transform: translateY(-90vh)  translateX(35px);  opacity: 0;   }
+}
+@keyframes rise-straight {
+  0%   { transform: translateY(0)      translateX(0);    opacity: 0;   }
+  8%   {                                                  opacity: 0.5; }
+  85%  {                                                  opacity: 0.3; }
+  100% { transform: translateY(-90vh)  translateX(-8px);  opacity: 0;   }
 }
 
 .particle {
   position: absolute;
   border-radius: 50%;
   background: #fff;
-  opacity: 0.6;
   pointer-events: none;
-  animation: bob 3s ease-in-out infinite;
+  bottom: 5%;
 }
-.particle:nth-child(1) { width: 14px; height: 14px; top: 20%; left: 6%;  animation-delay: 0s;    animation-duration: 3s;   box-shadow: 0 0 20px #fff; }
-.particle:nth-child(2) { width: 10px; height: 10px; top: 60%; left: 18%; animation-delay: 0.6s;  animation-duration: 4s;   box-shadow: 0 0 16px #fff; }
-.particle:nth-child(3) { width: 18px; height: 18px; top: 35%; left: 88%; animation-delay: 1.2s;  animation-duration: 3.5s; box-shadow: 0 0 28px #fff; }
-.particle:nth-child(4) { width: 8px;  height: 8px;  top: 70%; left: 75%; animation-delay: 1.8s;  animation-duration: 5s;   box-shadow: 0 0 12px #fff; }
-.particle:nth-child(5) { width: 12px; height: 12px; top: 15%; left: 50%; animation-delay: 0.4s;  animation-duration: 4s;   box-shadow: 0 0 18px #fff; }
-.particle:nth-child(6) { width: 10px; height: 10px; top: 80%; left: 40%; animation-delay: 2s;    animation-duration: 3s;   box-shadow: 0 0 16px #fff; }
+.particle:nth-child(1) { width: 8px;  height: 8px;  left: 8%;  animation: rise        7s  0s    ease-in infinite; box-shadow: 0 0 14px #fff; }
+.particle:nth-child(2) { width: 5px;  height: 5px;  left: 22%; animation: rise-left   5s  1.4s  ease-in infinite; box-shadow: 0 0 10px #fff; }
+.particle:nth-child(3) { width: 10px; height: 10px; left: 40%; animation: rise-wide   8s  0.7s  ease-in infinite; box-shadow: 0 0 18px #fff; }
+.particle:nth-child(4) { width: 6px;  height: 6px;  left: 58%; animation: rise-left   6s  2.5s  ease-in infinite; box-shadow: 0 0 10px #fff; }
+.particle:nth-child(5) { width: 9px;  height: 9px;  left: 75%; animation: rise        9s  0.3s  ease-in infinite; box-shadow: 0 0 16px #fff; }
+.particle:nth-child(6) { width: 5px;  height: 5px;  left: 88%; animation: rise-straight 6.5s 1.8s ease-in infinite; box-shadow: 0 0 8px #fff; }
 
 @keyframes title-glow {
   0%, 100% { text-shadow: 0 0 40px rgba(255,255,255,0.1); }
   50%       { text-shadow: 0 0 80px rgba(255,255,255,0.3), 0 0 120px rgba(201,168,76,0.2); }
 }
 
-@keyframes scan {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(600%); }
-}
 
 .card-animate {
   animation: fadeInUp 0.4s ease forwards;
@@ -211,10 +227,6 @@ button:focus-visible {
 
   /* Navbar search */
   .nav-search-input { width: 120px !important; }
-
-  /* Particles — nascondi metà su mobile */
-  .particle:nth-child(3),
-  .particle:nth-child(4) { display: none; }
 
   /* Nav padding */
   .navbar { padding: 0 16px !important; }
