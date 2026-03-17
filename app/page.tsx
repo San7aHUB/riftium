@@ -277,7 +277,7 @@ export default function Home() {
               border: `1px solid ${searchFocused ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}`,
               borderRadius: "14px",
               overflow: "hidden",
-              padding: "6px 5px",
+              padding: "2px 5px",
               boxShadow: searchFocused
                 ? "0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)"
                 : "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)",
