@@ -382,7 +382,7 @@ export default function Home() {
 
             {/* Syntax hint */}
             <p style={{
-              textAlign: "center", marginTop: "18px", fontSize: "12px",
+              textAlign: "center", marginTop: "18px",
               fontSize: "16px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.03em",
               textShadow: "0 1px 4px rgba(0,0,0,0.6)",
             }}>
