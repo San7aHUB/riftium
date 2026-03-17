@@ -91,6 +91,7 @@ export default function Home() {
   const [nextPage, setNextPage] = useState<string | null>(null);
   const [searched, setSearched] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroInputRef = useRef<HTMLInputElement>(null);
 
   const searchWithQuery = useCallback(async (q: string, currentFilters: Filters, reset = true) => {
@@ -143,8 +144,8 @@ export default function Home() {
   return (
     <div style={{ minHeight: "100vh", position: "relative", zIndex: 2 }}>
 
-      {/* ── Navbar — glass sempre visibile ── */}
-      <nav style={{
+      {/* ── Navbar ── */}
+      <nav className="navbar" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         height: "60px",
         display: "flex", alignItems: "center",
@@ -164,21 +165,21 @@ export default function Home() {
           animation: "scan 4s linear infinite",
           pointerEvents: "none",
         }} />
+
+        {/* Logo */}
         <button
-          onClick={() => { setSearched(false); setCards([]); setQuery(""); setFilters(EMPTY_FILTERS); setError(""); }}
+          onClick={() => { setSearched(false); setCards([]); setQuery(""); setFilters(EMPTY_FILTERS); setError(""); setMobileMenuOpen(false); }}
           style={{ display: "flex", alignItems: "center", gap: "10px", background: "none", border: "none", cursor: "pointer", padding: 0, flexShrink: 0 }}
         >
-          <span style={{
-            fontFamily: "'Tilt Warp', sans-serif", fontSize: "28px", letterSpacing: "0.18em", color: "#fff",
-          }}>
+          <span style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "28px", letterSpacing: "0.18em", color: "#fff" }}>
             RIFTIUM
           </span>
         </button>
 
-        {/* Nav links — centrati */}
-        <div style={{
+        {/* Nav links desktop — centrati */}
+        <div className="nav-links-desktop" style={{
           position: "absolute", left: "50%", transform: "translateX(-50%)",
-          display: "flex", alignItems: "center", gap: "8px",
+          alignItems: "center", gap: "8px",
         }}>
           {[
             { label: "Cards", q: "*" },
@@ -187,75 +188,80 @@ export default function Home() {
             { label: "Lands", q: "t:land" },
             { label: "Formats", q: "f:commander" },
           ].map((item) => (
-            <button
-              key={item.label}
-              onClick={() => handleQuickSearch(item.q)}
-              style={{
-                padding: "6px 14px",
-                background: "transparent",
-                border: "none",
-                color: "rgba(255,255,255,0.6)",
-                fontFamily: "'Dongle', sans-serif", fontSize: "18px",
-                cursor: "pointer", letterSpacing: "0.08em",
-                transition: "color 0.15s",
-              }}
-              onMouseEnter={e => { (e.currentTarget).style.color = "#fff"; }}
-              onMouseLeave={e => { (e.currentTarget).style.color = "rgba(255,255,255,0.6)"; }}
-            >
-              {item.label}
-            </button>
+            <button key={item.label} onClick={() => handleQuickSearch(item.q)} style={{
+              padding: "6px 14px", background: "transparent", border: "none",
+              color: "rgba(255,255,255,0.6)", fontFamily: "'Dongle', sans-serif",
+              fontSize: "18px", cursor: "pointer", letterSpacing: "0.08em", transition: "color 0.15s",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#fff"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
+            >{item.label}</button>
           ))}
         </div>
 
-        {/* Search nel navbar — visibile solo in risultati */}
-        {searched && (
-          <div style={{ marginLeft: "auto", flexShrink: 0 }}>
-            <div style={{
-              display: "flex", alignItems: "center",
-              background: "rgba(7,9,13,0.6)",
-              border: "1px solid rgba(255,255,255,0.15)",
-              borderRadius: "8px", height: "36px", overflow: "hidden",
-            }}>
+        {/* Destra: search (risultati) + hamburger */}
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
+          {searched && (
+            <div style={{ display: "flex", alignItems: "center", background: "rgba(7,9,13,0.6)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", height: "36px", overflow: "hidden" }}>
               <div style={{ padding: "0 10px", color: "rgba(255,255,255,0.4)", flexShrink: 0 }}>
                 <SearchIcon size={14} />
               </div>
               <input
-                type="text"
-                value={query}
+                type="text" value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Search…"
-                style={{
-                  width: "200px", background: "transparent", border: "none", outline: "none",
-                  color: "#fff", fontSize: "16px",
-                  fontFamily: "'Dongle', sans-serif", fontWeight: 400,
-                }}
+                className="nav-search-input"
+                style={{ width: "200px", background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "16px", fontFamily: "'Dongle', sans-serif" }}
               />
-              <button
-                onClick={() => search(true)}
-                disabled={loading}
-                style={{
-                  height: "26px", width: "26px", margin: "0 5px",
-                  background: "#fff", border: "none", borderRadius: "50%",
-                  color: "#000", display: "flex", alignItems: "center", justifyContent: "center",
-                  cursor: loading ? "not-allowed" : "pointer",
-                  opacity: loading ? 0.5 : 1, flexShrink: 0, transition: "transform 0.15s",
-                }}
+              <button onClick={() => search(true)} disabled={loading} style={{
+                height: "26px", width: "26px", margin: "0 5px", background: "#fff", border: "none",
+                borderRadius: "50%", color: "#000", display: "flex", alignItems: "center",
+                justifyContent: "center", cursor: loading ? "not-allowed" : "pointer",
+                opacity: loading ? 0.5 : 1, flexShrink: 0, transition: "transform 0.15s",
+              }}
                 onMouseEnter={e => { if (!loading) e.currentTarget.style.transform = "scale(1.1)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </button>
             </div>
-          </div>
-        )}
+          )}
 
-        {!searched && <div style={{ marginLeft: "auto" }} />}
+          {/* Hamburger — solo mobile */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setMobileMenuOpen(o => !o)}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "6px", color: "#fff", display: "flex", flexDirection: "column", gap: "5px" }}
+            aria-label="Menu"
+          >
+            <span style={{ display: "block", width: "22px", height: "2px", background: "#fff", borderRadius: "2px", transition: "transform 0.2s", transform: mobileMenuOpen ? "rotate(45deg) translate(5px,5px)" : "none" }} />
+            <span style={{ display: "block", width: "22px", height: "2px", background: "#fff", borderRadius: "2px", opacity: mobileMenuOpen ? 0 : 1, transition: "opacity 0.2s" }} />
+            <span style={{ display: "block", width: "22px", height: "2px", background: "#fff", borderRadius: "2px", transition: "transform 0.2s", transform: mobileMenuOpen ? "rotate(-45deg) translate(5px,-5px)" : "none" }} />
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile menu dropdown */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          {[
+            { label: "Cards", q: "*" },
+            { label: "Creatures", q: "t:creature" },
+            { label: "Spells", q: "t:instant or t:sorcery" },
+            { label: "Lands", q: "t:land" },
+            { label: "Formats", q: "f:commander" },
+          ].map((item) => (
+            <button key={item.label} onClick={() => { handleQuickSearch(item.q); setMobileMenuOpen(false); }}
+              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Dongle', sans-serif", letterSpacing: "0.08em" }}
+            >{item.label}</button>
+          ))}
+        </div>
+      )}
 
       {/* ── Hero ── */}
       {!searched && (
-        <section style={{
+        <section className="hero-section" style={{
           minHeight: "100vh",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
           padding: "80px 24px 120px",
@@ -271,7 +277,7 @@ export default function Home() {
           <div className="particle" />
           {/* Title */}
           <div style={{ textAlign: "center", marginBottom: "44px" }}>
-            <p style={{
+            <p className="hero-subtitle" style={{
               color: "#fff",
               fontSize: "clamp(16px, 2vw, 20px)",
               fontFamily: "'Tilt Warp', sans-serif",
@@ -285,7 +291,7 @@ export default function Home() {
           </div>
 
           {/* Search box — glass */}
-          <div style={{ width: "100%", maxWidth: "700px" }}>
+          <div className="hero-searchbox" style={{ width: "100%", maxWidth: "700px" }}>
             <div style={{
               display: "flex", alignItems: "center",
               background: "rgba(7, 9, 13, 0.78)",
@@ -400,7 +406,7 @@ export default function Home() {
         <main style={{ paddingTop: "60px" }}>
 
           {/* Filters bar */}
-          <div style={{
+          <div className="filter-bar" style={{
             position: "sticky", top: "60px", zIndex: 50,
             background: "rgba(7,9,13,0.88)",
             backdropFilter: "blur(20px)",
@@ -426,7 +432,7 @@ export default function Home() {
             background: "var(--bg-void)",
             minHeight: "calc(100vh - 120px)",
           }}>
-            <div style={{ padding: "32px", maxWidth: "1700px", margin: "0 auto" }}>
+            <div className="card-grid-wrapper" style={{ padding: "32px", maxWidth: "1700px", margin: "0 auto" }}>
 
               {error && (
                 <div style={{ textAlign: "center", padding: "80px 20px" }}>
@@ -440,7 +446,7 @@ export default function Home() {
               )}
 
               {loading && cards.length === 0 && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px" }}>
+                <div className="card-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px" }}>
                   {Array.from({ length: 16 }).map((_, i) => (
                     <div key={i} style={{ borderRadius: "12px", overflow: "hidden", background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}>
                       <div style={{ aspectRatio: "63/88", background: "linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-elevated) 50%, var(--bg-surface) 75%)", backgroundSize: "200% 100%", animation: "shimmer 1.5s infinite" }} />
@@ -455,7 +461,7 @@ export default function Home() {
 
               {cards.length > 0 && (
                 <>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px" }}>
+                  <div className="card-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px" }}>
                     {cards.map((card, i) => <CardCard key={card.id} card={card} index={i} />)}
                   </div>
                   {hasMore && (

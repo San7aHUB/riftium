@@ -161,3 +161,76 @@ button:focus-visible {
   outline: 2px solid var(--gold-dim);
   outline-offset: 2px;
 }
+
+/* ── Responsive ── */
+
+/* Hamburger: visibile solo su mobile */
+.nav-hamburger { display: none; }
+.nav-links-desktop { display: flex; }
+
+@media (max-width: 767px) {
+  .nav-hamburger { display: flex; }
+  .nav-links-desktop { display: none !important; }
+
+  /* Mobile menu dropdown */
+  .mobile-menu {
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: rgba(7,9,13,0.96);
+    backdropFilter: blur(24px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 16px;
+    z-index: 99;
+    animation: fadeInUp 0.18s ease;
+  }
+  .mobile-menu button {
+    padding: 14px 28px;
+    text-align: left;
+    font-size: 22px;
+    color: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .mobile-menu button:last-child { border-bottom: none; }
+
+  /* Hero */
+  .hero-subtitle { font-size: 15px !important; max-width: 90vw !important; }
+  .hero-searchbox { max-width: 100% !important; padding: 0 4px; }
+
+  /* Filter bar */
+  .filter-bar {
+    padding: 10px 12px !important;
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Card grid */
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important; gap: 10px !important; }
+  .card-grid-wrapper { padding: 16px !important; }
+
+  /* Navbar search */
+  .nav-search-input { width: 120px !important; }
+
+  /* Particles — nascondi metà su mobile */
+  .particle:nth-child(3),
+  .particle:nth-child(4) { display: none; }
+
+  /* Nav padding */
+  .navbar { padding: 0 16px !important; }
+}
+
+/* Tablet portrait (768–1023) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)) !important; }
+  .card-grid-wrapper { padding: 20px !important; }
+  .hero-searchbox { max-width: 560px !important; }
+  .filter-bar { padding: 10px 20px !important; }
+  .navbar { padding: 0 20px !important; }
+}
+
+/* Mobile landscape (altezza < 500px) */
+@media (max-height: 500px) and (max-width: 900px) {
+  .hero-section { min-height: auto !important; padding: 80px 20px 40px !important; }
+  .particle { display: none; }
+}
