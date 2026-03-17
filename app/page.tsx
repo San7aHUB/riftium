@@ -281,7 +281,9 @@ export default function Home() {
               boxShadow: searchFocused
                 ? "0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)"
                 : "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)",
-              transition: "box-shadow 0.25s ease, border-color 0.25s ease",
+              transform: searchFocused ? "scaleY(1.10)" : "scaleY(1)",
+              transformOrigin: "center",
+              transition: "box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease",
             }}>
               <div style={{ padding: "0 16px", color: "rgba(255,255,255,0.35)", flexShrink: 0 }}>
                 <SearchIcon size={20} />
