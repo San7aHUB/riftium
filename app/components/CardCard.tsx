@@ -113,7 +113,7 @@ export default function CardCard({ card, index }: CardCardProps) {
                 <circle cx="8.5" cy="8.5" r="1.5" />
                 <polyline points="21 15 16 10 5 21" />
               </svg>
-              <span style={{ fontSize: "11px", fontFamily: "'Cinzel', serif" }}>{card.name}</span>
+              <span style={{ fontSize: "11px", fontFamily: "'Dongle', sans-serif" }}>{card.name}</span>
             </div>
           )}
 
@@ -153,8 +153,8 @@ export default function CardCard({ card, index }: CardCardProps) {
         <div style={{ padding: "10px 12px 12px" }}>
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "6px", marginBottom: "4px" }}>
             <span style={{
-              fontFamily: "'Cinzel', serif",
-              fontSize: "12px",
+              fontFamily: "'Dongle', sans-serif",
+              fontSize: "15px",
               fontWeight: 500,
               color: "var(--text-primary)",
               lineHeight: 1.3,
@@ -181,7 +181,7 @@ export default function CardCard({ card, index }: CardCardProps) {
               </span>
             )}
             {(card.power && card.toughness) && (
-              <span style={{ fontSize: "11px", color: "var(--text-secondary)", fontFamily: "'Cinzel', serif" }}>
+              <span style={{ fontSize: "11px", color: "var(--text-secondary)", fontFamily: "'Dongle', sans-serif" }}>
                 {card.power}/{card.toughness}
               </span>
             )}

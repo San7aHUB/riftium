@@ -64,8 +64,8 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
           border: `1px solid ${open ? "rgba(201,168,76,0.4)" : "rgba(201,168,76,0.15)"}`,
           borderRadius: "8px",
           color: "var(--text-primary)",
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: "14px",
+          fontFamily: "'Dongle', sans-serif",
+          fontSize: "18px",
           cursor: "pointer",
           transition: "all 0.2s",
           backdropFilter: "blur(8px)",
@@ -116,7 +116,7 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
         }}>
           {/* Colors */}
           <div style={{ gridColumn: "1 / -1" }}>
-            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "10px", fontFamily: "'Cinzel', serif" }}>
+            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "10px", fontFamily: "'Dongle', sans-serif" }}>
               Color Identity
             </label>
             <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
@@ -148,7 +148,7 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
           {/* Type */}
           <div>
-            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Cinzel', serif" }}>
+            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Dongle', sans-serif" }}>
               Card Type
             </label>
             <select
@@ -162,7 +162,7 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
           {/* Rarity */}
           <div>
-            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Cinzel', serif" }}>
+            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Dongle', sans-serif" }}>
               Rarity
             </label>
             <select
@@ -176,7 +176,7 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
           {/* Format */}
           <div>
-            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Cinzel', serif" }}>
+            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Dongle', sans-serif" }}>
               Format
             </label>
             <select
@@ -190,7 +190,7 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
           {/* CMC */}
           <div>
-            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Cinzel', serif" }}>
+            <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-muted)", textTransform: "uppercase", marginBottom: "8px", fontFamily: "'Dongle', sans-serif" }}>
               Mana Value
             </label>
             <select
@@ -222,7 +222,7 @@ export default function FilterPanel({ filters, onChange }: FilterPanelProps) {
                   border: "none",
                   cursor: "pointer",
                   textDecoration: "underline",
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Dongle', sans-serif",
                 }}
               >
                 Clear all filters
@@ -242,7 +242,7 @@ const selectStyle: React.CSSProperties = {
   border: "1px solid var(--border-subtle)",
   borderRadius: "6px",
   color: "var(--text-primary)",
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "'Dongle', sans-serif",
   fontSize: "13px",
   cursor: "pointer",
   outline: "none",

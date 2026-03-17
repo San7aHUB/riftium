@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&family=Dongle:wght@300;400;700&family=League+Spartan:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -14,9 +14,9 @@
   --arcane: #8b6fbf;
   --arcane-bright: #b49de0;
 
-  --text-primary: #e8dcc8;
-  --text-secondary: #9a8f7a;
-  --text-muted: #5a5248;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.35);
 
   --border-subtle: rgba(201, 168, 76, 0.1);
   --border-normal: rgba(201, 168, 76, 0.2);
@@ -34,6 +34,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-transform: uppercase;
+}
+
+input::placeholder {
+  text-transform: uppercase;
 }
 
 html {
@@ -43,41 +48,38 @@ html {
 body {
   background: var(--bg-void);
   color: var(--text-primary);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Dongle', sans-serif;
   font-weight: 300;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Arcane grid background */
+/* Hero background image — fixed, covers the full viewport */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d220b74840b42967277782e45579b320ae141175-2312x1300.jpg?accountingTag=RB&auto=format&fit=fill&q=80&w=2312');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: brightness(1.0) saturate(0.1);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Radial glow from top */
+/* Leggero vignette scuro solo ai bordi */
 body::after {
   content: '';
   position: fixed;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(139, 111, 191, 0.08) 0%, transparent 70%);
+  inset: 0;
+  background: rgba(40, 40, 40, 0.55);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .font-display {
-  font-family: 'Cinzel', serif;
+  font-family: 'Tilt Warp', sans-serif;
 }
 
 /* Custom scrollbar */
@@ -110,6 +112,36 @@ body::after {
   50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.3); }
 }
 
+@keyframes bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: bob 3s ease-in-out infinite;
+}
+.particle:nth-child(1) { width: 14px; height: 14px; top: 20%; left: 6%;  animation-delay: 0s;    animation-duration: 3s;   box-shadow: 0 0 20px #fff; }
+.particle:nth-child(2) { width: 10px; height: 10px; top: 60%; left: 18%; animation-delay: 0.6s;  animation-duration: 4s;   box-shadow: 0 0 16px #fff; }
+.particle:nth-child(3) { width: 18px; height: 18px; top: 35%; left: 88%; animation-delay: 1.2s;  animation-duration: 3.5s; box-shadow: 0 0 28px #fff; }
+.particle:nth-child(4) { width: 8px;  height: 8px;  top: 70%; left: 75%; animation-delay: 1.8s;  animation-duration: 5s;   box-shadow: 0 0 12px #fff; }
+.particle:nth-child(5) { width: 12px; height: 12px; top: 15%; left: 50%; animation-delay: 0.4s;  animation-duration: 4s;   box-shadow: 0 0 18px #fff; }
+.particle:nth-child(6) { width: 10px; height: 10px; top: 80%; left: 40%; animation-delay: 2s;    animation-duration: 3s;   box-shadow: 0 0 16px #fff; }
+
+@keyframes title-glow {
+  0%, 100% { text-shadow: 0 0 40px rgba(255,255,255,0.1); }
+  50%       { text-shadow: 0 0 80px rgba(255,255,255,0.3), 0 0 120px rgba(201,168,76,0.2); }
+}
+
+@keyframes scan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(600%); }
+}
+
 .card-animate {
   animation: fadeInUp 0.4s ease forwards;
   opacity: 0;
@@ -117,4 +149,15 @@ body::after {
 
 .search-glow:focus-within {
   animation: glow-pulse 2s ease infinite;
+}
+
+/* Navbar transition helpers */
+nav {
+  will-change: background, backdrop-filter;
+}
+
+/* Quick chip hover */
+button:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
 }
