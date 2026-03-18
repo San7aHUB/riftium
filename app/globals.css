@@ -160,36 +160,6 @@ body::after {
   50%       { text-shadow: 0 0 80px rgba(255,255,255,0.25); }
 }
 
-@keyframes heroTitleIn {
-  0%   { opacity: 0; transform: translateY(40px) scale(0.92); filter: blur(12px); }
-  100% { opacity: 1; transform: translateY(0)   scale(1);    filter: blur(0); }
-}
-
-@keyframes heroSubIn {
-  0%   { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heroSearchIn {
-  0%   { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes beamPulse {
-  0%, 100% { opacity: 0.12; transform: scaleX(1); }
-  50%       { opacity: 0.28; transform: scaleX(1.08); }
-}
-
-@keyframes lineExpand {
-  0%   { width: 0; opacity: 0; }
-  100% { width: 120px; opacity: 1; }
-}
-
-@keyframes chipsIn {
-  0%   { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
 
 .card-animate {
   animation: fadeInUp 0.4s ease forwards;
