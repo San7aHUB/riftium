@@ -4,7 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import FilterPanel, { type Filters } from "./components/FilterPanel";
 import CardCard from "./components/CardCard";
-import NewsRecap from "./components/NewsRecap";
+import NewsStrip from "./components/NewsStrip";
 
 interface ScryfallCard {
   id: string;
@@ -472,8 +472,9 @@ export default function Home() {
               <code style={{ color: "var(--gold-dim)" }}>f:</code> format
             </p>
           </div>
+          {/* News strip */}
+          <NewsStrip />
         </section>
-        <NewsRecap />
       </> )}
 
       {/* ── Results ── */}
