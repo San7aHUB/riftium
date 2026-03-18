@@ -314,8 +314,7 @@ export default function Home() {
             backgroundImage: "url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d220b74840b42967277782e45579b320ae141175-2312x1300.jpg?accountingTag=RB&auto=format&fit=fill&q=80&w=1184')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
-            filter: "brightness(0.15) saturate(0.3) grayscale(0.4)",
-            opacity: 0.6,
+            filter: "brightness(0.45) saturate(0.6)",
           }} />
 
           {/* Particles */}
