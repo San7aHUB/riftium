@@ -11,11 +11,12 @@ const PHASES = [
     date: "Feb 13",
     iso: "2026-02-13",
     events: [
-      { name: "Bologna",   type: "Qualifier", dates: "Feb 20–22" },
-      { name: "Las Vegas", type: "Qualifier", dates: "Feb 27–Mar 1" },
-      { name: "PAX East",  type: "Convention", dates: "Mar 26–30" },
-      { name: "Lille",     type: "Qualifier", dates: "Apr 17–19" },
-      { name: "Atlanta",   type: "Qualifier", dates: "Apr 24–26" },
+      { name: "Spiritforged Pre-Rift", type: "Preview",   dates: "Feb 6–12" },
+      { name: "Bologna",               type: "Qualifier", dates: "Feb 20–22" },
+      { name: "Las Vegas",             type: "Qualifier", dates: "Feb 27–Mar 1" },
+      { name: "PAX East",              type: "Convention", dates: "Mar 26–30" },
+      { name: "Lille",                 type: "Qualifier", dates: "Apr 17–19" },
+      { name: "Atlanta",               type: "Qualifier", dates: "Apr 24–26" },
     ],
   },
   {
@@ -24,10 +25,11 @@ const PHASES = [
     date: "May 8",
     iso: "2026-05-08",
     events: [
-      { name: "Sydney",    type: "Qualifier", dates: "May 15–17" },
-      { name: "Vancouver", type: "Qualifier", dates: "May 29–31" },
-      { name: "Utrecht",   type: "Qualifier", dates: "Jun 12–14" },
-      { name: "Hartford",  type: "Qualifier", dates: "Jun 19–21" },
+      { name: "Unleashed Pre-Rift", type: "Preview",   dates: "May 1–7" },
+      { name: "Sydney",             type: "Qualifier", dates: "May 15–17" },
+      { name: "Vancouver",          type: "Qualifier", dates: "May 29–31" },
+      { name: "Utrecht",            type: "Qualifier", dates: "Jun 12–14" },
+      { name: "Hartford",           type: "Qualifier", dates: "Jun 19–21" },
     ],
   },
   {
@@ -36,10 +38,11 @@ const PHASES = [
     date: "Jul 31",
     iso: "2026-07-31",
     events: [
-      { name: "Gen Con",     type: "Convention", dates: "Jul 30–Aug 2" },
-      { name: "Barcelona",   type: "Qualifier",  dates: "Aug 21–23" },
-      { name: "Singapore",   type: "Qualifier",  dates: "Sep 4–6" },
-      { name: "Los Angeles", type: "Qualifier",  dates: "Sep 25–27" },
+      { name: "Vendetta Pre-Rift", type: "Preview",    dates: "Jul 24–30" },
+      { name: "Gen Con",           type: "Convention", dates: "Jul 30–Aug 2" },
+      { name: "Barcelona",         type: "Qualifier",  dates: "Aug 21–23" },
+      { name: "Singapore",         type: "Qualifier",  dates: "Sep 4–6" },
+      { name: "Los Angeles",       type: "Qualifier",  dates: "Sep 25–27" },
     ],
   },
   {
@@ -190,7 +193,7 @@ export default function RoadmapTimeline() {
                     <div style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "8px",
-                      color: "rgba(255,255,255,0.4)",
+                      color: ev.type === "Preview" ? "rgba(168,85,247,0.8)" : "rgba(255,255,255,0.4)",
                       letterSpacing: "0.08em",
                     }}>
                       {ev.type.toUpperCase()} · {ev.dates}
