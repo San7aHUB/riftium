@@ -333,8 +333,25 @@ export default function Home() {
             pointerEvents: "none",
           }} />
 
+          {/* Content panel — glass backdrop for readability */}
+          <div style={{
+            position: "relative", zIndex: 2,
+            width: "100%", maxWidth: "760px",
+            background: "rgba(10,10,18,0.72)",
+            backdropFilter: "blur(28px)",
+            WebkitBackdropFilter: "blur(28px)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "20px",
+            padding: "48px 48px 40px",
+            boxShadow: "0 8px 64px rgba(0,0,0,0.6)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "0px",
+          }}>
+
           {/* Title block */}
-          <div style={{ textAlign: "center", marginBottom: "36px", position: "relative", zIndex: 2 }}>
+          <div style={{ textAlign: "center", marginBottom: "36px", width: "100%" }}>
 
             {/* Big title */}
             <h1 style={{
@@ -345,7 +362,7 @@ export default function Home() {
               color: "#ffffff",
               lineHeight: 1,
               margin: 0,
-              textShadow: "0 0 80px rgba(255,255,255,0.15), 0 4px 40px rgba(0,0,0,0.8)",
+              textShadow: "0 0 60px rgba(255,255,255,0.2), 0 2px 20px rgba(0,0,0,0.9)",
               animation: "heroTitleIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards",
             }}>
               RIFTIUM
@@ -362,7 +379,7 @@ export default function Home() {
 
             {/* Subtitle */}
             <p className="hero-subtitle" style={{
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(255,255,255,0.75)",
               fontSize: "clamp(12px, 1.4vw, 15px)",
               fontFamily: "'Inter', sans-serif",
               fontWeight: 400,
@@ -379,13 +396,13 @@ export default function Home() {
           </div>
 
           {/* Search box — glass */}
-          <div className="hero-searchbox" style={{ width: "100%", maxWidth: "700px", animation: "heroSearchIn 0.7s 0.75s ease both", position: "relative", zIndex: 2 }}>
+          <div className="hero-searchbox" style={{ width: "100%", maxWidth: "700px", animation: "heroSearchIn 0.7s 0.75s ease both" }}>
             <div style={{
               display: "flex", alignItems: "center",
-              background: "rgba(7, 9, 13, 0.78)",
+              background: "rgba(5, 7, 12, 0.88)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
-              border: `1px solid ${searchFocused ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}`,
+              border: `1px solid ${searchFocused ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.22)"}`,
               borderRadius: "14px",
               overflow: "hidden",
               padding: "2px 5px",
@@ -486,6 +503,7 @@ export default function Home() {
               <code style={{ color: "var(--gold-dim)" }}>f:</code> format
             </p>
           </div>
+          </div>{/* end content panel */}
           {/* News strip */}
           <NewsStrip />
         </section>
