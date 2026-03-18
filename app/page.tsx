@@ -168,8 +168,8 @@ export default function Home() {
           ].map((item) => (
             <button key={item.label} onClick={() => handleQuickSearch(item.q)} style={{
               padding: "5px 12px", background: "transparent", border: "none",
-              color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', sans-serif",
-              fontSize: "13px", cursor: "pointer", letterSpacing: "0.04em", transition: "color 0.15s", fontWeight: 400,
+              color: "#ffffff", fontFamily: "'Inter', sans-serif",
+              fontSize: "13px", cursor: "pointer", letterSpacing: "0.04em", transition: "color 0.15s", fontWeight: 700,
             }}
               onMouseEnter={e => { e.currentTarget.style.color = "#fff"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
