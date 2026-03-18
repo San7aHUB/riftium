@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import FilterPanel, { type Filters } from "./components/FilterPanel";
 import CardCard from "./components/CardCard";
+import NewsRecap from "./components/NewsRecap";
 
 interface ScryfallCard {
   id: string;
@@ -165,12 +166,12 @@ export default function Home() {
           alignItems: "center", gap: "4px",
         }}>
           {[
-            { label: "News" },
+            { label: "News", href: "/news" },
             { label: "Cards", q: "*" },
             { label: "Market" },
             { label: "Deck Builder" },
           ].map((item) => (
-            <button key={item.label} onClick={() => item.q && handleQuickSearch(item.q)} style={{
+            <button key={item.label} onClick={() => item.q ? handleQuickSearch(item.q) : item.href && (window.location.href = item.href)} style={{
               padding: "5px 14px", background: "transparent", border: "none",
               color: "#ffffff", fontFamily: "'Inter', sans-serif",
               fontSize: "13px", cursor: "pointer", letterSpacing: "0.04em", transition: "color 0.15s", fontWeight: 700,
@@ -298,6 +299,7 @@ export default function Home() {
 
       {/* ── Hero ── */}
       {!searched && (
+        <>
         <section className="hero-section" style={{
           minHeight: "100vh",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
@@ -471,7 +473,8 @@ export default function Home() {
             </p>
           </div>
         </section>
-      )}
+        <NewsRecap />
+      </> )}
 
       {/* ── Results ── */}
       {searched && (
