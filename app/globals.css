@@ -2,21 +2,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg-void: #060d18;
-  --bg-deep: #0a1628;
-  --bg-surface: #0f2035;
-  --bg-elevated: #162840;
-  --bg-hover: #1e3450;
+  --bg-void: #111110;
+  --bg-deep: #191918;
+  --bg-surface: #222220;
+  --bg-elevated: #2c2c2a;
+  --bg-hover: #383835;
 
-  --gold: #ffffff;
-  --gold-bright: #ffffff;
-  --gold-dim: #999999;
-  --arcane: #666666;
-  --arcane-bright: #bbbbbb;
+  --gold: #c9a84c;
+  --gold-bright: #e8c96a;
+  --gold-dim: #8a6f2e;
+  --arcane: #7a6535;
+  --arcane-bright: #d4af60;
 
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --text-muted: rgba(255, 255, 255, 0.35);
+  --text-primary: #ddd8cc;
+  --text-secondary: rgba(221, 216, 204, 0.6);
+  --text-muted: rgba(221, 216, 204, 0.35);
 
   --border-subtle: rgba(255, 255, 255, 0.07);
   --border-normal: rgba(255, 255, 255, 0.13);
@@ -60,10 +60,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 15% 10%, rgba(6,80,100,0.55) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 50% at 85% 85%, rgba(4,60,40,0.45) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 60% 40%, rgba(8,50,90,0.3) 0%, transparent 50%),
-    linear-gradient(160deg, #080f1e 0%, #061428 40%, #050e1c 70%, #060d18 100%);
+    radial-gradient(ellipse 70% 55% at 15% 10%, rgba(120,90,20,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 85% 85%, rgba(100,75,15,0.18) 0%, transparent 55%),
+    linear-gradient(160deg, #1a1917 0%, #151412 40%, #111110 70%, #111110 100%);
   pointer-events: none;
   z-index: 0;
 }
