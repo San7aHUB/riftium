@@ -337,7 +337,7 @@ export default function Home() {
           <div style={{
             position: "relative", zIndex: 2,
             width: "100%", maxWidth: "760px",
-            background: "rgba(10,10,18,0.72)",
+            background: "rgba(38,38,42,0.55)",
             backdropFilter: "blur(28px)",
             WebkitBackdropFilter: "blur(28px)",
             border: "1px solid rgba(255,255,255,0.08)",
