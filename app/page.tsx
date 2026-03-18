@@ -139,7 +139,7 @@ export default function Home() {
         background: "rgba(7, 9, 13, 0.72)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
-        borderBottom: "1px solid rgba(155,107,255,0.12)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
         gap: "16px",
         overflow: "hidden",
       }}>
@@ -181,8 +181,8 @@ export default function Home() {
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
           <Link href="/cards" style={{
             padding: "6px 14px",
-            background: "rgba(155,107,255,0.1)",
-            border: "1px solid rgba(155,107,255,0.22)",
+            background: "rgba(255,255,255,0.07)",
+            border: "1px solid rgba(255,255,255,0.18)",
             borderRadius: "7px",
             color: "var(--gold)",
             fontFamily: "'Dongle', sans-serif",
@@ -194,8 +194,8 @@ export default function Home() {
             Collection
           </Link>
           {searched && (
-            <div style={{ display: "flex", alignItems: "center", background: "rgba(7,9,13,0.6)", border: "1px solid rgba(155,107,255,0.18)", borderRadius: "8px", height: "36px", overflow: "hidden" }}>
-              <div style={{ padding: "0 10px", color: "rgba(155,107,255,0.45)", flexShrink: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", background: "rgba(7,9,13,0.6)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", height: "36px", overflow: "hidden" }}>
+              <div style={{ padding: "0 10px", color: "rgba(255,255,255,0.4)", flexShrink: 0 }}>
                 <SearchIcon size={14} />
               </div>
               <input
@@ -289,18 +289,18 @@ export default function Home() {
               background: "rgba(7, 9, 13, 0.78)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
-              border: `1px solid ${searchFocused ? "rgba(155,107,255,0.4)" : "rgba(255,255,255,0.18)"}`,
+              border: `1px solid ${searchFocused ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}`,
               borderRadius: "14px",
               overflow: "hidden",
               padding: "2px 5px",
               boxShadow: searchFocused
-                ? "0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(155,107,255,0.12)"
+                ? "0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)"
                 : "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)",
               transform: searchFocused ? "scale(1.07)" : "scale(1)",
               transformOrigin: "center",
               transition: "box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
             }}>
-              <div style={{ padding: "0 16px", color: "rgba(155,107,255,0.4)", flexShrink: 0 }}>
+              <div style={{ padding: "0 16px", color: "rgba(255,255,255,0.35)", flexShrink: 0 }}>
                 <SearchIcon size={20} />
               </div>
               <input
@@ -362,8 +362,8 @@ export default function Home() {
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget;
-                    el.style.background = "rgba(155,107,255,0.18)";
-                    el.style.borderColor = "rgba(155,107,255,0.45)";
+                    el.style.background = "rgba(255,255,255,0.15)";
+                    el.style.borderColor = "rgba(255,255,255,0.4)";
                     el.style.color = "#fff";
                   }}
                   onMouseLeave={e => {
@@ -411,7 +411,7 @@ export default function Home() {
             {total > 0 && !loading && (
               <span style={{
                 marginLeft: "auto", fontSize: "12px",
-                color: "rgba(155,107,255,0.35)",
+                color: "rgba(255,255,255,0.3)",
                 fontFamily: "'Dongle', sans-serif", letterSpacing: "0.06em",
               }}>
                 {total.toLocaleString()} cards
@@ -464,7 +464,7 @@ export default function Home() {
                         style={{
                           padding: "12px 40px",
                           background: "transparent",
-                          border: "1px solid rgba(155,107,255,0.18)",
+                          border: "1px solid rgba(255,255,255,0.15)",
                           borderRadius: "8px",
                           color: "rgba(255,255,255,0.5)",
                           fontFamily: "'Dongle', sans-serif", fontSize: "13px",
@@ -486,7 +486,7 @@ export default function Home() {
       {/* ── Footer ── */}
       <footer style={{
         textAlign: "center", padding: "28px 32px",
-        color: "rgba(155,107,255,0.22)", fontSize: "11px", letterSpacing: "0.08em",
+        color: "rgba(255,255,255,0.18)", fontSize: "11px", letterSpacing: "0.08em",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         background: "var(--bg-void)",
       }}>

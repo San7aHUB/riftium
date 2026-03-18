@@ -2,25 +2,25 @@
 @import "tailwindcss";
 
 :root {
-  --bg-void: #06030f;
-  --bg-deep: #0c0820;
-  --bg-surface: #130f2a;
-  --bg-elevated: #1c1640;
-  --bg-hover: #251d52;
+  --bg-void: #0a0a0a;
+  --bg-deep: #111111;
+  --bg-surface: #1a1a1a;
+  --bg-elevated: #242424;
+  --bg-hover: #2e2e2e;
 
-  --gold: #f0c060;
-  --gold-bright: #ffd97a;
-  --gold-dim: #a07830;
-  --arcane: #9b6bff;
-  --arcane-bright: #c4a0ff;
+  --gold: #ffffff;
+  --gold-bright: #ffffff;
+  --gold-dim: #999999;
+  --arcane: #666666;
+  --arcane-bright: #bbbbbb;
 
-  --text-primary: #f0eaff;
-  --text-secondary: rgba(240, 234, 255, 0.65);
-  --text-muted: rgba(240, 234, 255, 0.35);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.35);
 
-  --border-subtle: rgba(155, 107, 255, 0.12);
-  --border-normal: rgba(155, 107, 255, 0.25);
-  --border-bright: rgba(155, 107, 255, 0.6);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-normal: rgba(255, 255, 255, 0.13);
+  --border-bright: rgba(255, 255, 255, 0.35);
 
   --w: #f9fafb;
   --u: #3b82f6;
@@ -73,7 +73,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: linear-gradient(160deg, rgba(6,3,15,0.55) 0%, rgba(12,8,32,0.45) 60%, rgba(6,3,15,0.6) 100%);
+  background: rgba(0, 0, 0, 0.5);
   pointer-events: none;
   z-index: 1;
 }
@@ -108,8 +108,8 @@ body::after {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(155, 107, 255, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(155, 107, 255, 0.45); }
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.06); }
+  50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.14); }
 }
 
 /* Particelle che salgono dal basso */
@@ -155,8 +155,8 @@ body::after {
 .particle:nth-child(6) { width: 5px;  height: 5px;  left: 88%; animation: rise-straight 6.5s 1.8s ease-in infinite; box-shadow: 0 0 8px #fff; }
 
 @keyframes title-glow {
-  0%, 100% { text-shadow: 0 0 40px rgba(155,107,255,0.2); }
-  50%       { text-shadow: 0 0 80px rgba(155,107,255,0.5), 0 0 120px rgba(240,192,96,0.3); }
+  0%, 100% { text-shadow: 0 0 40px rgba(255,255,255,0.08); }
+  50%       { text-shadow: 0 0 80px rgba(255,255,255,0.25); }
 }
 
 

@@ -93,7 +93,7 @@ export default function CardsPage() {
         background: "rgba(7,9,13,0.8)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
-        borderBottom: "1px solid rgba(155,107,255,0.1)",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
         gap: "16px",
       }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
@@ -101,7 +101,7 @@ export default function CardsPage() {
             RIFTIUM
           </span>
         </Link>
-        <span style={{ color: "rgba(155,107,255,0.22)", fontSize: "18px" }}>/</span>
+        <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "18px" }}>/</span>
         <span style={{ fontFamily: "'Dongle', sans-serif", fontSize: "20px", color: "rgba(255,255,255,0.6)", letterSpacing: "0.08em" }}>
           COLLECTION
         </span>
@@ -125,7 +125,7 @@ export default function CardsPage() {
           }}>
             Card Collection
           </h1>
-          <p style={{ color: "rgba(155,107,255,0.45)", fontSize: "16px", fontFamily: "'Dongle', sans-serif", marginBottom: "32px" }}>
+          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "16px", fontFamily: "'Dongle', sans-serif", marginBottom: "32px" }}>
             Carte salvate nel database
           </p>
 
@@ -140,7 +140,7 @@ export default function CardsPage() {
               ].map((s) => (
                 <div key={s.label} style={{
                   background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(155,107,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.07)",
                   borderRadius: "10px",
                   padding: "14px 20px",
                   minWidth: "90px",
@@ -148,7 +148,7 @@ export default function CardsPage() {
                   <div style={{ fontSize: "22px", fontWeight: 600, color: s.color || "#fff", fontFamily: "'Tilt Warp', sans-serif" }}>
                     {s.value}
                   </div>
-                  <div style={{ fontSize: "13px", color: "rgba(155,107,255,0.4)", fontFamily: "'Dongle', sans-serif", letterSpacing: "0.08em" }}>
+                  <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)", fontFamily: "'Dongle', sans-serif", letterSpacing: "0.08em" }}>
                     {s.label}
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function CardsPage() {
               overflow: "hidden",
               flex: "1", minWidth: "200px", maxWidth: "360px",
             }}>
-              <div style={{ padding: "0 12px", color: "rgba(155,107,255,0.35)" }}>
+              <div style={{ padding: "0 12px", color: "rgba(255,255,255,0.3)" }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
@@ -200,7 +200,7 @@ export default function CardsPage() {
                 cursor: "pointer",
                 outline: "none",
                 appearance: "none",
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(155,107,255,0.45)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "right 10px center",
               }}
@@ -215,8 +215,8 @@ export default function CardsPage() {
             <Link href="/" style={{
               marginLeft: "auto",
               padding: "9px 18px",
-              background: "rgba(155,107,255,0.12)",
-              border: "1px solid rgba(155,107,255,0.28)",
+              background: "rgba(255,255,255,0.08)",
+              border: "1px solid rgba(255,255,255,0.25)",
               borderRadius: "8px",
               color: "var(--gold)",
               fontFamily: "'Dongle', sans-serif",
@@ -264,18 +264,18 @@ export default function CardsPage() {
           {!loading && filtered.length === 0 && (
             <div style={{ textAlign: "center", paddingTop: "80px" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px", opacity: 0.3 }}>⬡</div>
-              <p style={{ fontFamily: "'Tilt Warp', sans-serif", color: "rgba(155,107,255,0.35)", fontSize: "18px", letterSpacing: "0.08em", marginBottom: "8px" }}>
+              <p style={{ fontFamily: "'Tilt Warp', sans-serif", color: "rgba(255,255,255,0.3)", fontSize: "18px", letterSpacing: "0.08em", marginBottom: "8px" }}>
                 {cards.length === 0 ? "No cards saved yet" : "No results"}
               </p>
-              <p style={{ color: "rgba(155,107,255,0.22)", fontSize: "14px", fontFamily: "'Dongle', sans-serif" }}>
+              <p style={{ color: "rgba(255,255,255,0.18)", fontSize: "14px", fontFamily: "'Dongle', sans-serif" }}>
                 {cards.length === 0 ? "Search for cards and save them to your collection" : "Try a different search term"}
               </p>
               {cards.length === 0 && (
                 <Link href="/" style={{
                   display: "inline-block", marginTop: "24px",
                   padding: "10px 24px",
-                  background: "rgba(155,107,255,0.12)",
-                  border: "1px solid rgba(155,107,255,0.35)",
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.3)",
                   borderRadius: "8px",
                   color: "var(--gold)",
                   textDecoration: "none",
@@ -312,10 +312,10 @@ export default function CardsPage() {
                       borderRadius: "12px",
                       overflow: "hidden",
                       background: "var(--bg-surface)",
-                      border: `1px solid ${isHovered ? "rgba(155,107,255,0.4)" : "var(--border-subtle)"}`,
+                      border: `1px solid ${isHovered ? "rgba(255,255,255,0.35)" : "var(--border-subtle)"}`,
                       transition: "all 0.25s cubic-bezier(0.4,0,0.2,1)",
                       transform: isHovered ? "translateY(-4px) scale(1.02)" : "none",
-                      boxShadow: isHovered ? "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(155,107,255,0.12)" : "0 4px 12px rgba(0,0,0,0.3)",
+                      boxShadow: isHovered ? "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,255,255,0.08)" : "0 4px 12px rgba(0,0,0,0.3)",
                     }}>
                       {/* Image */}
                       <div style={{ position: "relative", aspectRatio: "63/88", background: "var(--bg-deep)" }}>
@@ -386,11 +386,11 @@ export default function CardsPage() {
                         }}>
                           {card.name}
                         </div>
-                        <div style={{ fontSize: "12px", color: "rgba(155,107,255,0.4)", marginBottom: "4px" }}>
+                        <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", marginBottom: "4px" }}>
                           {card.type_line}
                         </div>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                          <span style={{ fontSize: "10px", color: "rgba(155,107,255,0.28)", letterSpacing: "0.05em" }}>
+                          <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.25)", letterSpacing: "0.05em" }}>
                             {card.set_code?.toUpperCase()}
                           </span>
                           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -418,7 +418,7 @@ export default function CardsPage() {
 
       <footer style={{
         textAlign: "center", padding: "28px 32px",
-        color: "rgba(155,107,255,0.18)", fontSize: "11px",
+        color: "rgba(255,255,255,0.15)", fontSize: "11px",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         background: "var(--bg-void)",
       }}>
