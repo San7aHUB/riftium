@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import Link from "next/link";
 import FilterPanel, { type Filters } from "./components/FilterPanel";
 import CardCard from "./components/CardCard";
 
@@ -176,8 +177,22 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Destra: search (risultati) + hamburger */}
+        {/* Destra: collection link + search (risultati) + hamburger */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
+          <Link href="/cards" style={{
+            padding: "6px 14px",
+            background: "rgba(201,168,76,0.08)",
+            border: "1px solid rgba(201,168,76,0.2)",
+            borderRadius: "7px",
+            color: "var(--gold)",
+            fontFamily: "'Dongle', sans-serif",
+            fontSize: "16px",
+            textDecoration: "none",
+            letterSpacing: "0.06em",
+            transition: "all 0.15s",
+          }}>
+            Collection
+          </Link>
           {searched && (
             <div style={{ display: "flex", alignItems: "center", background: "rgba(7,9,13,0.6)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", height: "36px", overflow: "hidden" }}>
               <div style={{ padding: "0 10px", color: "rgba(255,255,255,0.4)", flexShrink: 0 }}>

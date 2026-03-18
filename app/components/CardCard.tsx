@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 interface ScryfallCard {
   id: string;
@@ -56,6 +57,30 @@ function parseMana(cost: string): React.ReactNode[] {
 export default function CardCard({ card, index }: CardCardProps) {
   const [hovered, setHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  async function saveCard() {
+    if (saved || saving) return;
+    setSaving(true);
+    const imageUrl = card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal || null;
+    await supabase.from("cards").upsert({
+      scryfall_id: card.id,
+      name: card.name,
+      mana_cost: card.mana_cost || null,
+      type_line: card.type_line,
+      rarity: card.rarity,
+      set_code: card.set,
+      set_name: card.set_name,
+      image_url: imageUrl,
+      oracle_text: card.oracle_text || null,
+      power: card.power || null,
+      toughness: card.toughness || null,
+      price_usd: card.prices?.usd || null,
+    }, { onConflict: "scryfall_id" });
+    setSaving(false);
+    setSaved(true);
+  }
 
   const imageUrl = imgError
     ? null
@@ -124,6 +149,29 @@ export default function CardCard({ card, index }: CardCardProps) {
             background: rarityColor,
             boxShadow: `0 0 8px ${rarityColor}`,
           }} title={card.rarity} />
+
+          {/* Save button */}
+          {hovered && (
+            <button
+              onClick={saveCard}
+              disabled={saving}
+              title={saved ? "Saved!" : "Save to collection"}
+              style={{
+                position: "absolute", top: "8px", left: "8px",
+                width: "26px", height: "26px",
+                background: saved ? "rgba(34,197,94,0.85)" : "rgba(7,9,13,0.8)",
+                border: `1px solid ${saved ? "rgba(34,197,94,0.5)" : "rgba(255,255,255,0.2)"}`,
+                borderRadius: "50%",
+                color: "#fff", cursor: saved ? "default" : "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "14px",
+                transition: "all 0.2s",
+                backdropFilter: "blur(4px)",
+              }}
+            >
+              {saving ? "…" : saved ? "✓" : "+"}
+            </button>
+          )}
 
           {/* Hover overlay */}
           {hovered && card.oracle_text && (
