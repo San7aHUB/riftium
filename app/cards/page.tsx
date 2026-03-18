@@ -95,7 +95,6 @@ export default function CardsPage() {
         WebkitBackdropFilter: "blur(24px)",
         borderBottom: "none",
         gap: "16px",
-        position: "relative",
       }}>
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
