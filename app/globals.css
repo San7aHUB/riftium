@@ -63,7 +63,7 @@ body::before {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  filter: brightness(0.6) saturate(0) contrast(1.1);
+  filter: brightness(0.7) saturate(0.8) contrast(1.05);
   pointer-events: none;
   z-index: 0;
 }
@@ -73,7 +73,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.45);
   pointer-events: none;
   z-index: 1;
 }
