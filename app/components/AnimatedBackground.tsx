@@ -4,53 +4,40 @@ export default function AnimatedBackground() {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none", overflow: "hidden" }}>
 
-
-      {/* Orb 1 — cool gray, top-left */}
+      {/* Soft glow top-left — warm amber */}
       <div style={{
         position: "absolute",
         width: "700px", height: "700px",
-        top: "-150px", left: "-120px",
+        top: "-200px", left: "-150px",
         borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(80,85,95,0.18) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(227,149,41,0.15) 0%, transparent 70%)",
         filter: "blur(60px)",
         animation: "orbDrift1 22s ease-in-out infinite",
         willChange: "transform",
       }} />
 
-      {/* Orb 2 — warm gray, bottom-right */}
+      {/* Soft glow bottom-right — deep teal */}
       <div style={{
         position: "absolute",
-        width: "600px", height: "600px",
-        bottom: "-120px", right: "-100px",
+        width: "650px", height: "650px",
+        bottom: "-150px", right: "-120px",
         borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(70,70,70,0.15) 0%, transparent 70%)",
-        filter: "blur(65px)",
-        animation: "orbDrift2 28s ease-in-out infinite",
+        background: "radial-gradient(circle, rgba(0,58,80,0.35) 0%, transparent 70%)",
+        filter: "blur(60px)",
+        animation: "orbDrift2 26s ease-in-out infinite",
         willChange: "transform",
       }} />
 
-      {/* Orb 3 — center breathe, slightly lighter */}
+      {/* Center breathe */}
       <div style={{
         position: "absolute",
-        width: "800px", height: "450px",
+        width: "800px", height: "500px",
         top: "30%", left: "20%",
         borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(60,62,68,0.12) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(100,65,10,0.08) 0%, transparent 70%)",
         filter: "blur(70px)",
         animation: "orbBreathe 18s ease-in-out infinite",
         willChange: "transform, opacity",
-      }} />
-
-      {/* Orb 4 — top-right accent */}
-      <div style={{
-        position: "absolute",
-        width: "400px", height: "400px",
-        top: "10%", right: "5%",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(75,78,85,0.14) 0%, transparent 70%)",
-        filter: "blur(50px)",
-        animation: "orbDrift3 32s ease-in-out infinite",
-        willChange: "transform",
       }} />
 
     </div>

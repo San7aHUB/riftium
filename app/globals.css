@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 :root {
-  --bg-void: #111110;
-  --bg-deep: #191918;
-  --bg-surface: #222220;
-  --bg-elevated: #2c2c2a;
-  --bg-hover: #383835;
+  --bg-void: #003A50;
+  --bg-deep: #003044;
+  --bg-surface: #1a2a35;
+  --bg-elevated: #243540;
+  --bg-hover: #2e4050;
 
   --gold: #c9a84c;
   --gold-bright: #e8c96a;
@@ -46,7 +46,7 @@ html {
 }
 
 body {
-  background: var(--bg-void);
+  background: transparent;
   color: var(--text-primary);
   font-family: 'Outfit', sans-serif;
   font-weight: 300;
