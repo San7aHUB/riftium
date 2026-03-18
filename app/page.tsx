@@ -181,8 +181,8 @@ export default function Home() {
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
           <Link href="/cards" style={{
             padding: "6px 14px",
-            background: "rgba(201,168,76,0.08)",
-            border: "1px solid rgba(201,168,76,0.2)",
+            background: "rgba(255,255,255,0.08)",
+            border: "1px solid rgba(255,255,255,0.2)",
             borderRadius: "7px",
             color: "var(--gold)",
             fontFamily: "'Dongle', sans-serif",
@@ -362,8 +362,8 @@ export default function Home() {
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget;
-                    el.style.background = "rgba(201,168,76,0.15)";
-                    el.style.borderColor = "rgba(201,168,76,0.4)";
+                    el.style.background = "rgba(255,255,255,0.15)";
+                    el.style.borderColor = "rgba(255,255,255,0.4)";
                     el.style.color = "#fff";
                   }}
                   onMouseLeave={e => {

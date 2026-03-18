@@ -73,7 +73,6 @@ export default function CardsPage() {
     (c.type_line || "").toLowerCase().includes(search.toLowerCase())
   );
 
-  const rarityOrder: Record<string, number> = { common: 0, uncommon: 1, rare: 2, mythic: 3 };
 
   const stats = {
     total: cards.length,
@@ -135,9 +134,9 @@ export default function CardsPage() {
             <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", marginBottom: "32px" }}>
               {[
                 { label: "Total", value: stats.total },
-                { label: "Rare", value: stats.rare, color: "#c9a84c" },
-                { label: "Mythic", value: stats.mythic, color: "#f97316" },
-                { label: "Value", value: `$${stats.value}`, color: "#86efac" },
+                { label: "Rare", value: stats.rare, color: "#ffffff" },
+                { label: "Mythic", value: stats.mythic, color: "rgba(255,255,255,0.7)" },
+                { label: "Value", value: `$${stats.value}`, color: "#ffffff" },
               ].map((s) => (
                 <div key={s.label} style={{
                   background: "rgba(255,255,255,0.04)",
@@ -216,8 +215,8 @@ export default function CardsPage() {
             <Link href="/" style={{
               marginLeft: "auto",
               padding: "9px 18px",
-              background: "rgba(201,168,76,0.1)",
-              border: "1px solid rgba(201,168,76,0.25)",
+              background: "rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.25)",
               borderRadius: "8px",
               color: "var(--gold)",
               fontFamily: "'Dongle', sans-serif",
@@ -275,8 +274,8 @@ export default function CardsPage() {
                 <Link href="/" style={{
                   display: "inline-block", marginTop: "24px",
                   padding: "10px 24px",
-                  background: "rgba(201,168,76,0.1)",
-                  border: "1px solid rgba(201,168,76,0.3)",
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.3)",
                   borderRadius: "8px",
                   color: "var(--gold)",
                   textDecoration: "none",
@@ -313,10 +312,10 @@ export default function CardsPage() {
                       borderRadius: "12px",
                       overflow: "hidden",
                       background: "var(--bg-surface)",
-                      border: `1px solid ${isHovered ? "rgba(201,168,76,0.35)" : "var(--border-subtle)"}`,
+                      border: `1px solid ${isHovered ? "rgba(255,255,255,0.35)" : "var(--border-subtle)"}`,
                       transition: "all 0.25s cubic-bezier(0.4,0,0.2,1)",
                       transform: isHovered ? "translateY(-4px) scale(1.02)" : "none",
-                      boxShadow: isHovered ? "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(201,168,76,0.1)" : "0 4px 12px rgba(0,0,0,0.3)",
+                      boxShadow: isHovered ? "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,255,255,0.1)" : "0 4px 12px rgba(0,0,0,0.3)",
                     }}>
                       {/* Image */}
                       <div style={{ position: "relative", aspectRatio: "63/88", background: "var(--bg-deep)" }}>

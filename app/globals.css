@@ -2,25 +2,25 @@
 @import "tailwindcss";
 
 :root {
-  --bg-void: #07090d;
-  --bg-deep: #0c0f17;
-  --bg-surface: #111520;
-  --bg-elevated: #161b2b;
-  --bg-hover: #1c2338;
+  --bg-void: #000000;
+  --bg-deep: #0a0a0a;
+  --bg-surface: #141414;
+  --bg-elevated: #1e1e1e;
+  --bg-hover: #282828;
 
-  --gold: #c9a84c;
-  --gold-bright: #e8c96a;
-  --gold-dim: #7a6228;
-  --arcane: #8b6fbf;
-  --arcane-bright: #b49de0;
+  --gold: #ffffff;
+  --gold-bright: #ffffff;
+  --gold-dim: #888888;
+  --arcane: #666666;
+  --arcane-bright: #aaaaaa;
 
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.65);
   --text-muted: rgba(255, 255, 255, 0.35);
 
-  --border-subtle: rgba(201, 168, 76, 0.1);
-  --border-normal: rgba(201, 168, 76, 0.2);
-  --border-bright: rgba(201, 168, 76, 0.5);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-normal: rgba(255, 255, 255, 0.13);
+  --border-bright: rgba(255, 255, 255, 0.35);
 
   --w: #f9fafb;
   --u: #3b82f6;
@@ -63,17 +63,17 @@ body::before {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  filter: brightness(1.0) saturate(0.2);
+  filter: brightness(0.6) saturate(0) contrast(1.1);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Leggero vignette scuro solo ai bordi */
+/* Vignette scuro */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: rgba(40, 40, 40, 0.55);
+  background: rgba(0, 0, 0, 0.65);
   pointer-events: none;
   z-index: 1;
 }
@@ -108,8 +108,8 @@ body::after {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.3); }
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.06); }
+  50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.12); }
 }
 
 /* Particelle che salgono dal basso */
@@ -156,7 +156,7 @@ body::after {
 
 @keyframes title-glow {
   0%, 100% { text-shadow: 0 0 40px rgba(255,255,255,0.1); }
-  50%       { text-shadow: 0 0 80px rgba(255,255,255,0.3), 0 0 120px rgba(201,168,76,0.2); }
+  50%       { text-shadow: 0 0 80px rgba(255,255,255,0.35), 0 0 120px rgba(255,255,255,0.15); }
 }
 
 
