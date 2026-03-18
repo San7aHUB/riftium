@@ -5,6 +5,7 @@ import Link from "next/link";
 import FilterPanel, { type Filters } from "./components/FilterPanel";
 import CardCard from "./components/CardCard";
 import NewsStrip from "./components/NewsStrip";
+import RoadmapTimeline from "./components/RoadmapTimeline";
 
 interface ScryfallCard {
   id: string;
@@ -324,6 +325,9 @@ export default function Home() {
 
           {/* Title block */}
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
+
+            {/* Roadmap timeline */}
+            <RoadmapTimeline />
 
             {/* Big title */}
             <h1 style={{
