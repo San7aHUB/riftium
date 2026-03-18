@@ -100,11 +100,11 @@ export default function CardCard({ card, index }: CardCardProps) {
         borderRadius: "12px",
         overflow: "hidden",
         background: "var(--bg-surface)",
-        border: `1px solid ${hovered ? "rgba(255,255,255,0.4)" : "var(--border-subtle)"}`,
+        border: `1px solid ${hovered ? "rgba(155,107,255,0.45)" : "var(--border-subtle)"}`,
         transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
         transform: hovered ? "translateY(-4px) scale(1.02)" : "translateY(0) scale(1)",
         boxShadow: hovered
-          ? "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,255,255,0.15)"
+          ? "0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(155,107,255,0.18)"
           : "0 4px 12px rgba(0,0,0,0.3)",
         cursor: "pointer",
       }}>
@@ -160,7 +160,7 @@ export default function CardCard({ card, index }: CardCardProps) {
                 position: "absolute", top: "8px", left: "8px",
                 width: "26px", height: "26px",
                 background: saved ? "rgba(34,197,94,0.85)" : "rgba(7,9,13,0.8)",
-                border: `1px solid ${saved ? "rgba(34,197,94,0.5)" : "rgba(255,255,255,0.2)"}`,
+                border: `1px solid ${saved ? "rgba(34,197,94,0.5)" : "rgba(155,107,255,0.22)"}`,
                 borderRadius: "50%",
                 color: "#fff", cursor: saved ? "default" : "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
