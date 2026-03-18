@@ -308,22 +308,14 @@ export default function Home() {
           position: "relative",
           overflow: "hidden",
         }}>
-          {/* Hero background image */}
+          {/* Hero background image — low opacity texture */}
           <div style={{
             position: "absolute", inset: 0, zIndex: 0,
             backgroundImage: "url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d220b74840b42967277782e45579b320ae141175-2312x1300.jpg?accountingTag=RB&auto=format&fit=fill&q=80&w=1184')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
-            filter: "brightness(0.28) saturate(0.7)",
-          }} />
-          {/* Gradient overlays */}
-          <div style={{
-            position: "absolute", inset: 0, zIndex: 1,
-            background: "linear-gradient(to bottom, rgba(14,14,20,0.35) 0%, rgba(14,14,20,0.1) 40%, rgba(14,14,20,0.7) 75%, #0e0e14 100%)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0, zIndex: 1,
-            background: "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 30%, rgba(14,14,20,0.6) 100%)",
+            filter: "brightness(0.15) saturate(0.3) grayscale(0.4)",
+            opacity: 0.6,
           }} />
 
           {/* Particles */}
