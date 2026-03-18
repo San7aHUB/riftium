@@ -311,7 +311,7 @@ export default function Home() {
           {/* Hero background image — low opacity texture */}
           <div style={{
             position: "absolute", inset: 0, zIndex: 0,
-            backgroundImage: "url('https://locator.riftbound.uvsgames.com/riftbound-bg.avif')",
+            backgroundImage: "url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/01041c2bd763532d6091ee7b2a8fe7d7c6ae9ff3-1920x1080.jpg?accountingTag=RB&auto=format&fit=fill&q=80&w=1184')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
             filter: "brightness(0.45) saturate(0.6)",
