@@ -168,7 +168,7 @@ export default function Home() {
           ].map((item) => (
             <button key={item.label} onClick={() => handleQuickSearch(item.q)} style={{
               padding: "6px 14px", background: "transparent", border: "none",
-              color: "rgba(255,255,255,0.6)", fontFamily: "'Dongle', sans-serif",
+              color: "rgba(255,255,255,0.6)", fontFamily: "'Outfit', sans-serif",
               fontSize: "18px", cursor: "pointer", letterSpacing: "0.08em", transition: "color 0.15s",
             }}
               onMouseEnter={e => { e.currentTarget.style.color = "#fff"; }}
@@ -185,7 +185,7 @@ export default function Home() {
             border: "1px solid rgba(255,255,255,0.18)",
             borderRadius: "7px",
             color: "var(--gold)",
-            fontFamily: "'Dongle', sans-serif",
+            fontFamily: "'Outfit', sans-serif",
             fontSize: "16px",
             textDecoration: "none",
             letterSpacing: "0.06em",
@@ -204,7 +204,7 @@ export default function Home() {
                 onKeyDown={handleKeyDown}
                 placeholder="Search…"
                 className="nav-search-input"
-                style={{ width: "200px", background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "16px", fontFamily: "'Dongle', sans-serif" }}
+                style={{ width: "200px", background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "16px", fontFamily: "'Outfit', sans-serif" }}
               />
               <button onClick={() => search(true)} disabled={loading} style={{
                 height: "26px", width: "26px", margin: "0 5px", background: "#fff", border: "none",
@@ -245,7 +245,7 @@ export default function Home() {
             { label: "Formats", q: "f:commander" },
           ].map((item) => (
             <button key={item.label} onClick={() => { handleQuickSearch(item.q); setMobileMenuOpen(false); }}
-              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Dongle', sans-serif", letterSpacing: "0.08em" }}
+              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.08em" }}
             >{item.label}</button>
           ))}
         </div>
@@ -316,7 +316,7 @@ export default function Home() {
                   flex: 1, padding: "10px 0",
                   background: "transparent", border: "none", outline: "none",
                   color: "#fff", fontSize: "20px",
-                  fontWeight: 400, fontFamily: "'Dongle', sans-serif",
+                  fontWeight: 400, fontFamily: "'Outfit', sans-serif",
                 }}
               />
               <button
@@ -358,7 +358,7 @@ export default function Home() {
                     borderRadius: "999px",
                     color: "#fff", fontSize: "18px",
                     cursor: "pointer", transition: "all 0.15s",
-                    fontFamily: "'Dongle', sans-serif",
+                    fontFamily: "'Outfit', sans-serif",
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget;
@@ -412,7 +412,7 @@ export default function Home() {
               <span style={{
                 marginLeft: "auto", fontSize: "12px",
                 color: "rgba(255,255,255,0.3)",
-                fontFamily: "'Dongle', sans-serif", letterSpacing: "0.06em",
+                fontFamily: "'Outfit', sans-serif", letterSpacing: "0.06em",
               }}>
                 {total.toLocaleString()} cards
               </span>
@@ -433,7 +433,7 @@ export default function Home() {
                     <line x1="12" y1="8" x2="12" y2="12" />
                     <line x1="12" y1="16" x2="12.01" y2="16" />
                   </svg>
-                  <p style={{ color: "var(--text-muted)", fontFamily: "'Dongle', sans-serif", fontSize: "14px" }}>{error}</p>
+                  <p style={{ color: "var(--text-muted)", fontFamily: "'Outfit', sans-serif", fontSize: "14px" }}>{error}</p>
                 </div>
               )}
 
@@ -467,7 +467,7 @@ export default function Home() {
                           border: "1px solid rgba(255,255,255,0.15)",
                           borderRadius: "8px",
                           color: "rgba(255,255,255,0.5)",
-                          fontFamily: "'Dongle', sans-serif", fontSize: "13px",
+                          fontFamily: "'Outfit', sans-serif", fontSize: "13px",
                           cursor: loading ? "not-allowed" : "pointer",
                           letterSpacing: "0.06em", transition: "all 0.2s",
                         }}

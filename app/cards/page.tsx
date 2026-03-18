@@ -102,7 +102,7 @@ export default function CardsPage() {
           </span>
         </Link>
         <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "18px" }}>/</span>
-        <span style={{ fontFamily: "'Dongle', sans-serif", fontSize: "20px", color: "rgba(255,255,255,0.6)", letterSpacing: "0.08em" }}>
+        <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: "20px", color: "rgba(255,255,255,0.6)", letterSpacing: "0.08em" }}>
           COLLECTION
         </span>
       </nav>
@@ -125,7 +125,7 @@ export default function CardsPage() {
           }}>
             Card Collection
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "16px", fontFamily: "'Dongle', sans-serif", marginBottom: "32px" }}>
+          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "16px", fontFamily: "'Outfit', sans-serif", marginBottom: "32px" }}>
             Carte salvate nel database
           </p>
 
@@ -148,7 +148,7 @@ export default function CardsPage() {
                   <div style={{ fontSize: "22px", fontWeight: 600, color: s.color || "#fff", fontFamily: "'Tilt Warp', sans-serif" }}>
                     {s.value}
                   </div>
-                  <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)", fontFamily: "'Dongle', sans-serif", letterSpacing: "0.08em" }}>
+                  <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.08em" }}>
                     {s.label}
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function CardsPage() {
                 style={{
                   flex: 1, padding: "9px 0", background: "transparent", border: "none",
                   outline: "none", color: "#fff", fontSize: "16px",
-                  fontFamily: "'Dongle', sans-serif",
+                  fontFamily: "'Outfit', sans-serif",
                 }}
               />
             </div>
@@ -195,7 +195,7 @@ export default function CardsPage() {
                 border: "1px solid rgba(255,255,255,0.12)",
                 borderRadius: "8px",
                 color: "#fff",
-                fontFamily: "'Dongle', sans-serif",
+                fontFamily: "'Outfit', sans-serif",
                 fontSize: "16px",
                 cursor: "pointer",
                 outline: "none",
@@ -219,7 +219,7 @@ export default function CardsPage() {
               border: "1px solid rgba(255,255,255,0.25)",
               borderRadius: "8px",
               color: "var(--gold)",
-              fontFamily: "'Dongle', sans-serif",
+              fontFamily: "'Outfit', sans-serif",
               fontSize: "16px",
               textDecoration: "none",
               letterSpacing: "0.06em",
@@ -267,7 +267,7 @@ export default function CardsPage() {
               <p style={{ fontFamily: "'Tilt Warp', sans-serif", color: "rgba(255,255,255,0.3)", fontSize: "18px", letterSpacing: "0.08em", marginBottom: "8px" }}>
                 {cards.length === 0 ? "No cards saved yet" : "No results"}
               </p>
-              <p style={{ color: "rgba(255,255,255,0.18)", fontSize: "14px", fontFamily: "'Dongle', sans-serif" }}>
+              <p style={{ color: "rgba(255,255,255,0.18)", fontSize: "14px", fontFamily: "'Outfit', sans-serif" }}>
                 {cards.length === 0 ? "Search for cards and save them to your collection" : "Try a different search term"}
               </p>
               {cards.length === 0 && (
@@ -279,7 +279,7 @@ export default function CardsPage() {
                   borderRadius: "8px",
                   color: "var(--gold)",
                   textDecoration: "none",
-                  fontFamily: "'Dongle', sans-serif",
+                  fontFamily: "'Outfit', sans-serif",
                   fontSize: "18px",
                 }}>
                   Search Cards
@@ -338,7 +338,7 @@ export default function CardsPage() {
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.3">
                               <rect x="3" y="3" width="18" height="18" rx="2" />
                             </svg>
-                            <span style={{ fontSize: "10px", fontFamily: "'Dongle', sans-serif", padding: "0 8px", textAlign: "center" }}>{card.name}</span>
+                            <span style={{ fontSize: "10px", fontFamily: "'Outfit', sans-serif", padding: "0 8px", textAlign: "center" }}>{card.name}</span>
                           </div>
                         )}
 
@@ -377,7 +377,7 @@ export default function CardsPage() {
                       {/* Info */}
                       <div style={{ padding: "10px 12px 12px" }}>
                         <div style={{
-                          fontFamily: "'Dongle', sans-serif",
+                          fontFamily: "'Outfit', sans-serif",
                           fontSize: "15px",
                           fontWeight: 500,
                           color: "#fff",

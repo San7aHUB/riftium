@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&family=Dongle:wght@300;400;700&family=League+Spartan:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Tilt+Warp&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -48,7 +48,7 @@ html {
 body {
   background: var(--bg-void);
   color: var(--text-primary);
-  font-family: 'Dongle', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-weight: 300;
   min-height: 100vh;
   overflow-x: hidden;
