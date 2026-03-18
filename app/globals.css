@@ -60,7 +60,7 @@ body::before {
   position: fixed;
   inset: 0;
   background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/01041c2bd763532d6091ee7b2a8fe7d7c6ae9ff3-1920x1080.jpg?accountingTag=RB&auto=format&fit=fill&q=80&w=1920');
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
   filter: brightness(0.75) saturate(1.3) contrast(1.1);
