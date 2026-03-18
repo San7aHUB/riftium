@@ -162,42 +162,78 @@ export default function Home() {
         {/* Nav links desktop — centrati */}
         <div className="nav-links-desktop" style={{
           position: "absolute", left: "50%", transform: "translateX(-50%)",
-          alignItems: "center", gap: "8px",
+          alignItems: "center", gap: "4px",
         }}>
           {[
+            { label: "News" },
             { label: "Cards", q: "*" },
-            { label: "Creatures", q: "t:creature" },
-            { label: "Spells", q: "t:instant or t:sorcery" },
-            { label: "Lands", q: "t:land" },
-            { label: "Formats", q: "f:commander" },
+            { label: "Market" },
+            { label: "Deck Builder" },
           ].map((item) => (
-            <button key={item.label} onClick={() => handleQuickSearch(item.q)} style={{
-              padding: "5px 12px", background: "transparent", border: "none",
+            <button key={item.label} onClick={() => item.q && handleQuickSearch(item.q)} style={{
+              padding: "5px 14px", background: "transparent", border: "none",
               color: "#ffffff", fontFamily: "'Inter', sans-serif",
               fontSize: "13px", cursor: "pointer", letterSpacing: "0.04em", transition: "color 0.15s", fontWeight: 700,
             }}
-              onMouseEnter={e => { e.currentTarget.style.color = "#fff"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
+              onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.7)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "#ffffff"; }}
             >{item.label}</button>
           ))}
         </div>
 
-        {/* Destra: collection link + search (risultati) + hamburger */}
+        {/* Destra: collection + login + register + hamburger */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
           <Link href="/cards" style={{
             padding: "5px 12px",
-            background: "rgba(255,255,255,0.07)",
-            border: "1px solid rgba(255,255,255,0.18)",
-            borderRadius: "7px",
-            color: "var(--gold)",
+            background: "transparent",
+            border: "none",
+            color: "rgba(255,255,255,0.8)",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "13px",
+            textDecoration: "none",
+            fontWeight: 600,
+            letterSpacing: "0.04em",
+            transition: "color 0.15s",
+          }}>
+            My Collection
+          </Link>
+          <div style={{ width: "1px", height: "16px", background: "rgba(255,255,255,0.15)" }} />
+          <button style={{
+            padding: "5px 14px",
+            background: "transparent",
+            border: "1px solid rgba(255,255,255,0.25)",
+            borderRadius: "6px",
+            color: "rgba(255,255,255,0.85)",
             fontFamily: "'Inter', sans-serif",
             fontSize: "12px",
-            textDecoration: "none",
+            fontWeight: 500,
+            cursor: "pointer",
             letterSpacing: "0.04em",
             transition: "all 0.15s",
-          }}>
-            Collection
-          </Link>
+          }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
+          >
+            Log in
+          </button>
+          <button style={{
+            padding: "5px 14px",
+            background: "#ffffff",
+            border: "1px solid #ffffff",
+            borderRadius: "6px",
+            color: "#000000",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "12px",
+            fontWeight: 600,
+            cursor: "pointer",
+            letterSpacing: "0.04em",
+            transition: "all 0.15s",
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#ffffff"; }}
+          >
+            Sign up
+          </button>
           {searched && (
             <div style={{ display: "flex", alignItems: "center", background: "rgba(7,9,13,0.6)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", height: "36px", overflow: "hidden" }}>
               <div style={{ padding: "0 10px", color: "rgba(255,255,255,0.4)", flexShrink: 0 }}>
@@ -243,16 +279,20 @@ export default function Home() {
       {mobileMenuOpen && (
         <div className="mobile-menu">
           {[
+            { label: "News" },
             { label: "Cards", q: "*" },
-            { label: "Creatures", q: "t:creature" },
-            { label: "Spells", q: "t:instant or t:sorcery" },
-            { label: "Lands", q: "t:land" },
-            { label: "Formats", q: "f:commander" },
+            { label: "Market" },
+            { label: "Deck Builder" },
+            { label: "My Collection", href: "/cards" },
           ].map((item) => (
-            <button key={item.label} onClick={() => { handleQuickSearch(item.q); setMobileMenuOpen(false); }}
-              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif", fontSize: "13px", letterSpacing: "0.02em" }}
+            <button key={item.label} onClick={() => { if (item.q) handleQuickSearch(item.q); setMobileMenuOpen(false); }}
+              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 600, letterSpacing: "0.02em" }}
             >{item.label}</button>
           ))}
+          <div style={{ display: "flex", gap: "8px", padding: "8px 28px" }}>
+            <button style={{ flex: 1, padding: "8px", background: "transparent", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "6px", color: "#fff", fontFamily: "'Inter', sans-serif", fontSize: "12px", fontWeight: 500, cursor: "pointer" }}>Log in</button>
+            <button style={{ flex: 1, padding: "8px", background: "#fff", border: "none", borderRadius: "6px", color: "#000", fontFamily: "'Inter', sans-serif", fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>Sign up</button>
+          </div>
         </div>
       )}
 
