@@ -260,30 +260,65 @@ export default function Home() {
           position: "relative",
           overflow: "hidden",
         }}>
-          {/* Particelle fluttuanti */}
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
-          {/* Title */}
-          <div style={{ textAlign: "center", marginBottom: "44px" }}>
-            <p className="hero-subtitle" style={{
-              color: "#fff",
-              fontSize: "clamp(16px, 2vw, 20px)",
+          {/* Particles */}
+          <div className="particle" /><div className="particle" /><div className="particle" />
+          <div className="particle" /><div className="particle" /><div className="particle" />
+
+          {/* Light beam behind title */}
+          <div style={{
+            position: "absolute",
+            top: "50%", left: "50%",
+            transform: "translate(-50%, -60%)",
+            width: "600px", height: "500px",
+            background: "radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,255,255,0.07) 0%, transparent 70%)",
+            animation: "beamPulse 4s ease-in-out infinite",
+            pointerEvents: "none",
+          }} />
+
+          {/* Title block */}
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+
+            {/* Big title */}
+            <h1 style={{
               fontFamily: "'Tilt Warp', sans-serif",
-              fontWeight: 300, letterSpacing: "0.18em",
-              maxWidth: "520px", margin: "0 auto", lineHeight: 1.7,
-              textShadow: "0 1px 12px rgba(0,0,0,0.8)",
-              animation: "title-glow 4s ease-in-out infinite",
+              fontSize: "clamp(64px, 12vw, 140px)",
+              fontWeight: 400,
+              letterSpacing: "0.12em",
+              color: "#ffffff",
+              lineHeight: 1,
+              margin: 0,
+              textShadow: "0 0 80px rgba(255,255,255,0.15), 0 4px 40px rgba(0,0,0,0.8)",
+              animation: "heroTitleIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards",
             }}>
-              Advanced card search for Riftbound.
+              RIFTIUM
+            </h1>
+
+            {/* Animated line */}
+            <div style={{
+              height: "1px",
+              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)",
+              margin: "20px auto 20px",
+              animation: "lineExpand 0.8s 0.6s ease forwards",
+              width: 0, opacity: 0,
+            }} />
+
+            {/* Subtitle */}
+            <p className="hero-subtitle" style={{
+              color: "rgba(255,255,255,0.55)",
+              fontSize: "clamp(12px, 1.4vw, 15px)",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 400,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              margin: "0 auto",
+              animation: "heroSubIn 0.7s 0.5s ease both",
+            }}>
+              Advanced card search for Riftbound
             </p>
           </div>
 
           {/* Search box — glass */}
-          <div className="hero-searchbox" style={{ width: "100%", maxWidth: "700px" }}>
+          <div className="hero-searchbox" style={{ width: "100%", maxWidth: "700px", animation: "heroSearchIn 0.7s 0.75s ease both" }}>
             <div style={{
               display: "flex", alignItems: "center",
               background: "rgba(7, 9, 13, 0.78)",
@@ -344,7 +379,7 @@ export default function Home() {
             </div>
 
             {/* Quick chips */}
-            <div style={{ display: "flex", gap: "8px", marginTop: "16px", flexWrap: "wrap", justifyContent: "center" }}>
+            <div style={{ display: "flex", gap: "8px", marginTop: "16px", flexWrap: "wrap", justifyContent: "center", animation: "chipsIn 0.6s 1s ease both" }}>
               {QUICK_SEARCHES.map((chip) => (
                 <button
                   key={chip.label}
