@@ -132,11 +132,11 @@ export default function Home() {
   return (
     <div style={{ minHeight: "100vh", position: "relative", zIndex: 2 }}>
 
-      {/* ── Navbar ── */}
+      {/* ── Navbar — only in results view ── */}
       <nav className="navbar" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         height: "60px",
-        display: "flex", alignItems: "center",
+        display: searched ? "flex" : "none", alignItems: "center",
         padding: "0 32px",
         background: "rgba(7, 9, 13, 0.72)",
         backdropFilter: "blur(24px)",
@@ -355,6 +355,48 @@ export default function Home() {
             <div style={{ position: "absolute", left: 0, top: "10%", bottom: "10%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 50%, transparent)", pointerEvents: "none" }} />
             {/* Gradient border — right */}
             <div style={{ position: "absolute", right: 0, top: "10%", bottom: "10%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 50%, transparent)", pointerEvents: "none" }} />
+
+          {/* In-glass nav */}
+          <div style={{
+            width: "100%",
+            display: "flex", alignItems: "center",
+            marginBottom: "32px",
+            paddingBottom: "20px",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+          }}>
+            {/* Main links */}
+            <div style={{ display: "flex", alignItems: "center", gap: "2px", flex: 1 }}>
+              {[
+                { label: "News", href: "/news" },
+                { label: "Cards", q: "*" },
+                { label: "Market" },
+                { label: "Deck Builder" },
+              ].map(item => (
+                <button key={item.label}
+                  onClick={() => item.q ? handleQuickSearch(item.q) : item.href && (window.location.href = item.href)}
+                  style={{ padding: "4px 12px", background: "transparent", border: "none", color: "#fff", fontFamily: "'Inter', sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", cursor: "pointer", transition: "color 0.15s", opacity: 0.75 }}
+                  onMouseEnter={e => { e.currentTarget.style.opacity = "1"; }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = "0.75"; }}
+                >{item.label}</button>
+              ))}
+            </div>
+            {/* Auth + collection */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <Link href="/cards" style={{ padding: "4px 10px", color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.06em", textDecoration: "none", transition: "color 0.15s" }}
+                onMouseEnter={e => { e.currentTarget.style.color = "#fff"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
+              >My Collection</Link>
+              <div style={{ width: "1px", height: "14px", background: "rgba(255,255,255,0.15)" }} />
+              <button style={{ padding: "4px 12px", background: "transparent", border: "1px solid rgba(255,255,255,0.22)", borderRadius: "5px", color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif", fontSize: "11px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.05em", transition: "all 0.15s" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "#fff"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "rgba(255,255,255,0.8)"; }}
+              >Log in</button>
+              <button style={{ padding: "4px 12px", background: "#fff", border: "none", borderRadius: "5px", color: "#000", fontFamily: "'Inter', sans-serif", fontSize: "11px", fontWeight: 600, cursor: "pointer", letterSpacing: "0.05em", transition: "opacity 0.15s" }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+              >Sign up</button>
+            </div>
+          </div>
 
           {/* Title block */}
           <div style={{ textAlign: "center", marginBottom: "36px", width: "100%" }}>
