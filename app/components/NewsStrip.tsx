@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
+const CATEGORY_COLOR: Record<string, string> = {
+  patch:     "#ef4444",
+  community: "#38bdf8",
+  event:     "#22c55e",
+  general:   "rgba(255,255,255,0.3)",
+};
+
 interface NewsItem {
   title: string;
   slug: string;
@@ -93,7 +100,8 @@ export default function NewsStrip() {
           <span style={{
             width: "5px", height: "5px",
             borderRadius: "50%",
-            background: "rgba(255,255,255,0.25)",
+            background: CATEGORY_COLOR[item.category] ?? CATEGORY_COLOR.general,
+            boxShadow: `0 0 6px ${CATEGORY_COLOR[item.category] ?? "rgba(255,255,255,0.3)"}`,
             flexShrink: 0,
           }} />
 
@@ -102,7 +110,7 @@ export default function NewsStrip() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "9px",
             letterSpacing: "0.15em",
-            color: "rgba(255,255,255,0.25)",
+            color: CATEGORY_COLOR[item.category] ?? CATEGORY_COLOR.general,
             flexShrink: 0,
             minWidth: "52px",
           }}>
