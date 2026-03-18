@@ -337,18 +337,25 @@ export default function Home() {
           <div style={{
             position: "relative", zIndex: 2,
             width: "100%", maxWidth: "760px",
-            background: "rgba(38,38,42,0.55)",
+            background: "rgba(38,38,42,0.28)",
             backdropFilter: "blur(28px)",
             WebkitBackdropFilter: "blur(28px)",
-            border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: "20px",
             padding: "48px 48px 40px",
-            boxShadow: "0 8px 64px rgba(0,0,0,0.6)",
+            boxShadow: "0 8px 64px rgba(0,0,0,0.4)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: "0px",
           }}>
+            {/* Gradient border — top */}
+            <div style={{ position: "absolute", top: 0, left: "10%", right: "10%", height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35) 50%, transparent)", pointerEvents: "none" }} />
+            {/* Gradient border — bottom */}
+            <div style={{ position: "absolute", bottom: 0, left: "10%", right: "10%", height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12) 50%, transparent)", pointerEvents: "none" }} />
+            {/* Gradient border — left */}
+            <div style={{ position: "absolute", left: 0, top: "10%", bottom: "10%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 50%, transparent)", pointerEvents: "none" }} />
+            {/* Gradient border — right */}
+            <div style={{ position: "absolute", right: 0, top: "10%", bottom: "10%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 50%, transparent)", pointerEvents: "none" }} />
 
           {/* Title block */}
           <div style={{ textAlign: "center", marginBottom: "36px", width: "100%" }}>
