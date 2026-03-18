@@ -309,6 +309,15 @@ export default function Home() {
           overflow: "hidden",
         }}>
 
+          {/* Hero background image — B&W desaturated */}
+          <div style={{
+            position: "absolute", inset: 0, zIndex: 0,
+            backgroundImage: "url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d220b74840b42967277782e45579b320ae141175-2312x1300.jpg?accountingTag=RB&auto=format&fit=fill&q=80&w=1184')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "grayscale(1) brightness(0.35)",
+          }} />
+
           {/* Particles */}
           <div className="particle" /><div className="particle" /><div className="particle" />
           <div className="particle" /><div className="particle" /><div className="particle" />
