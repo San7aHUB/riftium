@@ -93,9 +93,14 @@ export default function CardsPage() {
         background: "rgba(7,9,13,0.8)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        borderBottom: "none",
         gap: "16px",
+        position: "relative",
       }}>
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
+          background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 20%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.18) 80%, transparent 100%)",
+        }} />
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
           <span style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "24px", letterSpacing: "0.18em", color: "#fff" }}>
             RIFTIUM
