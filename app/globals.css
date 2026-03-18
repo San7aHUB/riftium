@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 :root {
-  --bg-void: #0a0a0a;
-  --bg-deep: #111111;
-  --bg-surface: #1a1a1a;
-  --bg-elevated: #242424;
-  --bg-hover: #2e2e2e;
+  --bg-void: #0e0e14;
+  --bg-deep: #13131c;
+  --bg-surface: #1c1c28;
+  --bg-elevated: #242434;
+  --bg-hover: #2e2e44;
 
   --gold: #ffffff;
   --gold-bright: #ffffff;
@@ -60,9 +60,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(60,60,70,0.5) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(40,40,50,0.4) 0%, transparent 55%),
-    linear-gradient(160deg, #0f0f0f 0%, #1a1a1a 40%, #111111 70%, #0a0a0a 100%);
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(60,60,90,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(40,40,75,0.35) 0%, transparent 55%),
+    linear-gradient(160deg, #161622 0%, #1a1a2e 40%, #131320 70%, #0e0e14 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -164,6 +164,34 @@ body::after {
 .card-animate {
   animation: fadeInUp 0.4s ease forwards;
   opacity: 0;
+}
+
+/* ── News ── */
+@keyframes newsCardIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: 55fr 22fr 22fr;
+  gap: 1px;
+}
+.news-number-bg {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.04;
+  font-family: 'Tilt Warp', sans-serif;
+  line-height: 1;
+  bottom: 8px;
+  right: 12px;
+}
+@media (max-width: 767px) {
+  .news-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .news-grid { grid-template-columns: 1fr 1fr; }
 }
 
 .search-glow:focus-within {
