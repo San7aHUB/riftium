@@ -167,9 +167,9 @@ export default function Home() {
             { label: "Formats", q: "f:commander" },
           ].map((item) => (
             <button key={item.label} onClick={() => handleQuickSearch(item.q)} style={{
-              padding: "6px 14px", background: "transparent", border: "none",
-              color: "rgba(255,255,255,0.6)", fontFamily: "'Outfit', sans-serif",
-              fontSize: "18px", cursor: "pointer", letterSpacing: "0.08em", transition: "color 0.15s",
+              padding: "5px 12px", background: "transparent", border: "none",
+              color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', sans-serif",
+              fontSize: "13px", cursor: "pointer", letterSpacing: "0.04em", transition: "color 0.15s", fontWeight: 400,
             }}
               onMouseEnter={e => { e.currentTarget.style.color = "#fff"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
@@ -180,15 +180,15 @@ export default function Home() {
         {/* Destra: collection link + search (risultati) + hamburger */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
           <Link href="/cards" style={{
-            padding: "6px 14px",
+            padding: "5px 12px",
             background: "rgba(255,255,255,0.07)",
             border: "1px solid rgba(255,255,255,0.18)",
             borderRadius: "7px",
             color: "var(--gold)",
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "16px",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "12px",
             textDecoration: "none",
-            letterSpacing: "0.06em",
+            letterSpacing: "0.04em",
             transition: "all 0.15s",
           }}>
             Collection
@@ -204,7 +204,7 @@ export default function Home() {
                 onKeyDown={handleKeyDown}
                 placeholder="Search…"
                 className="nav-search-input"
-                style={{ width: "200px", background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "16px", fontFamily: "'Outfit', sans-serif" }}
+                style={{ width: "200px", background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "13px", fontFamily: "'Inter', sans-serif" }}
               />
               <button onClick={() => search(true)} disabled={loading} style={{
                 height: "26px", width: "26px", margin: "0 5px", background: "#fff", border: "none",
@@ -245,7 +245,7 @@ export default function Home() {
             { label: "Formats", q: "f:commander" },
           ].map((item) => (
             <button key={item.label} onClick={() => { handleQuickSearch(item.q); setMobileMenuOpen(false); }}
-              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.08em" }}
+              style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif", fontSize: "13px", letterSpacing: "0.02em" }}
             >{item.label}</button>
           ))}
         </div>
@@ -315,8 +315,8 @@ export default function Home() {
                 style={{
                   flex: 1, padding: "10px 0",
                   background: "transparent", border: "none", outline: "none",
-                  color: "#fff", fontSize: "20px",
-                  fontWeight: 400, fontFamily: "'Outfit', sans-serif",
+                  color: "#fff", fontSize: "15px",
+                  fontWeight: 400, fontFamily: "'Inter', sans-serif",
                 }}
               />
               <button
@@ -356,9 +356,9 @@ export default function Home() {
                     WebkitBackdropFilter: "blur(8px)",
                     border: "1px solid rgba(255,255,255,0.16)",
                     borderRadius: "999px",
-                    color: "#fff", fontSize: "18px",
+                    color: "#fff", fontSize: "12px",
                     cursor: "pointer", transition: "all 0.15s",
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget;
@@ -380,9 +380,9 @@ export default function Home() {
 
             {/* Syntax hint */}
             <p style={{
-              textAlign: "center", marginTop: "18px",
-              fontSize: "16px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.03em",
-              textShadow: "0 1px 4px rgba(0,0,0,0.6)",
+              textAlign: "center", marginTop: "14px",
+              fontSize: "12px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.03em",
+              textShadow: "0 1px 4px rgba(0,0,0,0.6)", fontFamily: "'Inter', sans-serif",
             }}>
               <code style={{ color: "var(--gold-dim)" }}>o:</code> oracle ·&nbsp;
               <code style={{ color: "var(--gold-dim)" }}>t:</code> type ·&nbsp;
