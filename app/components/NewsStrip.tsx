@@ -8,7 +8,7 @@ const CATEGORY_COLOR: Record<string, string> = {
   patch:     "#ef4444",
   community: "#38bdf8",
   event:     "#22c55e",
-  general:   "rgba(255,255,255,0.3)",
+  general:   "rgba(255,255,255,0.7)",
 };
 
 interface NewsItem {
@@ -50,16 +50,16 @@ export default function NewsStrip() {
           fontFamily: "'Inter', sans-serif",
           fontSize: "9px",
           letterSpacing: "0.25em",
-          color: "rgba(255,255,255,0.2)",
+          color: "rgba(255,255,255,0.55)",
         }}>
           LATEST
         </span>
-        <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.07)" }} />
+        <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.15)" }} />
         <Link href="/news" style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "9px",
           letterSpacing: "0.2em",
-          color: "rgba(255,255,255,0.2)",
+          color: "rgba(255,255,255,0.55)",
           textDecoration: "none",
           transition: "color 0.15s",
         }}
@@ -124,7 +124,7 @@ export default function NewsStrip() {
           <span style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "11px",
-            color: "rgba(255,255,255,0.45)",
+            color: "rgba(255,255,255,0.8)",
             letterSpacing: "0.03em",
             overflow: "hidden",
             textOverflow: "ellipsis",
