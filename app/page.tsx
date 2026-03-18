@@ -324,10 +324,7 @@ export default function Home() {
           }} />
 
           {/* Title block */}
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-
-            {/* Roadmap timeline */}
-            <RoadmapTimeline />
+          <div style={{ textAlign: "center", marginBottom: "36px" }}>
 
             {/* Big title */}
             <h1 style={{
@@ -348,7 +345,7 @@ export default function Home() {
             <div style={{
               height: "1px",
               background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)",
-              margin: "20px auto 20px",
+              margin: "20px auto 16px",
               animation: "lineExpand 0.8s 0.6s ease forwards",
               width: 0, opacity: 0,
             }} />
@@ -361,11 +358,14 @@ export default function Home() {
               fontWeight: 400,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              margin: "0 auto",
+              margin: "0 auto 28px",
               animation: "heroSubIn 0.7s 0.5s ease both",
             }}>
               Advanced card search for Riftbound
             </p>
+
+            {/* Roadmap timeline */}
+            <RoadmapTimeline />
           </div>
 
           {/* Search box — glass */}
