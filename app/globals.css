@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 :root {
-  --bg-void: #0e0e14;
-  --bg-deep: #13131c;
-  --bg-surface: #1c1c28;
-  --bg-elevated: #242434;
-  --bg-hover: #2e2e44;
+  --bg-void: #060d18;
+  --bg-deep: #0a1628;
+  --bg-surface: #0f2035;
+  --bg-elevated: #162840;
+  --bg-hover: #1e3450;
 
   --gold: #ffffff;
   --gold-bright: #ffffff;
@@ -60,9 +60,10 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(60,60,90,0.45) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(40,40,75,0.35) 0%, transparent 55%),
-    linear-gradient(160deg, #161622 0%, #1a1a2e 40%, #131320 70%, #0e0e14 100%);
+    radial-gradient(ellipse 70% 55% at 15% 10%, rgba(6,80,100,0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 85% 85%, rgba(4,60,40,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 35% at 60% 40%, rgba(8,50,90,0.3) 0%, transparent 50%),
+    linear-gradient(160deg, #080f1e 0%, #061428 40%, #050e1c 70%, #060d18 100%);
   pointer-events: none;
   z-index: 0;
 }
