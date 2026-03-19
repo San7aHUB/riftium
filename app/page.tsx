@@ -127,7 +127,7 @@ export default function Home() {
         <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.1)", marginRight: "8px", flexShrink: 0 }} />
 
         {/* Nav links */}
-        {[{ label: "News", href: "/news" }, { label: "Cards" }, { label: "Market" }, { label: "Deck Builder" }].map(item => {
+        {[{ label: "News", href: "/news" }, { label: "Cards", href: "/cards" }, { label: "Market", href: "/market" }, { label: "Deck Builder", href: "/deck-builder" }].map(item => {
           const baseStyle: React.CSSProperties = {
             padding: "6px 13px", fontFamily: "'Inter', sans-serif", fontSize: "12px",
             fontWeight: 600, letterSpacing: "0.05em", color: "rgba(255,255,255,0.5)",
@@ -142,11 +142,8 @@ export default function Home() {
             e.currentTarget.style.color = "rgba(255,255,255,0.5)";
             e.currentTarget.style.background = "transparent";
           };
-          return item.href
-            ? <Link key={item.label} href={item.href} style={{ ...baseStyle, textDecoration: "none" }}
-                onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</Link>
-            : <button key={item.label} style={{ ...baseStyle, background: "none", border: "none" }}
-                onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</button>;
+          return <Link key={item.label} href={item.href!} style={{ ...baseStyle, textDecoration: "none" }}
+            onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</Link>;
         })}
 
         {/* Divider */}
