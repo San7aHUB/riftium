@@ -149,7 +149,7 @@ export default function Home() {
           position: "absolute", inset: 0,
           backgroundImage: "url('https://locator.riftbound.uvsgames.com/riftbound-bg.avif')",
           backgroundSize: "cover", backgroundPosition: "center 20%",
-          filter: "saturate(0.65) brightness(0.32)",
+          filter: "saturate(0.7) brightness(0.52)",
         }} />
         {/* Radial dark vignette — keeps edges dark */}
         <div style={{
