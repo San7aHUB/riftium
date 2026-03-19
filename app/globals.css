@@ -304,13 +304,6 @@ body::after {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
-@media (max-width: 960px) {
-  .navbar-pill {
-    background: rgba(14,14,14,0.95);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
 
 /* ── Navbar responsive ── */
 .nav-desktop-only { display: contents; }
