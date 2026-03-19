@@ -272,15 +272,10 @@ body {
 }
 
 /* ── Navbar pill ── */
-@keyframes navCompositorLock {
-  from { transform: translateZ(0); }
-  to   { transform: translateZ(0); }
-}
 .navbar-pill {
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  animation: navCompositorLock 1s linear infinite;
 }
 @media (max-width: 960px) {
   .navbar-pill {
