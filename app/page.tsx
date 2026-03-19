@@ -118,11 +118,26 @@ export default function Home() {
         </Link>
 
         <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", alignItems: "center", gap: "2px" }}>
-          {[{ label: "News", href: "/news" }, { label: "Cards" }, { label: "Market" }, { label: "Deck Builder" }].map(item =>
-            item.href
-              ? <Link key={item.label} href={item.href} style={{ padding: "5px 14px", color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 600, letterSpacing: "0.05em", textDecoration: "none" }}>{item.label}</Link>
-              : <button key={item.label} style={{ padding: "5px 14px", background: "none", border: "none", color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 600, letterSpacing: "0.05em", cursor: "pointer" }}>{item.label}</button>
-          )}
+          {[{ label: "News", href: "/news" }, { label: "Cards" }, { label: "Market" }, { label: "Deck Builder" }].map(item => {
+            const baseStyle: React.CSSProperties = {
+              padding: "5px 14px", fontFamily: "'Inter', sans-serif", fontSize: "13px",
+              fontWeight: 600, letterSpacing: "0.05em", color: "rgba(255,255,255,0.55)",
+              transition: "color 0.15s, text-shadow 0.15s", borderRadius: "6px",
+            };
+            const onEnter = (e: React.MouseEvent<HTMLElement>) => {
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.textShadow = `0 0 12px ${TEAL}, 0 0 24px rgba(34,211,238,0.4)`;
+            };
+            const onLeave = (e: React.MouseEvent<HTMLElement>) => {
+              e.currentTarget.style.color = "rgba(255,255,255,0.55)";
+              e.currentTarget.style.textShadow = "none";
+            };
+            return item.href
+              ? <Link key={item.label} href={item.href} style={{ ...baseStyle, textDecoration: "none" }}
+                  onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</Link>
+              : <button key={item.label} style={{ ...baseStyle, background: "none", border: "none", cursor: "pointer" }}
+                  onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</button>;
+          })}
         </div>
 
         <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
@@ -324,34 +339,53 @@ export default function Home() {
             Your Riftbound companion. Search cards, forge decks, and track the market — all in one place.
           </p>
 
-          {/* Search bar */}
-          <div style={{ width: "100%", maxWidth: "520px", marginBottom: "20px", animation: "fadeInUp 0.65s 0.5s ease both" }}>
+          {/* Search bar — slim → expanded on focus */}
+          <div style={{
+            width: "100%",
+            maxWidth: focused ? "580px" : "380px",
+            marginBottom: "20px",
+            animation: "fadeInUp 0.65s 0.5s ease both",
+            transition: "max-width 0.35s cubic-bezier(0.4,0,0.2,1)",
+          }}>
             <div style={{
               display: "flex", alignItems: "center",
               background: "rgba(10,10,10,0.75)",
               backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
               border: `1px solid ${focused ? TEAL_MID : "rgba(255,255,255,0.12)"}`,
-              borderRadius: "14px", padding: "4px 4px 4px 18px",
-              transition: "border-color 0.2s, box-shadow 0.2s",
+              borderRadius: "999px",
+              padding: focused ? "4px 4px 4px 20px" : "4px 4px 4px 16px",
+              transition: "border-color 0.3s, box-shadow 0.3s, padding 0.3s",
               boxShadow: focused
                 ? `0 0 0 3px ${TEAL_DIM}, 0 8px 40px rgba(0,0,0,0.6)`
-                : "0 4px 24px rgba(0,0,0,0.4)",
+                : "0 2px 12px rgba(0,0,0,0.3)",
             }}>
-              <div style={{ color: focused ? TEAL : "rgba(255,255,255,0.3)", display: "flex", alignItems: "center", flexShrink: 0, transition: "color 0.2s" }}>
-                <SearchIcon />
+              <div style={{ color: focused ? TEAL : "rgba(255,255,255,0.35)", display: "flex", alignItems: "center", flexShrink: 0, transition: "color 0.2s" }}>
+                <SearchIcon size={focused ? 18 : 16} />
               </div>
               <input
                 type="text" value={query}
                 onChange={e => setQuery(e.target.value)}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                placeholder="Search cards, sets, champions…"
-                style={{ flex: 1, background: "none", border: "none", outline: "none", color: "#fff", fontSize: "15px", fontFamily: "'Outfit', sans-serif", padding: "11px 14px" }}
+                placeholder={focused ? "Search cards, sets, champions…" : "Search Riftbound…"}
+                style={{
+                  flex: 1, background: "none", border: "none", outline: "none",
+                  color: "#fff", fontSize: focused ? "15px" : "13px",
+                  fontFamily: "'Outfit', sans-serif",
+                  padding: focused ? "10px 14px" : "8px 12px",
+                  transition: "font-size 0.3s, padding 0.3s",
+                }}
               />
               <button style={{
-                padding: "11px 24px", background: "#fff", border: "none", borderRadius: "10px",
-                color: "#000", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 700,
-                cursor: "pointer", letterSpacing: "0.03em", flexShrink: 0, transition: "opacity 0.15s",
+                padding: focused ? "10px 22px" : "7px 16px",
+                background: focused ? "#fff" : "rgba(255,255,255,0.12)",
+                border: "none", borderRadius: "999px",
+                color: focused ? "#000" : "rgba(255,255,255,0.7)",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: focused ? "13px" : "11px",
+                fontWeight: 700,
+                cursor: "pointer", letterSpacing: "0.03em", flexShrink: 0,
+                transition: "all 0.3s",
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.86"; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
