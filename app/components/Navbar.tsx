@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 const NAV_LINKS = [
   { label: "News",         href: "/news" },
@@ -28,30 +28,14 @@ function onLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const vv = window.visualViewport;
-    const el = navRef.current;
-    if (!vv || !el) return;
-    const update = () => {
-      // translateY keeps navbar 16px below the visual viewport top
-      // without triggering layout recalculation (GPU-only)
-      el.style.transform = `translateY(${vv.offsetTop + 16}px) translateZ(0)`;
-    };
-    update();
-    vv.addEventListener("resize", update);
-    return () => vv.removeEventListener("resize", update);
-  }, []);
 
   return (
     <>
-      <nav ref={navRef} className="navbar-pill" style={{
+      <nav className="navbar-pill" style={{
         position: "fixed", top: 0,
         left: 0, right: 0,
         margin: "0 auto",
         width: "fit-content",
-        transform: "translateY(16px) translateZ(0)",
         zIndex: 9999,
         display: "flex", alignItems: "center", gap: "4px",
         padding: "6px 8px 6px 18px",
@@ -136,7 +120,7 @@ export default function Navbar() {
       {/* Mobile dropdown */}
       {open && (
         <div style={{
-          position: "fixed", top: "70px", left: "16px", right: "16px",
+          position: "fixed", top: "56px", left: "8px", right: "8px",
           zIndex: 100,
           background: "rgba(12,12,12,0.96)",
           backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
