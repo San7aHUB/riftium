@@ -189,6 +189,25 @@ body::after {
   50%       { transform: translateY(-18px); }
 }
 
+@keyframes orbRise1 {
+  0%   { transform: translateY(0);       opacity: 0; }
+  8%   { opacity: 1; }
+  85%  { opacity: 0.6; }
+  100% { transform: translateY(-110vh);  opacity: 0; }
+}
+@keyframes orbRise2 {
+  0%   { transform: translateY(0) translateX(0);      opacity: 0; }
+  10%  { opacity: 0.8; }
+  80%  { opacity: 0.5; }
+  100% { transform: translateY(-105vh) translateX(40px); opacity: 0; }
+}
+@keyframes orbRise3 {
+  0%   { transform: translateY(0) translateX(0);       opacity: 0; }
+  12%  { opacity: 0.7; }
+  75%  { opacity: 0.4; }
+  100% { transform: translateY(-115vh) translateX(-30px); opacity: 0; }
+}
+
 @keyframes auroraSweep {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }

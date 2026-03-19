@@ -207,34 +207,34 @@ export default function Home() {
           background: `linear-gradient(to bottom, transparent, ${BG})`,
         }} />
 
-        {/* Teal orb — top left */}
+        {/* Orb 1 — left, slow */}
         <div style={{
           position: "absolute", zIndex: 1,
-          width: "600px", height: "600px",
-          top: "-100px", left: "-100px", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.55) 0%, rgba(34,211,238,0.1) 50%, transparent 70%)",
-          filter: "blur(60px)",
-          animation: "orbDrift1 20s ease-in-out infinite",
+          width: "340px", height: "340px",
+          bottom: "-60px", left: "12%", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(34,211,238,0.55) 0%, rgba(34,211,238,0.12) 55%, transparent 72%)",
+          filter: "blur(55px)",
+          animation: "orbRise1 14s 0s ease-in infinite",
           pointerEvents: "none",
         }} />
-        {/* Teal orb — bottom right */}
+        {/* Orb 2 — center-left, medium */}
         <div style={{
           position: "absolute", zIndex: 1,
-          width: "520px", height: "520px",
-          bottom: "20px", right: "-80px", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.45) 0%, rgba(34,211,238,0.08) 50%, transparent 70%)",
-          filter: "blur(65px)",
-          animation: "orbDrift2 26s ease-in-out infinite",
+          width: "260px", height: "260px",
+          bottom: "-40px", left: "38%", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(34,211,238,0.45) 0%, rgba(34,211,238,0.1) 55%, transparent 72%)",
+          filter: "blur(50px)",
+          animation: "orbRise2 11s 3.5s ease-in infinite",
           pointerEvents: "none",
         }} />
-        {/* Blue orb — top right */}
+        {/* Orb 3 — right, fast */}
         <div style={{
           position: "absolute", zIndex: 1,
-          width: "400px", height: "400px",
-          top: "5%", right: "10%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(56,189,248,0.06) 50%, transparent 70%)",
-          filter: "blur(70px)",
-          animation: "orbDrift3 32s ease-in-out infinite",
+          width: "300px", height: "300px",
+          bottom: "-50px", right: "14%", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(56,189,248,0.4) 0%, rgba(56,189,248,0.08) 55%, transparent 72%)",
+          filter: "blur(58px)",
+          animation: "orbRise3 16s 7s ease-in infinite",
           pointerEvents: "none",
         }} />
 
