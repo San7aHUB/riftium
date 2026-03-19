@@ -191,25 +191,6 @@ export default function Home() {
           pointerEvents: "none",
         }} />
 
-        {/* Aurora sweep line */}
-        <div style={{
-          position: "absolute", top: "38%", left: 0, right: 0, height: "1px",
-          background: `linear-gradient(90deg, transparent 0%, transparent 20%, rgba(34,211,238,0.6) 50%, transparent 80%, transparent 100%)`,
-          backgroundSize: "200% 100%",
-          filter: "blur(2px)",
-          animation: "auroraSweep 5s 1s linear infinite",
-          pointerEvents: "none",
-          opacity: 0.7,
-        }} />
-        {/* Aurora sweep — blurred copy for glow */}
-        <div style={{
-          position: "absolute", top: "calc(38% - 4px)", left: 0, right: 0, height: "9px",
-          background: `linear-gradient(90deg, transparent 0%, transparent 20%, rgba(34,211,238,0.25) 50%, transparent 80%, transparent 100%)`,
-          backgroundSize: "200% 100%",
-          filter: "blur(6px)",
-          animation: "auroraSweep 5s 1s linear infinite",
-          pointerEvents: "none",
-        }} />
 
         {/* Particles */}
         <div className="particle" /><div className="particle" /><div className="particle" />
