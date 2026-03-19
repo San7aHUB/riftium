@@ -297,6 +297,12 @@ body {
     box-shadow: none !important;
     padding: 10px 20px !important;
     justify-content: space-between;
+    /* Force GPU compositor layer — keeps navbar stable during Chrome mobile address bar animation */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
 

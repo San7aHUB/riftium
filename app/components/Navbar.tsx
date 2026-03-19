@@ -32,7 +32,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar-pill" style={{
-        position: "fixed", top: 0,
+        position: "fixed",
         left: 0, right: 0,
         margin: "0 auto",
         width: "fit-content",

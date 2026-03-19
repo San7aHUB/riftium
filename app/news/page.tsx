@@ -48,7 +48,7 @@ export default function NewsPage() {
   }, [category]);
 
   return (
-    <div style={{ minHeight: "100vh", position: "relative", zIndex: 2 }}>
+    <div style={{ minHeight: "100vh" }}>
 
       <main style={{ paddingTop: "80px" }}>
 

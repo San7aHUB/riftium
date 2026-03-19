@@ -30,7 +30,7 @@ export default function Home() {
   const [focused, setFocused] = useState(false);
 
   return (
-    <div style={{ height: "100vh", overflow: "hidden", background: BG, color: "rgba(255,255,255,0.88)", position: "relative", zIndex: 2 }}>
+    <div style={{ height: "100vh", overflow: "hidden", background: BG, color: "rgba(255,255,255,0.88)" }}>
 
       {/* ════ HERO — full viewport ════ */}
       <section style={{
