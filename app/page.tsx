@@ -164,35 +164,31 @@ export default function Home() {
 
         {/* Teal orb — top left */}
         <div style={{
-          position: "absolute", width: "550px", height: "550px",
-          top: "-80px", left: "-80px", borderRadius: "50%",
-          background: "radial-gradient(circle, #22d3ee 0%, transparent 65%)",
-          filter: "blur(80px)",
-          opacity: 0.22,
-          mixBlendMode: "screen",
+          position: "absolute", zIndex: 1,
+          width: "600px", height: "600px",
+          top: "-100px", left: "-100px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(34,211,238,0.55) 0%, rgba(34,211,238,0.1) 50%, transparent 70%)",
+          filter: "blur(60px)",
           animation: "orbDrift1 20s ease-in-out infinite",
           pointerEvents: "none",
         }} />
         {/* Teal orb — bottom right */}
         <div style={{
-          position: "absolute", width: "480px", height: "480px",
-          bottom: "30px", right: "-60px", borderRadius: "50%",
-          background: "radial-gradient(circle, #22d3ee 0%, transparent 65%)",
-          filter: "blur(80px)",
-          opacity: 0.18,
-          mixBlendMode: "screen",
+          position: "absolute", zIndex: 1,
+          width: "520px", height: "520px",
+          bottom: "20px", right: "-80px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(34,211,238,0.45) 0%, rgba(34,211,238,0.08) 50%, transparent 70%)",
+          filter: "blur(65px)",
           animation: "orbDrift2 26s ease-in-out infinite",
           pointerEvents: "none",
         }} />
-        {/* Teal orb — center top, subtle */}
+        {/* Blue orb — top right */}
         <div style={{
-          position: "absolute", width: "400px", height: "400px",
-          top: "10%", left: "55%",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, #38bdf8 0%, transparent 65%)",
-          filter: "blur(90px)",
-          opacity: 0.12,
-          mixBlendMode: "screen",
+          position: "absolute", zIndex: 1,
+          width: "400px", height: "400px",
+          top: "5%", right: "10%", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(56,189,248,0.06) 50%, transparent 70%)",
+          filter: "blur(70px)",
           animation: "orbDrift3 32s ease-in-out infinite",
           pointerEvents: "none",
         }} />
