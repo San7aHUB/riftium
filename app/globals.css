@@ -294,6 +294,53 @@ body::after {
   .news-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* ── Navbar responsive ── */
+.nav-desktop-only { display: contents; }
+.nav-mobile-only  { display: none !important; }
+
+@media (max-width: 640px) {
+  .nav-desktop-only { display: none !important; }
+  .nav-mobile-only  { display: flex !important; }
+}
+
+/* ── Set strip (4 sets above hero title) ── */
+.set-strip-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.set-strip-wrapper::-webkit-scrollbar { display: none; }
+
+/* ── Callout banner (current set) ── */
+.set-callout       { padding: 18px 80px; }
+.set-callout-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+
+@media (max-width: 767px) {
+  .set-callout       { padding: 16px 20px !important; }
+  .set-callout-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Hero stats ── */
+.hero-stat { text-align: center; padding: 0 32px; }
+.hero-stat + .hero-stat { border-left: 1px solid rgba(255,255,255,0.1); }
+
+@media (max-width: 480px) {
+  .hero-stat { padding: 0 16px; }
+}
+
+/* ── Roadmap grid ── */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 767px) {
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+}
+@media (max-width: 420px) {
+  .roadmap-grid { grid-template-columns: 1fr; }
+}
+
 /* Quick chip focus */
 button:focus-visible {
   outline: 2px solid rgba(255,255,255,0.4);

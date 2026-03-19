@@ -81,7 +81,7 @@ export default function RoadmapTimeline() {
       </div>
 
       {/* 4 panels */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+      <div className="roadmap-grid">
         {PHASES.map((phase, i) => {
           const past    = new Date(phase.iso) < TODAY;
           const isNext  = i === nextIdx;

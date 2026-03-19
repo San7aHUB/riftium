@@ -172,10 +172,9 @@ export default function Home() {
           textAlign: "center", maxWidth: "720px", width: "100%",
         }}>
           {/* 2026 Set roadmap strip */}
+          <div className="set-strip-wrapper" style={{ marginBottom: "32px", animation: "fadeInUp 0.5s 0.05s ease both" }}>
           <div style={{
             display: "flex", alignItems: "stretch", gap: "1px",
-            marginBottom: "32px",
-            animation: "fadeInUp 0.5s 0.05s ease both",
             background: "rgba(255,255,255,0.05)",
             borderRadius: "12px", overflow: "hidden",
             border: `1px solid rgba(255,255,255,0.08)`,
@@ -222,6 +221,7 @@ export default function Home() {
                 </span>
               </div>
             ))}
+          </div>
           </div>
 
           {/* Title */}
@@ -337,8 +337,7 @@ export default function Home() {
             width: "100%", justifyContent: "center",
           }}>
             {STATS.map((s, i) => (
-              <div key={s.label} style={{
-                textAlign: "center", padding: "0 32px",
+              <div key={s.label} className="hero-stat" style={{
                 borderRight: i < STATS.length - 1 ? `1px solid rgba(255,255,255,0.1)` : "none",
               }}>
                 <p style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "22px", color: "#fff", letterSpacing: "0.04em" }}>
@@ -354,14 +353,10 @@ export default function Home() {
       </section>
 
       {/* ════ CURRENT SET CALLOUT ════ */}
-      <div style={{
+      <div className="set-callout" style={{
         background: SURFACE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`,
-        padding: "18px 80px",
       }}>
-        <div style={{
-          maxWidth: "1160px", margin: "0 auto",
-          display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px",
-        }}>
+        <div className="set-callout-inner" style={{ maxWidth: "1160px", margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <span style={{
               display: "inline-flex", alignItems: "center", gap: "6px",

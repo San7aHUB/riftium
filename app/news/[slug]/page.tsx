@@ -47,42 +47,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   return (
     <div style={{ minHeight: "100vh", position: "relative", zIndex: 2 }}>
 
-      {/* Navbar */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        height: "60px", display: "flex", alignItems: "center",
-        padding: "0 32px",
-        background: "rgba(9,9,9,0.9)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        borderBottom: "none", gap: "12px",
-      }}>
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 20%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.18) 80%, transparent 100%)",
-        }} />
-        <Link href="/" style={{ textDecoration: "none" }}>
-          <span style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "22px", letterSpacing: "0.18em", color: "#fff" }}>RIFTIUM</span>
-        </Link>
-        <span style={{ color: "rgba(255,255,255,0.2)" }}>/</span>
-        <Link href="/news" style={{ fontFamily: "'Inter', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.45)", textDecoration: "none", letterSpacing: "0.08em", fontWeight: 500 }}>
-          NEWS
-        </Link>
-        {article && (
-          <>
-            <span style={{ color: "rgba(255,255,255,0.2)" }}>/</span>
-            <span style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "12px",
-              color: "rgba(255,255,255,0.6)", letterSpacing: "0.04em",
-              maxWidth: "260px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-            }}>
-              {article.title}
-            </span>
-          </>
-        )}
-      </nav>
-
-      <main style={{ paddingTop: "60px" }}>
+      <main style={{ paddingTop: "80px" }}>
 
         {loading && (
           <div style={{ maxWidth: "800px", margin: "0 auto", padding: "60px 32px" }}>

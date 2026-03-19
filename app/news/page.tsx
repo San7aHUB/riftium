@@ -50,32 +50,7 @@ export default function NewsPage() {
   return (
     <div style={{ minHeight: "100vh", position: "relative", zIndex: 2 }}>
 
-      {/* Navbar */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        height: "60px", display: "flex", alignItems: "center",
-        padding: "0 32px",
-        background: "rgba(9,9,9,0.85)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        borderBottom: "none", gap: "16px",
-      }}>
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 20%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.18) 80%, transparent 100%)",
-        }} />
-        <Link href="/" style={{ textDecoration: "none" }}>
-          <span style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "24px", letterSpacing: "0.18em", color: "#fff" }}>
-            RIFTIUM
-          </span>
-        </Link>
-        <span style={{ color: "rgba(255,255,255,0.2)" }}>/</span>
-        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.08em", fontWeight: 500 }}>
-          NEWS
-        </span>
-      </nav>
-
-      <main style={{ paddingTop: "60px" }}>
+      <main style={{ paddingTop: "80px" }}>
 
         {/* Header */}
         <div style={{ padding: "60px 32px 40px", maxWidth: "1400px", margin: "0 auto" }}>
