@@ -207,36 +207,25 @@ export default function Home() {
           background: `linear-gradient(to bottom, transparent, ${BG})`,
         }} />
 
-        {/* Orb 1 — left, slow */}
-        <div style={{
-          position: "absolute", zIndex: 1,
-          width: "340px", height: "340px",
-          bottom: "-60px", left: "12%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.55) 0%, rgba(34,211,238,0.12) 55%, transparent 72%)",
-          filter: "blur(55px)",
-          animation: "orbRise1 14s 0s ease-in infinite",
-          pointerEvents: "none",
-        }} />
-        {/* Orb 2 — center-left, medium */}
-        <div style={{
-          position: "absolute", zIndex: 1,
-          width: "260px", height: "260px",
-          bottom: "-40px", left: "38%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.45) 0%, rgba(34,211,238,0.1) 55%, transparent 72%)",
-          filter: "blur(50px)",
-          animation: "orbRise2 11s 3.5s ease-in infinite",
-          pointerEvents: "none",
-        }} />
-        {/* Orb 3 — right, fast */}
-        <div style={{
-          position: "absolute", zIndex: 1,
-          width: "300px", height: "300px",
-          bottom: "-50px", right: "14%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(56,189,248,0.4) 0%, rgba(56,189,248,0.08) 55%, transparent 72%)",
-          filter: "blur(58px)",
-          animation: "orbRise3 16s 7s ease-in infinite",
-          pointerEvents: "none",
-        }} />
+        {[
+          { w: 340, left: "8%",   dur: "14s", delay: "0s",    anim: "orbRise1", color: "34,211,238", op: 0.55 },
+          { w: 200, left: "22%",  dur: "10s", delay: "2s",    anim: "orbRise2", color: "34,211,238", op: 0.4  },
+          { w: 280, left: "38%",  dur: "12s", delay: "4.5s",  anim: "orbRise3", color: "34,211,238", op: 0.45 },
+          { w: 160, left: "52%",  dur: "9s",  delay: "1.5s",  anim: "orbRise1", color: "56,189,248", op: 0.35 },
+          { w: 320, left: "63%",  dur: "15s", delay: "6s",    anim: "orbRise2", color: "34,211,238", op: 0.5  },
+          { w: 220, left: "78%",  dur: "11s", delay: "8s",    anim: "orbRise3", color: "56,189,248", op: 0.4  },
+          { w: 180, left: "88%",  dur: "10s", delay: "3s",    anim: "orbRise1", color: "34,211,238", op: 0.35 },
+        ].map((orb, i) => (
+          <div key={i} style={{
+            position: "absolute", zIndex: 1,
+            width: `${orb.w}px`, height: `${orb.w}px`,
+            bottom: "-60px", left: orb.left, borderRadius: "50%",
+            background: `radial-gradient(circle, rgba(${orb.color},${orb.op}) 0%, rgba(${orb.color},${orb.op * 0.2}) 55%, transparent 72%)`,
+            filter: `blur(${Math.round(orb.w * 0.17)}px)`,
+            animation: `${orb.anim} ${orb.dur} ${orb.delay} ease-in infinite`,
+            pointerEvents: "none",
+          }} />
+        ))}
 
 
         {/* Punti luce */}
