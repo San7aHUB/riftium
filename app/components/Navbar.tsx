@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 const NAV_LINKS = [
   { label: "News",         href: "/news" },
@@ -28,27 +28,14 @@ function onLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const update = () => {
-      if (navRef.current) {
-        navRef.current.style.top = `${vv.offsetTop + 16}px`;
-      }
-    };
-    vv.addEventListener("resize", update);
-    return () => {
-      vv.removeEventListener("resize", update);
-    };
-  }, []);
 
   return (
     <>
-      <nav ref={navRef} className="navbar-pill" style={{
-        position: "fixed", top: "16px", left: "50%",
-        transform: "translateX(-50%)",
+      <nav className="navbar-pill" style={{
+        position: "fixed", top: "16px",
+        left: 0, right: 0,
+        margin: "0 auto",
+        width: "fit-content",
         zIndex: 100,
         display: "flex", alignItems: "center", gap: "4px",
         padding: "6px 8px 6px 18px",
