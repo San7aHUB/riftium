@@ -31,20 +31,12 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Zero-height fixed anchor — stable compositor slot at top of viewport */}
-      <div style={{
-        position: "fixed", top: 0, left: 0, right: 0,
-        height: 0, overflow: "visible",
-        pointerEvents: "none",
-        zIndex: 100,
-        transform: "translateZ(0)", WebkitTransform: "translateZ(0)",
-        willChange: "transform",
-      }}>
       <nav className="navbar-pill" style={{
-        position: "relative", top: "16px",
+        position: "fixed", top: "16px",
+        left: 0, right: 0,
         margin: "0 auto",
         width: "fit-content",
-        pointerEvents: "auto",
+        zIndex: 9999,
         display: "flex", alignItems: "center", gap: "4px",
         padding: "6px 8px 6px 18px",
         borderRadius: "999px",
@@ -124,7 +116,6 @@ export default function Navbar() {
           }} />
         </button>
       </nav>
-      </div>
 
       {/* Mobile dropdown */}
       {open && (
