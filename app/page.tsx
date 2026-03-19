@@ -133,25 +133,48 @@ export default function Home() {
       </nav>
 
       {/* ════ HERO ════ */}
-      <section className="home-hero" style={{ paddingTop: "64px" }}>
+      <section style={{
+        minHeight: "100vh", paddingTop: "64px",
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+        position: "relative", overflow: "hidden",
+        padding: "120px 24px 100px",
+      }}>
+        {/* Background art */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('https://locator.riftbound.uvsgames.com/riftbound-bg.avif')",
+          backgroundSize: "cover", backgroundPosition: "center 20%",
+          filter: "saturate(0.65) brightness(0.32)",
+        }} />
+        {/* Radial dark vignette — keeps edges dark */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.92) 100%)",
+        }} />
+        {/* Subtle teal glow center */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 50% 40% at 50% 55%, rgba(6,182,212,0.06) 0%, transparent 65%)",
+        }} />
+        {/* Bottom fade into next section */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "160px",
+          background: `linear-gradient(to bottom, transparent, ${BG})`,
+        }} />
 
-        {/* ── Left content ── */}
-        <div className="home-hero-content" style={{
-          padding: "clamp(56px,7vw,96px) clamp(32px,4vw,56px) 80px clamp(40px,8vw,120px)',",
-          display: "flex", flexDirection: "column", justifyContent: "center",
+        {/* Content — centered */}
+        <div style={{
           position: "relative", zIndex: 2,
+          display: "flex", flexDirection: "column", alignItems: "center",
+          textAlign: "center", maxWidth: "720px", width: "100%",
         }}>
-
           {/* Current set badge */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "24px", animation: "fadeInUp 0.5s 0.05s ease both" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "28px", animation: "fadeInUp 0.5s 0.05s ease both", justifyContent: "center" }}>
             <span style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
-              padding: "4px 10px",
-              background: TEAL_DIM,
-              border: `1px solid ${TEAL_MID}`,
-              borderRadius: "999px",
-              fontFamily: "'Inter', sans-serif", fontSize: "10px", fontWeight: 700,
-              letterSpacing: "0.14em", color: TEAL,
+              padding: "4px 12px", background: TEAL_DIM, border: `1px solid ${TEAL_MID}`,
+              borderRadius: "999px", fontFamily: "'Inter', sans-serif", fontSize: "10px",
+              fontWeight: 700, letterSpacing: "0.14em", color: TEAL,
             }}>
               <SparkIcon /> SET 2 · SPIRITFORGED
             </span>
@@ -163,20 +186,20 @@ export default function Home() {
           {/* Title */}
           <h1 style={{
             fontFamily: "'Tilt Warp', sans-serif",
-            fontSize: "clamp(68px, 9.5vw, 148px)",
+            fontSize: "clamp(72px, 13vw, 160px)",
             fontWeight: 400, lineHeight: 0.9,
-            letterSpacing: "0.05em", color: "#fff",
-            textShadow: `0 0 80px rgba(34,211,238,0.08), 0 4px 60px rgba(0,0,0,0.9)`,
-            marginBottom: "20px",
+            letterSpacing: "0.06em", color: "#fff",
+            textShadow: `0 0 100px rgba(34,211,238,0.1), 0 4px 80px rgba(0,0,0,0.95)`,
+            marginBottom: "24px",
             animation: "fadeInUp 0.7s 0.15s ease both",
           }}>
             RIFTIUM
           </h1>
 
-          {/* Teal accent line */}
+          {/* Centered teal line */}
           <div style={{
-            width: "44px", height: "2px",
-            background: `linear-gradient(90deg, ${TEAL}, transparent)`,
+            width: "48px", height: "2px",
+            background: `linear-gradient(90deg, transparent, ${TEAL}, transparent)`,
             marginBottom: "22px",
             animation: "fadeInUp 0.55s 0.28s ease both",
           }} />
@@ -184,11 +207,11 @@ export default function Home() {
           {/* Subtitle */}
           <p style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: "clamp(14px, 1.5vw, 17px)",
+            fontSize: "clamp(14px, 1.6vw, 17px)",
             fontWeight: 300, lineHeight: 1.7,
             color: "rgba(255,255,255,0.45)",
-            maxWidth: "360px",
-            marginBottom: "36px",
+            maxWidth: "400px",
+            marginBottom: "40px",
             animation: "fadeInUp 0.65s 0.38s ease both",
             textTransform: "none",
           }}>
@@ -196,18 +219,19 @@ export default function Home() {
           </p>
 
           {/* Search bar */}
-          <div style={{ maxWidth: "480px", marginBottom: "18px", animation: "fadeInUp 0.65s 0.5s ease both" }}>
+          <div style={{ width: "100%", maxWidth: "520px", marginBottom: "20px", animation: "fadeInUp 0.65s 0.5s ease both" }}>
             <div style={{
               display: "flex", alignItems: "center",
-              background: "rgba(255,255,255,0.04)",
-              border: `1px solid ${focused ? TEAL_MID : "rgba(255,255,255,0.1)"}`,
-              borderRadius: "12px", padding: "4px 4px 4px 16px",
+              background: "rgba(10,10,10,0.75)",
+              backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+              border: `1px solid ${focused ? TEAL_MID : "rgba(255,255,255,0.12)"}`,
+              borderRadius: "14px", padding: "4px 4px 4px 18px",
               transition: "border-color 0.2s, box-shadow 0.2s",
               boxShadow: focused
-                ? `0 0 0 3px ${TEAL_DIM}, 0 8px 40px rgba(0,0,0,0.5)`
-                : "0 4px 20px rgba(0,0,0,0.25)",
+                ? `0 0 0 3px ${TEAL_DIM}, 0 8px 40px rgba(0,0,0,0.6)`
+                : "0 4px 24px rgba(0,0,0,0.4)",
             }}>
-              <div style={{ color: focused ? TEAL : "rgba(255,255,255,0.28)", display: "flex", alignItems: "center", flexShrink: 0, transition: "color 0.2s" }}>
+              <div style={{ color: focused ? TEAL : "rgba(255,255,255,0.3)", display: "flex", alignItems: "center", flexShrink: 0, transition: "color 0.2s" }}>
                 <SearchIcon />
               </div>
               <input
@@ -215,11 +239,11 @@ export default function Home() {
                 onChange={e => setQuery(e.target.value)}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                placeholder='Search cards, sets, champions…'
-                style={{ flex: 1, background: "none", border: "none", outline: "none", color: "#fff", fontSize: "15px", fontFamily: "'Outfit', sans-serif", padding: "10px 14px" }}
+                placeholder="Search cards, sets, champions…"
+                style={{ flex: 1, background: "none", border: "none", outline: "none", color: "#fff", fontSize: "15px", fontFamily: "'Outfit', sans-serif", padding: "11px 14px" }}
               />
               <button style={{
-                padding: "10px 22px", background: "#fff", border: "none", borderRadius: "8px",
+                padding: "11px 24px", background: "#fff", border: "none", borderRadius: "10px",
                 color: "#000", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 700,
                 cursor: "pointer", letterSpacing: "0.03em", flexShrink: 0, transition: "opacity 0.15s",
               }}
@@ -230,30 +254,35 @@ export default function Home() {
           </div>
 
           {/* Quick links */}
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "48px", animation: "fadeInUp 0.65s 0.62s ease both" }}>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center", marginBottom: "52px", animation: "fadeInUp 0.65s 0.62s ease both" }}>
             {["Card Database", "Deck Forge", "Price Oracle"].map(label => (
               <span key={label} style={{
                 display: "inline-flex", alignItems: "center", gap: "5px",
-                padding: "5px 13px",
-                background: "rgba(255,255,255,0.04)", border: `1px solid ${BORDER}`,
-                borderRadius: "999px", fontFamily: "'Inter', sans-serif", fontSize: "10px",
+                padding: "5px 14px",
+                background: "rgba(10,10,10,0.6)", backdropFilter: "blur(8px)",
+                border: `1px solid ${BORDER}`, borderRadius: "999px",
+                fontFamily: "'Inter', sans-serif", fontSize: "10px",
                 color: "rgba(255,255,255,0.38)", letterSpacing: "0.06em",
               }}>
                 {label}
-                <span style={{ fontSize: "8px", color: "rgba(255,255,255,0.18)" }}>· SOON</span>
+                <span style={{ fontSize: "8px", color: "rgba(255,255,255,0.2)" }}>· SOON</span>
               </span>
             ))}
           </div>
 
           {/* Stats */}
           <div style={{
-            display: "flex", gap: "28px", paddingTop: "24px",
-            borderTop: `1px solid ${BORDER}`,
+            display: "flex", gap: "0",
+            paddingTop: "24px", borderTop: `1px solid rgba(255,255,255,0.1)`,
             animation: "fadeInUp 0.65s 0.75s ease both",
+            width: "100%", justifyContent: "center",
           }}>
             {STATS.map((s, i) => (
-              <div key={s.label} style={{ paddingRight: "28px", borderRight: i < STATS.length - 1 ? `1px solid ${BORDER}` : "none" }}>
-                <p style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "20px", color: "#fff", letterSpacing: "0.04em" }}>
+              <div key={s.label} style={{
+                textAlign: "center", padding: "0 32px",
+                borderRight: i < STATS.length - 1 ? `1px solid rgba(255,255,255,0.1)` : "none",
+              }}>
+                <p style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "22px", color: "#fff", letterSpacing: "0.04em" }}>
                   {s.value}
                 </p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "9px", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", marginTop: "4px" }}>
@@ -262,32 +291,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* ── Right: image with color ── */}
-        <div className="home-hero-img" style={{ position: "relative", overflow: "hidden" }}>
-          {/* Background art — partial desaturation so teal breathes through */}
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "url('https://locator.riftbound.uvsgames.com/riftbound-bg.avif')",
-            backgroundSize: "cover", backgroundPosition: "center 20%",
-            filter: "saturate(0.7) brightness(0.38)",
-          }} />
-          {/* Subtle teal glow from image */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "radial-gradient(ellipse 70% 80% at 70% 60%, rgba(6,182,212,0.07) 0%, transparent 60%)",
-          }} />
-          {/* Left gradient fade */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: `linear-gradient(to right, ${BG} 0%, rgba(10,10,10,0.5) 28%, transparent 58%)`,
-          }} />
-          {/* Top/bottom fade */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: `linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, transparent 18%, transparent 72%, ${BG} 100%)`,
-          }} />
         </div>
       </section>
 
