@@ -162,32 +162,38 @@ export default function Home() {
           background: `linear-gradient(to bottom, transparent, ${BG})`,
         }} />
 
-        {/* Teal orb — top left, visible */}
+        {/* Teal orb — top left */}
         <div style={{
-          position: "absolute", width: "600px", height: "600px",
-          top: "-100px", left: "-100px", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.18) 0%, transparent 65%)",
-          filter: "blur(50px)",
+          position: "absolute", width: "550px", height: "550px",
+          top: "-80px", left: "-80px", borderRadius: "50%",
+          background: "radial-gradient(circle, #22d3ee 0%, transparent 65%)",
+          filter: "blur(80px)",
+          opacity: 0.22,
+          mixBlendMode: "screen",
           animation: "orbDrift1 20s ease-in-out infinite",
           pointerEvents: "none",
         }} />
         {/* Teal orb — bottom right */}
         <div style={{
-          position: "absolute", width: "500px", height: "500px",
-          bottom: "40px", right: "-80px", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.14) 0%, transparent 65%)",
-          filter: "blur(45px)",
+          position: "absolute", width: "480px", height: "480px",
+          bottom: "30px", right: "-60px", borderRadius: "50%",
+          background: "radial-gradient(circle, #22d3ee 0%, transparent 65%)",
+          filter: "blur(80px)",
+          opacity: 0.18,
+          mixBlendMode: "screen",
           animation: "orbDrift2 26s ease-in-out infinite",
           pointerEvents: "none",
         }} />
-        {/* White orb — breathing center */}
+        {/* Teal orb — center top, subtle */}
         <div style={{
-          position: "absolute", width: "700px", height: "350px",
-          top: "45%", left: "50%", transform: "translate(-50%, -50%)",
+          position: "absolute", width: "400px", height: "400px",
+          top: "10%", left: "55%",
           borderRadius: "50%",
-          background: "radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          animation: "orbBreathe 10s ease-in-out infinite",
+          background: "radial-gradient(circle, #38bdf8 0%, transparent 65%)",
+          filter: "blur(90px)",
+          opacity: 0.12,
+          mixBlendMode: "screen",
+          animation: "orbDrift3 32s ease-in-out infinite",
           pointerEvents: "none",
         }} />
 
