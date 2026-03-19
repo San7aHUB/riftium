@@ -106,8 +106,13 @@ export default function Home() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         height: "64px", display: "flex", alignItems: "center", padding: "0 48px",
         background: "rgba(10,10,10,0.94)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-        borderBottom: `1px solid ${BORDER}`,
       }}>
+        {/* Gradient separator */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
+          background: "linear-gradient(90deg, transparent 0%, rgba(34,211,238,0.15) 15%, rgba(255,255,255,0.35) 50%, rgba(34,211,238,0.15) 85%, transparent 100%)",
+          pointerEvents: "none",
+        }} />
         <Link href="/" style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "20px", letterSpacing: "0.14em", color: "#fff", textDecoration: "none", flexShrink: 0 }}>
           RIFTIUM
         </Link>
