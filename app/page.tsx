@@ -162,6 +162,48 @@ export default function Home() {
           background: `linear-gradient(to bottom, transparent, ${BG})`,
         }} />
 
+        {/* Teal orb — top left */}
+        <div style={{
+          position: "absolute", width: "500px", height: "500px",
+          top: "-60px", left: "-80px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 68%)",
+          filter: "blur(30px)",
+          animation: "orbDrift1 22s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
+        {/* Teal orb — bottom right */}
+        <div style={{
+          position: "absolute", width: "420px", height: "420px",
+          bottom: "60px", right: "-60px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(34,211,238,0.055) 0%, transparent 68%)",
+          filter: "blur(35px)",
+          animation: "orbDrift2 28s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
+        {/* Teal orb — center, breathing */}
+        <div style={{
+          position: "absolute", width: "600px", height: "300px",
+          top: "40%", left: "50%", transform: "translate(-50%, -50%)",
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(34,211,238,0.04) 0%, transparent 70%)",
+          filter: "blur(40px)",
+          animation: "orbBreathe 12s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
+
+        {/* Aurora sweep — occasional shimmer */}
+        <div style={{
+          position: "absolute", top: "35%", left: 0, right: 0, height: "2px",
+          background: `linear-gradient(90deg, transparent 0%, ${TEAL_MID} 30%, rgba(34,211,238,0.5) 50%, ${TEAL_MID} 70%, transparent 100%)`,
+          filter: "blur(3px)",
+          animation: "auroraSweep 8s 2s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
+
+        {/* Particles */}
+        <div className="particle" /><div className="particle" /><div className="particle" />
+        <div className="particle" /><div className="particle" /><div className="particle" />
+
         {/* Content — centered */}
         <div style={{
           position: "relative", zIndex: 2,
@@ -189,9 +231,8 @@ export default function Home() {
             fontSize: "clamp(72px, 13vw, 160px)",
             fontWeight: 400, lineHeight: 0.9,
             letterSpacing: "0.06em", color: "#fff",
-            textShadow: `0 0 100px rgba(34,211,238,0.1), 0 4px 80px rgba(0,0,0,0.95)`,
             marginBottom: "24px",
-            animation: "fadeInUp 0.7s 0.15s ease both",
+            animation: "fadeInUp 0.7s 0.15s ease both, titleGlow 5s 1.5s ease-in-out infinite",
           }}>
             RIFTIUM
           </h1>

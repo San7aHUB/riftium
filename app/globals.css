@@ -174,6 +174,23 @@ body::after {
 .particle:nth-child(5) { width: 9px;  height: 9px;  left: 75%; animation: rise         9s  0.3s ease-in infinite; box-shadow: 0 0 16px #fff; }
 .particle:nth-child(6) { width: 5px;  height: 5px;  left: 88%; animation: rise-straight 6.5s 1.8s ease-in infinite; box-shadow: 0 0 8px #fff; }
 
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 80px rgba(34,211,238,0.06), 0 4px 80px rgba(0,0,0,0.95); }
+  50%       { text-shadow: 0 0 140px rgba(34,211,238,0.2), 0 0 50px rgba(34,211,238,0.08), 0 4px 60px rgba(0,0,0,0.9); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes auroraSweep {
+  0%   { opacity: 0; transform: translateX(-60%) scaleX(0.6); }
+  30%  { opacity: 1; }
+  70%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translateX(60%) scaleX(1.2); }
+}
+
 @keyframes heroSubIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
