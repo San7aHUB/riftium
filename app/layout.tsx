@@ -14,13 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ height: "100%" }}>
-      <body className="antialiased" style={{ height: "100%", overflow: "hidden" }}>
+    <html lang="en">
+      <body className="antialiased">
         <AnimatedBackground />
         <Navbar />
-        <div id="scroll-root" style={{ height: "100%", overflowY: "auto", overflowX: "clip" }}>
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
