@@ -31,16 +31,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav style={{
+      <nav className="navbar-pill" style={{
         position: "fixed", top: "16px", left: "50%",
-        transform: "translateX(-50%) translateZ(0)",
-        WebkitTransform: "translateX(-50%) translateZ(0)",
+        transform: "translateX(-50%)",
         zIndex: 100,
-        willChange: "transform",
         display: "flex", alignItems: "center", gap: "4px",
         padding: "6px 8px 6px 18px",
-        background: "rgba(255,255,255,0.06)",
-        backdropFilter: "blur(32px)", WebkitBackdropFilter: "blur(32px)",
         borderRadius: "999px",
         border: "1px solid rgba(255,255,255,0.14)",
         boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.2)",
@@ -131,8 +127,6 @@ export default function Navbar() {
           zIndex: 99,
           animation: "fadeInUp 0.18s ease",
           display: "flex", flexDirection: "column", gap: "2px",
-          transform: "translateZ(0)", WebkitTransform: "translateZ(0)",
-          willChange: "transform",
         }}>
           {NAV_LINKS.map(item => (
             <Link key={item.label} href={item.href}
