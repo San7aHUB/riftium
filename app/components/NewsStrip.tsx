@@ -33,13 +33,10 @@ export default function NewsStrip() {
 
   return (
     <div style={{
-      marginTop: "48px",
       width: "100%",
-      maxWidth: "700px",
       display: "flex",
       flexDirection: "column",
       gap: "1px",
-      animation: "heroSubIn 0.6s 1.2s ease both",
     }}>
       {/* Label */}
       <div style={{
