@@ -31,12 +31,18 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Full-screen fixed layer — keeps compositor slot alive on Chrome mobile */}
+      <div style={{
+        position: "fixed", inset: 0,
+        pointerEvents: "none",
+        zIndex: 100,
+      }}>
       <nav className="navbar-pill" style={{
-        position: "fixed", top: "16px",
+        position: "absolute", top: "16px",
         left: 0, right: 0,
         margin: "0 auto",
         width: "fit-content",
-        zIndex: 100,
+        pointerEvents: "auto",
         display: "flex", alignItems: "center", gap: "4px",
         padding: "6px 8px 6px 18px",
         borderRadius: "999px",
@@ -116,17 +122,18 @@ export default function Navbar() {
           }} />
         </button>
       </nav>
+      </div>
 
       {/* Mobile dropdown */}
       {open && (
         <div style={{
           position: "fixed", top: "70px", left: "16px", right: "16px",
+          zIndex: 100,
           background: "rgba(12,12,12,0.96)",
           backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
           borderRadius: "16px",
           border: "1px solid rgba(255,255,255,0.12)",
           padding: "8px",
-          zIndex: 99,
           animation: "fadeInUp 0.18s ease",
           display: "flex", flexDirection: "column", gap: "2px",
         }}>
