@@ -31,15 +31,17 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Full-screen fixed layer — keeps compositor slot alive on Chrome mobile */}
+      {/* Zero-height fixed anchor — stable compositor slot at top of viewport */}
       <div style={{
-        position: "fixed", inset: 0,
+        position: "fixed", top: 0, left: 0, right: 0,
+        height: 0, overflow: "visible",
         pointerEvents: "none",
         zIndex: 100,
+        transform: "translateZ(0)", WebkitTransform: "translateZ(0)",
+        willChange: "transform",
       }}>
       <nav className="navbar-pill" style={{
-        position: "absolute", top: "16px",
-        left: 0, right: 0,
+        position: "relative", top: "16px",
         margin: "0 auto",
         width: "fit-content",
         pointerEvents: "auto",
