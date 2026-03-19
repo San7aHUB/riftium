@@ -101,55 +101,80 @@ export default function Home() {
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "rgba(255,255,255,0.88)", position: "relative", zIndex: 2 }}>
 
-      {/* ════ NAVBAR ════ */}
+      {/* ════ NAVBAR — floating pill ════ */}
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        height: "64px", display: "flex", alignItems: "center", padding: "0 48px",
-        background: "rgba(10,10,10,0.94)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+        position: "fixed", top: "16px", left: "50%", transform: "translateX(-50%)",
+        zIndex: 100,
+        display: "flex", alignItems: "center", gap: "4px",
+        padding: "6px 8px 6px 18px",
+        background: "rgba(8,8,8,0.82)",
+        backdropFilter: "blur(28px)", WebkitBackdropFilter: "blur(28px)",
+        borderRadius: "999px",
+        border: "1px solid rgba(255,255,255,0.1)",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)",
+        whiteSpace: "nowrap",
       }}>
-        {/* Gradient separator */}
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(34,211,238,0.15) 15%, rgba(255,255,255,0.35) 50%, rgba(34,211,238,0.15) 85%, transparent 100%)",
-          pointerEvents: "none",
-        }} />
-        <Link href="/" style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "20px", letterSpacing: "0.14em", color: "#fff", textDecoration: "none", flexShrink: 0 }}>
+        {/* Logo */}
+        <Link href="/" style={{
+          fontFamily: "'Tilt Warp', sans-serif", fontSize: "17px",
+          letterSpacing: "0.14em", color: "#fff", textDecoration: "none",
+          marginRight: "8px", flexShrink: 0,
+        }}>
           RIFTIUM
         </Link>
 
-        <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", alignItems: "center", gap: "2px" }}>
-          {[{ label: "News", href: "/news" }, { label: "Cards" }, { label: "Market" }, { label: "Deck Builder" }].map(item => {
-            const baseStyle: React.CSSProperties = {
-              padding: "5px 14px", fontFamily: "'Inter', sans-serif", fontSize: "13px",
-              fontWeight: 600, letterSpacing: "0.05em", color: "rgba(255,255,255,0.55)",
-              transition: "color 0.15s, text-shadow 0.15s", borderRadius: "6px",
-            };
-            const onEnter = (e: React.MouseEvent<HTMLElement>) => {
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.textShadow = `0 0 12px ${TEAL}, 0 0 24px rgba(34,211,238,0.4)`;
-            };
-            const onLeave = (e: React.MouseEvent<HTMLElement>) => {
-              e.currentTarget.style.color = "rgba(255,255,255,0.55)";
-              e.currentTarget.style.textShadow = "none";
-            };
-            return item.href
-              ? <Link key={item.label} href={item.href} style={{ ...baseStyle, textDecoration: "none" }}
-                  onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</Link>
-              : <button key={item.label} style={{ ...baseStyle, background: "none", border: "none", cursor: "pointer" }}
-                  onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</button>;
-          })}
-        </div>
+        {/* Divider */}
+        <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.1)", marginRight: "8px", flexShrink: 0 }} />
 
-        <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
-          <button style={{ padding: "6px 18px", background: "transparent", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "8px", color: "rgba(255,255,255,0.75)", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em", transition: "all 0.15s" }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.45)"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}
-          >Log in</button>
-          <button style={{ padding: "6px 18px", background: "#fff", border: "none", borderRadius: "8px", color: "#000", fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.04em", transition: "opacity 0.15s" }}
-            onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
-          >Sign up</button>
-        </div>
+        {/* Nav links */}
+        {[{ label: "News", href: "/news" }, { label: "Cards" }, { label: "Market" }, { label: "Deck Builder" }].map(item => {
+          const baseStyle: React.CSSProperties = {
+            padding: "6px 13px", fontFamily: "'Inter', sans-serif", fontSize: "12px",
+            fontWeight: 600, letterSpacing: "0.05em", color: "rgba(255,255,255,0.5)",
+            transition: "color 0.15s, text-shadow 0.15s, background 0.15s",
+            borderRadius: "999px", cursor: "pointer",
+          };
+          const onEnter = (e: React.MouseEvent<HTMLElement>) => {
+            e.currentTarget.style.color = "#fff";
+            e.currentTarget.style.background = "rgba(255,255,255,0.07)";
+            e.currentTarget.style.textShadow = `0 0 10px ${TEAL}, 0 0 20px rgba(34,211,238,0.3)`;
+          };
+          const onLeave = (e: React.MouseEvent<HTMLElement>) => {
+            e.currentTarget.style.color = "rgba(255,255,255,0.5)";
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.textShadow = "none";
+          };
+          return item.href
+            ? <Link key={item.label} href={item.href} style={{ ...baseStyle, textDecoration: "none" }}
+                onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</Link>
+            : <button key={item.label} style={{ ...baseStyle, background: "none", border: "none" }}
+                onMouseEnter={onEnter} onMouseLeave={onLeave}>{item.label}</button>;
+        })}
+
+        {/* Divider */}
+        <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.1)", margin: "0 8px", flexShrink: 0 }} />
+
+        {/* Auth */}
+        <button style={{
+          padding: "6px 16px", background: "transparent",
+          border: "1px solid rgba(255,255,255,0.15)", borderRadius: "999px",
+          color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif",
+          fontSize: "12px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em",
+          transition: "all 0.15s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.color = "#fff"; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "rgba(255,255,255,0.7)"; }}
+        >Log in</button>
+        <button style={{
+          padding: "6px 16px", background: "#fff",
+          border: "none", borderRadius: "999px",
+          color: "#000", fontFamily: "'Inter', sans-serif",
+          fontSize: "12px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.04em",
+          transition: "opacity 0.15s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+        >Sign up</button>
       </nav>
 
       {/* ════ HERO ════ */}
