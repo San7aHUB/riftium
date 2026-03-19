@@ -1,9 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import NewsStrip from "./components/NewsStrip";
-import RoadmapTimeline from "./components/RoadmapTimeline";
 
 /* ── Icons ── */
 function SearchIcon({ size = 18 }: { size?: number }) {
@@ -13,100 +10,34 @@ function SearchIcon({ size = 18 }: { size?: number }) {
     </svg>
   );
 }
-function CardIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="4" width="12" height="16" rx="2" />
-      <path d="M7 8h4M7 11h4M7 14h2" strokeLinecap="round" />
-      <circle cx="18.5" cy="17.5" r="2.5" /><line x1="20.3" y1="19.3" x2="22" y2="21" strokeWidth="1.8" />
-    </svg>
-  );
-}
-function DeckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="6" y="6" width="13" height="15" rx="2" />
-      <path d="M4 9h2M4 5h13" strokeLinecap="round" opacity="0.5" />
-      <path d="M10 11h5M10 14h3" strokeLinecap="round" />
-    </svg>
-  );
-}
-function MarketIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <polyline points="3,17 7,11 11,14 16,8 21,10" strokeLinejoin="round" strokeLinecap="round" />
-      <line x1="3" y1="21" x2="21" y2="21" strokeLinecap="round" />
-      <circle cx="16" cy="8" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-function ArrowRight({ size = 12 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-    </svg>
-  );
-}
-function SparkIcon() {
-  return (
-    <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor">
-      <circle cx="4" cy="4" r="3" />
-    </svg>
-  );
-}
 
 /* ── Constants ── */
-const TEAL = "#22d3ee";
+const TEAL     = "#22d3ee";
 const TEAL_DIM = "rgba(34,211,238,0.12)";
 const TEAL_MID = "rgba(34,211,238,0.25)";
-const BG = "#0a0a0a";
-const SURFACE = "#0e0e0e";
-const BORDER = "rgba(255,255,255,0.07)";
-
-const FEATURES = [
-  {
-    Icon: CardIcon,
-    title: "Card Database",
-    desc: "Search every Riftbound card with advanced filters. Find champions, spells, and items by type, cost, rarity, or oracle text.",
-    cta: "Search cards",
-    flavor: "847 cards · Sets 1–3",
-  },
-  {
-    Icon: DeckIcon,
-    title: "Deck Forge",
-    desc: "Build and test competitive decks with a full-featured editor. Import lists, analyze curves, and share with the community.",
-    cta: "Build a deck",
-    flavor: "Standard · Open formats",
-  },
-  {
-    Icon: MarketIcon,
-    title: "Price Oracle",
-    desc: "Track real-time card prices and market trends. Spot investment opportunities and monitor your collection's value.",
-    cta: "View market",
-    flavor: "Daily price updates",
-  },
-];
+const BG       = "#0a0a0a";
+const BORDER   = "rgba(255,255,255,0.07)";
 
 const STATS = [
   { value: "847+", label: "Cards indexed" },
   { value: "Set 2", label: "Spiritforged live" },
-  { value: "4", label: "2026 sets planned" },
+  { value: "4",    label: "2026 sets planned" },
 ];
 
 /* ── Home ── */
 export default function Home() {
-  const [query, setQuery] = useState("");
+  const [query,   setQuery]   = useState("");
   const [focused, setFocused] = useState(false);
 
   return (
-    <div style={{ minHeight: "100vh", background: BG, color: "rgba(255,255,255,0.88)", position: "relative", zIndex: 2 }}>
+    <div style={{ height: "100vh", overflow: "hidden", background: BG, color: "rgba(255,255,255,0.88)", position: "relative", zIndex: 2 }}>
 
-      {/* ════ HERO ════ */}
+      {/* ════ HERO — full viewport ════ */}
       <section style={{
-        minHeight: "100vh", paddingTop: "64px",
+        height: "100vh", overflow: "hidden",
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-        position: "relative", overflow: "hidden",
-        padding: "120px 24px 100px",
+        position: "relative",
+        padding: "0 24px",
       }}>
         {/* Background art */}
         <div style={{
@@ -115,49 +46,34 @@ export default function Home() {
           backgroundSize: "cover", backgroundPosition: "center 20%",
           filter: "saturate(0) brightness(0.52)",
         }} />
-        {/* Faction color overlay — cycles through faction colors */}
+        {/* Faction color overlay */}
         <div className="faction-overlay" />
-        {/* Radial dark vignette — keeps edges dark */}
+        {/* Vignette */}
         <div style={{
           position: "absolute", inset: 0,
           background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.92) 100%)",
         }} />
-        {/* Subtle teal glow center */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 50% 40% at 50% 55%, rgba(6,182,212,0.06) 0%, transparent 65%)",
-        }} />
-        {/* Bottom fade into next section */}
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "160px",
-          background: `linear-gradient(to bottom, transparent, ${BG})`,
-        }} />
 
-        {/* Punti luce */}
+        {/* Twinkle lights */}
         {[
-          { top: "12%",  left: "8%",   size: 3, delay: "0s",    dur: "2.8s", color: "#fff" },
-          { top: "28%",  left: "18%",  size: 2, delay: "1.2s",  dur: "3.4s", color: "#fff" },
-          { top: "18%",  left: "72%",  size: 4, delay: "0.4s",  dur: "2.2s", color: "#fff" },
-          { top: "8%",   left: "55%",  size: 2, delay: "2.1s",  dur: "3.8s", color: "#fff"},
-          { top: "42%",  left: "6%",   size: 3, delay: "0.7s",  dur: "2.5s", color: "#fff" },
-          { top: "55%",  left: "88%",  size: 2, delay: "1.8s",  dur: "3.1s", color: "#fff"},
-          { top: "35%",  left: "82%",  size: 4, delay: "0.3s",  dur: "4.0s", color: "#fff" },
-          { top: "65%",  left: "25%",  size: 2, delay: "2.6s",  dur: "2.7s", color: "#fff" },
-          { top: "72%",  left: "65%",  size: 3, delay: "1.0s",  dur: "3.3s", color: "#fff"},
-          { top: "80%",  left: "42%",  size: 2, delay: "1.5s",  dur: "2.9s", color: "#fff" },
-          { top: "22%",  left: "92%",  size: 3, delay: "3.0s",  dur: "3.6s", color: "#fff" },
-          { top: "48%",  left: "48%",  size: 2, delay: "0.9s",  dur: "4.2s", color: "#fff"},
+          { top: "12%", left: "8%",  size: 3, delay: "0s",   dur: "2.8s" },
+          { top: "28%", left: "18%", size: 2, delay: "1.2s", dur: "3.4s" },
+          { top: "18%", left: "72%", size: 4, delay: "0.4s", dur: "2.2s" },
+          { top: "8%",  left: "55%", size: 2, delay: "2.1s", dur: "3.8s" },
+          { top: "42%", left: "6%",  size: 3, delay: "0.7s", dur: "2.5s" },
+          { top: "55%", left: "88%", size: 2, delay: "1.8s", dur: "3.1s" },
+          { top: "35%", left: "82%", size: 4, delay: "0.3s", dur: "4.0s" },
+          { top: "65%", left: "25%", size: 2, delay: "2.6s", dur: "2.7s" },
+          { top: "72%", left: "65%", size: 3, delay: "1.0s", dur: "3.3s" },
+          { top: "22%", left: "92%", size: 3, delay: "3.0s", dur: "3.6s" },
         ].map((p, i) => (
           <div key={i} style={{
-            position: "absolute",
-            top: p.top, left: p.left,
+            position: "absolute", top: p.top, left: p.left,
             width: `${p.size}px`, height: `${p.size}px`,
-            borderRadius: "50%",
-            background: p.color,
+            borderRadius: "50%", background: "#fff",
             boxShadow: `0 0 ${p.size * 3}px ${p.size}px rgba(255,255,255,0.6)`,
             animation: `twinkle ${p.dur} ${p.delay} ease-in-out infinite`,
-            pointerEvents: "none",
-            zIndex: 1,
+            pointerEvents: "none", zIndex: 1,
           }} />
         ))}
 
@@ -165,104 +81,88 @@ export default function Home() {
         <div className="particle" /><div className="particle" /><div className="particle" />
         <div className="particle" /><div className="particle" /><div className="particle" />
 
-        {/* Content — centered */}
+        {/* Content */}
         <div style={{
           position: "relative", zIndex: 2,
           display: "flex", flexDirection: "column", alignItems: "center",
           textAlign: "center", maxWidth: "720px", width: "100%",
+          gap: "0",
         }}>
-          {/* 2026 Set roadmap strip */}
-          <div className="set-strip-wrapper" style={{ marginBottom: "32px", animation: "fadeInUp 0.5s 0.05s ease both" }}>
-          <div style={{
-            display: "flex", alignItems: "stretch", gap: "1px",
-            background: "rgba(255,255,255,0.05)",
-            borderRadius: "12px", overflow: "hidden",
-            border: `1px solid rgba(255,255,255,0.08)`,
-          }}>
-            {[
-              { set: "2", name: "Spiritforged", date: "Feb 13", current: true },
-              { set: "3", name: "Unleashed",    date: "May 8",  current: false },
-              { set: "4", name: "Vendetta",     date: "Jul 31", current: false },
-              { set: "5", name: "Radiance",     date: "Oct 23", current: false },
-            ].map((s, i) => (
-              <div key={s.set} style={{
-                flex: 1, padding: "10px 14px",
-                background: s.current ? TEAL_DIM : "transparent",
-                borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                display: "flex", flexDirection: "column", gap: "3px",
-                position: "relative",
-              }}>
-                {s.current && (
-                  <div style={{
-                    position: "absolute", top: 0, left: 0, right: 0, height: "2px",
-                    background: TEAL,
-                  }} />
-                )}
-                <span style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "8px", fontWeight: 700,
-                  letterSpacing: "0.18em",
-                  color: s.current ? TEAL : "rgba(255,255,255,0.28)",
+          {/* Set strip */}
+          <div className="set-strip-wrapper" style={{ marginBottom: "28px", animation: "fadeInUp 0.5s 0.05s ease both" }}>
+            <div style={{
+              display: "flex", alignItems: "stretch", gap: "1px",
+              background: "rgba(255,255,255,0.05)",
+              borderRadius: "12px", overflow: "hidden",
+              border: `1px solid rgba(255,255,255,0.08)`,
+            }}>
+              {[
+                { set: "2", name: "Spiritforged", date: "Feb 13", current: true },
+                { set: "3", name: "Unleashed",    date: "May 8",  current: false },
+                { set: "4", name: "Vendetta",     date: "Jul 31", current: false },
+                { set: "5", name: "Radiance",     date: "Oct 23", current: false },
+              ].map((s, i) => (
+                <div key={s.set} style={{
+                  flex: 1, padding: "10px 14px",
+                  background: s.current ? TEAL_DIM : "transparent",
+                  borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                  display: "flex", flexDirection: "column", gap: "3px",
+                  position: "relative",
                 }}>
-                  SET {s.set}{s.current ? " · LIVE" : ""}
-                </span>
-                <span style={{
-                  fontFamily: "'Outfit', sans-serif", fontSize: "11px", fontWeight: 600,
-                  color: s.current ? "#fff" : "rgba(255,255,255,0.45)",
-                  letterSpacing: "0.03em",
-                }}>
-                  {s.name}
-                </span>
-                <span style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "9px",
-                  color: s.current ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.22)",
-                  letterSpacing: "0.06em",
-                }}>
-                  {s.date} 2026
-                </span>
-              </div>
-            ))}
-          </div>
+                  {s.current && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: TEAL }} />}
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "8px", fontWeight: 700, letterSpacing: "0.18em", color: s.current ? TEAL : "rgba(255,255,255,0.28)" }}>
+                    SET {s.set}{s.current ? " · LIVE" : ""}
+                  </span>
+                  <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: "11px", fontWeight: 600, color: s.current ? "#fff" : "rgba(255,255,255,0.45)", letterSpacing: "0.03em" }}>
+                    {s.name}
+                  </span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "9px", color: s.current ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.22)", letterSpacing: "0.06em" }}>
+                    {s.date} 2026
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Title */}
           <h1 style={{
             fontFamily: "'Tilt Warp', sans-serif",
-            fontSize: "clamp(72px, 13vw, 160px)",
+            fontSize: "clamp(64px, 12vw, 150px)",
             fontWeight: 400, lineHeight: 0.9,
             letterSpacing: "0.06em", color: "#fff",
-            marginBottom: "24px",
+            marginBottom: "20px",
             animation: "fadeInUp 0.7s 0.15s ease both, titleGlow 5s 1.5s ease-in-out infinite",
           }}>
             RIFTIUM
           </h1>
 
-          {/* Centered teal line */}
+          {/* Teal line */}
           <div style={{
             width: "48px", height: "2px",
             background: `linear-gradient(90deg, transparent, ${TEAL}, transparent)`,
-            marginBottom: "22px",
+            marginBottom: "18px",
             animation: "fadeInUp 0.55s 0.28s ease both",
           }} />
 
           {/* Subtitle */}
           <p style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: "clamp(14px, 1.6vw, 17px)",
+            fontSize: "clamp(13px, 1.5vw, 16px)",
             fontWeight: 300, lineHeight: 1.7,
             color: "rgba(255,255,255,0.45)",
-            maxWidth: "400px",
-            marginBottom: "40px",
+            maxWidth: "380px",
+            marginBottom: "32px",
             animation: "fadeInUp 0.65s 0.38s ease both",
             textTransform: "none",
           }}>
-            Your Riftbound companion. Search cards, forge decks, and track the market — all in one place.
+            Your Riftbound companion. Search cards, forge decks, and track the market.
           </p>
 
-          {/* Search bar — slim → expanded on focus */}
+          {/* Search bar */}
           <div style={{
             width: "100%",
-            maxWidth: focused ? "580px" : "380px",
-            marginBottom: "20px",
+            maxWidth: focused ? "560px" : "360px",
+            marginBottom: "16px",
             animation: "fadeInUp 0.65s 0.5s ease both",
             transition: "max-width 0.35s cubic-bezier(0.4,0,0.2,1)",
           }}>
@@ -274,9 +174,7 @@ export default function Home() {
               borderRadius: "999px",
               padding: focused ? "4px 4px 4px 20px" : "4px 4px 4px 16px",
               transition: "border-color 0.3s, box-shadow 0.3s, padding 0.3s",
-              boxShadow: focused
-                ? `0 0 0 3px ${TEAL_DIM}, 0 8px 40px rgba(0,0,0,0.6)`
-                : "0 2px 12px rgba(0,0,0,0.3)",
+              boxShadow: focused ? `0 0 0 3px ${TEAL_DIM}, 0 8px 40px rgba(0,0,0,0.6)` : "0 2px 12px rgba(0,0,0,0.3)",
             }}>
               <div style={{ color: focused ? TEAL : "rgba(255,255,255,0.35)", display: "flex", alignItems: "center", flexShrink: 0, transition: "color 0.2s" }}>
                 <SearchIcon size={focused ? 18 : 16} />
@@ -302,8 +200,7 @@ export default function Home() {
                 color: focused ? "#000" : "rgba(255,255,255,0.7)",
                 fontFamily: "'Inter', sans-serif",
                 fontSize: focused ? "13px" : "11px",
-                fontWeight: 700,
-                cursor: "pointer", letterSpacing: "0.03em", flexShrink: 0,
+                fontWeight: 700, cursor: "pointer", letterSpacing: "0.03em", flexShrink: 0,
                 transition: "all 0.3s",
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.86"; }}
@@ -313,7 +210,7 @@ export default function Home() {
           </div>
 
           {/* Quick links */}
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center", marginBottom: "52px", animation: "fadeInUp 0.65s 0.62s ease both" }}>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center", marginBottom: "36px", animation: "fadeInUp 0.65s 0.62s ease both" }}>
             {["Card Database", "Deck Forge", "Price Oracle"].map(label => (
               <span key={label} style={{
                 display: "inline-flex", alignItems: "center", gap: "5px",
@@ -331,8 +228,8 @@ export default function Home() {
 
           {/* Stats */}
           <div style={{
-            display: "flex", gap: "0",
-            paddingTop: "24px", borderTop: `1px solid rgba(255,255,255,0.1)`,
+            display: "flex",
+            paddingTop: "20px", borderTop: `1px solid rgba(255,255,255,0.1)`,
             animation: "fadeInUp 0.65s 0.75s ease both",
             width: "100%", justifyContent: "center",
           }}>
@@ -340,7 +237,7 @@ export default function Home() {
               <div key={s.label} className="hero-stat" style={{
                 borderRight: i < STATS.length - 1 ? `1px solid rgba(255,255,255,0.1)` : "none",
               }}>
-                <p style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "22px", color: "#fff", letterSpacing: "0.04em" }}>
+                <p style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "20px", color: "#fff", letterSpacing: "0.04em" }}>
                   {s.value}
                 </p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "9px", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", marginTop: "4px" }}>
@@ -351,183 +248,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ════ CURRENT SET CALLOUT ════ */}
-      <div className="set-callout" style={{
-        background: SURFACE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`,
-      }}>
-        <div className="set-callout-inner" style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: "6px",
-              padding: "4px 10px", background: TEAL_DIM, border: `1px solid ${TEAL_MID}`,
-              borderRadius: "999px", fontFamily: "'Inter', sans-serif", fontSize: "9px",
-              fontWeight: 700, letterSpacing: "0.14em", color: TEAL, flexShrink: 0,
-            }}>
-              <SparkIcon /> LIVE
-            </span>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.6)", letterSpacing: "0.06em" }}>
-              <span style={{ color: "#fff", fontWeight: 600 }}>SPIRITFORGED</span> — SET 2 is now available ·{" "}
-              <span style={{ color: "rgba(255,255,255,0.35)" }}>Preview Events Feb 6–12 · Bologna Qualifier Feb 20–22</span>
-            </p>
-          </div>
-          <Link href="/news" style={{
-            display: "flex", alignItems: "center", gap: "6px",
-            fontFamily: "'Inter', sans-serif", fontSize: "11px", fontWeight: 600,
-            color: TEAL, textDecoration: "none", letterSpacing: "0.06em", flexShrink: 0,
-            transition: "opacity 0.15s",
-          }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.7"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
-          >
-            Read more <ArrowRight />
-          </Link>
-        </div>
-      </div>
-
-      {/* ════ FEATURES ════ */}
-      <section className="home-section" style={{ background: BG, borderBottom: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <div style={{ marginBottom: "52px" }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", marginBottom: "14px" }}>
-              YOUR ARSENAL
-            </p>
-            <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(26px, 3.5vw, 44px)", fontWeight: 600, color: "#fff" }}>
-              Command the game
-            </h2>
-          </div>
-
-          <div className="home-features">
-            {FEATURES.map((f) => (
-              <div key={f.title} style={{
-                background: SURFACE, border: `1px solid ${BORDER}`,
-                borderRadius: "16px", padding: "28px 26px",
-                position: "relative", overflow: "hidden",
-                cursor: "default", transition: "all 0.25s ease",
-              }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget;
-                  el.style.borderColor = TEAL_MID;
-                  el.style.transform = "translateY(-5px)";
-                  el.style.boxShadow = `0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px ${TEAL_MID}`;
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget;
-                  el.style.borderColor = BORDER;
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "none";
-                }}
-              >
-                {/* Top teal accent */}
-                <div style={{
-                  position: "absolute", top: 0, left: 0, right: 0, height: "2px",
-                  background: `linear-gradient(90deg, transparent 0%, ${TEAL} 40%, transparent 100%)`,
-                  opacity: 0.4,
-                }} />
-
-                {/* Icon */}
-                <div style={{
-                  width: "44px", height: "44px", borderRadius: "10px",
-                  background: TEAL_DIM, border: `1px solid ${TEAL_MID}`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: TEAL, marginBottom: "20px",
-                }}>
-                  <f.Icon />
-                </div>
-
-                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: "17px", fontWeight: 600, color: "#fff", marginBottom: "10px", letterSpacing: "0.01em" }}>
-                  {f.title}
-                </h3>
-
-                <p style={{
-                  fontFamily: "'Outfit', sans-serif", fontSize: "13px", fontWeight: 300,
-                  lineHeight: 1.72, color: "rgba(255,255,255,0.4)",
-                  marginBottom: "20px", textTransform: "none",
-                }}>
-                  {f.desc}
-                </p>
-
-                {/* Flavor line */}
-                <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "9px", fontWeight: 600,
-                  letterSpacing: "0.14em", color: "rgba(255,255,255,0.22)", marginBottom: "20px",
-                }}>
-                  {f.flavor.toUpperCase()}
-                </p>
-
-                <p style={{
-                  display: "flex", alignItems: "center", gap: "6px",
-                  fontFamily: "'Inter', sans-serif", fontSize: "11px",
-                  fontWeight: 600, color: TEAL, letterSpacing: "0.04em", opacity: 0.7,
-                }}>
-                  {f.cta} <ArrowRight />
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════ ROADMAP ════ */}
-      <section className="home-section" style={{ background: SURFACE, borderBottom: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <div style={{ marginBottom: "44px" }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", marginBottom: "14px" }}>
-              2026 SCHEDULE
-            </p>
-            <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(26px, 3.5vw, 44px)", fontWeight: 600, color: "#fff" }}>
-              Riftbound Roadmap
-            </h2>
-          </div>
-          <RoadmapTimeline />
-        </div>
-      </section>
-
-      {/* ════ NEWS ════ */}
-      <section className="home-section" style={{ background: BG, borderBottom: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <div style={{ marginBottom: "32px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-            <div>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.22em", color: "rgba(255,255,255,0.28)", marginBottom: "14px" }}>
-                RIFTBOUND DISPATCH
-              </p>
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(26px, 3.5vw, 44px)", fontWeight: 600, color: "#fff" }}>
-                News & Updates
-              </h2>
-            </div>
-            <Link href="/news" style={{
-              display: "flex", alignItems: "center", gap: "6px",
-              fontFamily: "'Inter', sans-serif", fontSize: "11px", fontWeight: 600,
-              color: TEAL, textDecoration: "none", letterSpacing: "0.06em",
-              paddingBottom: "6px", opacity: 0.8, transition: "opacity 0.15s",
-            }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.8"; }}
-            >
-              All news <ArrowRight />
-            </Link>
-          </div>
-          <NewsStrip />
-        </div>
-      </section>
-
-      {/* ════ FOOTER ════ */}
-      <footer style={{
-        padding: "28px 80px", borderTop: `1px solid ${BORDER}`,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        background: SURFACE,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <span style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "16px", letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)" }}>
-            RIFTIUM
-          </span>
-          <span style={{ width: "1px", height: "14px", background: BORDER, display: "inline-block" }} />
-          <Link href="/news" style={{ fontFamily: "'Inter', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.25)", textDecoration: "none", letterSpacing: "0.06em" }}>News</Link>
-        </div>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.16)", letterSpacing: "0.08em" }}>
-          FAN PROJECT · NOT AFFILIATED WITH RIOT GAMES
-        </p>
-      </footer>
     </div>
   );
 }
