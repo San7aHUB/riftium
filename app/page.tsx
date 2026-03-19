@@ -204,19 +204,57 @@ export default function Home() {
           display: "flex", flexDirection: "column", alignItems: "center",
           textAlign: "center", maxWidth: "720px", width: "100%",
         }}>
-          {/* Current set badge */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "28px", animation: "fadeInUp 0.5s 0.05s ease both", justifyContent: "center" }}>
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: "6px",
-              padding: "4px 12px", background: TEAL_DIM, border: `1px solid ${TEAL_MID}`,
-              borderRadius: "999px", fontFamily: "'Inter', sans-serif", fontSize: "10px",
-              fontWeight: 700, letterSpacing: "0.14em", color: TEAL,
-            }}>
-              <SparkIcon /> SET 2 · SPIRITFORGED
-            </span>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em" }}>
-              NOW AVAILABLE
-            </span>
+          {/* 2026 Set roadmap strip */}
+          <div style={{
+            display: "flex", alignItems: "stretch", gap: "1px",
+            marginBottom: "32px",
+            animation: "fadeInUp 0.5s 0.05s ease both",
+            background: "rgba(255,255,255,0.05)",
+            borderRadius: "12px", overflow: "hidden",
+            border: `1px solid rgba(255,255,255,0.08)`,
+          }}>
+            {[
+              { set: "2", name: "Spiritforged", date: "Feb 13", current: true },
+              { set: "3", name: "Unleashed",    date: "May 8",  current: false },
+              { set: "4", name: "Vendetta",     date: "Jul 31", current: false },
+              { set: "5", name: "Radiance",     date: "Oct 23", current: false },
+            ].map((s, i) => (
+              <div key={s.set} style={{
+                flex: 1, padding: "10px 14px",
+                background: s.current ? TEAL_DIM : "transparent",
+                borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                display: "flex", flexDirection: "column", gap: "3px",
+                position: "relative",
+              }}>
+                {s.current && (
+                  <div style={{
+                    position: "absolute", top: 0, left: 0, right: 0, height: "2px",
+                    background: TEAL,
+                  }} />
+                )}
+                <span style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "8px", fontWeight: 700,
+                  letterSpacing: "0.18em",
+                  color: s.current ? TEAL : "rgba(255,255,255,0.28)",
+                }}>
+                  SET {s.set}{s.current ? " · LIVE" : ""}
+                </span>
+                <span style={{
+                  fontFamily: "'Outfit', sans-serif", fontSize: "11px", fontWeight: 600,
+                  color: s.current ? "#fff" : "rgba(255,255,255,0.45)",
+                  letterSpacing: "0.03em",
+                }}>
+                  {s.name}
+                </span>
+                <span style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "9px",
+                  color: s.current ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.22)",
+                  letterSpacing: "0.06em",
+                }}>
+                  {s.date} 2026
+                </span>
+              </div>
+            ))}
           </div>
 
           {/* Title */}
