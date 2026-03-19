@@ -208,13 +208,13 @@ export default function Home() {
         }} />
 
         {[
-          { w: 340, left: "8%",   dur: "14s", delay: "0s",    anim: "orbRise1", color: "34,211,238", op: 0.55 },
-          { w: 200, left: "22%",  dur: "10s", delay: "2s",    anim: "orbRise2", color: "34,211,238", op: 0.4  },
-          { w: 280, left: "38%",  dur: "12s", delay: "4.5s",  anim: "orbRise3", color: "34,211,238", op: 0.45 },
-          { w: 160, left: "52%",  dur: "9s",  delay: "1.5s",  anim: "orbRise1", color: "56,189,248", op: 0.35 },
-          { w: 320, left: "63%",  dur: "15s", delay: "6s",    anim: "orbRise2", color: "34,211,238", op: 0.5  },
-          { w: 220, left: "78%",  dur: "11s", delay: "8s",    anim: "orbRise3", color: "56,189,248", op: 0.4  },
-          { w: 180, left: "88%",  dur: "10s", delay: "3s",    anim: "orbRise1", color: "34,211,238", op: 0.35 },
+          { w: 340, left: "8%",   dur: "14s", delay: "-5s",   anim: "orbRise1", color: "34,211,238", op: 0.55 },
+          { w: 200, left: "22%",  dur: "10s", delay: "-8s",   anim: "orbRise2", color: "34,211,238", op: 0.4  },
+          { w: 280, left: "38%",  dur: "12s", delay: "-2s",   anim: "orbRise3", color: "34,211,238", op: 0.45 },
+          { w: 160, left: "52%",  dur: "9s",  delay: "-6s",   anim: "orbRise1", color: "56,189,248", op: 0.35 },
+          { w: 320, left: "63%",  dur: "15s", delay: "-11s",  anim: "orbRise2", color: "34,211,238", op: 0.5  },
+          { w: 220, left: "78%",  dur: "11s", delay: "-4s",   anim: "orbRise3", color: "56,189,248", op: 0.4  },
+          { w: 180, left: "88%",  dur: "10s", delay: "-9s",   anim: "orbRise1", color: "34,211,238", op: 0.35 },
         ].map((orb, i) => (
           <div key={i} style={{
             position: "absolute", zIndex: 1,
