@@ -208,6 +208,25 @@ body::after {
   100% { transform: translateY(-115vh) translateX(-30px); opacity: 0; }
 }
 
+@keyframes factionColor {
+  0%        { background: #E0181E; }
+  16.66%    { background: #4B9130; }
+  33.33%    { background: #0E70A7; }
+  50%       { background: #E67300; }
+  66.66%    { background: #6A3E95; }
+  83.33%    { background: #D4AE04; }
+  100%      { background: #E0181E; }
+}
+
+.faction-overlay {
+  position: absolute;
+  inset: 0;
+  animation: factionColor 36s ease-in-out infinite;
+  mix-blend-mode: color;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 @keyframes auroraSweep {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }

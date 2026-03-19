@@ -107,11 +107,11 @@ export default function Home() {
         zIndex: 100,
         display: "flex", alignItems: "center", gap: "4px",
         padding: "6px 8px 6px 18px",
-        background: "rgba(8,8,8,0.82)",
-        backdropFilter: "blur(28px)", WebkitBackdropFilter: "blur(28px)",
+        background: "rgba(255,255,255,0.06)",
+        backdropFilter: "blur(32px)", WebkitBackdropFilter: "blur(32px)",
         borderRadius: "999px",
-        border: "1px solid rgba(255,255,255,0.1)",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.14)",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.2)",
         whiteSpace: "nowrap",
       }}>
         {/* Logo */}
@@ -131,18 +131,16 @@ export default function Home() {
           const baseStyle: React.CSSProperties = {
             padding: "6px 13px", fontFamily: "'Inter', sans-serif", fontSize: "12px",
             fontWeight: 600, letterSpacing: "0.05em", color: "rgba(255,255,255,0.5)",
-            transition: "color 0.15s, text-shadow 0.15s, background 0.15s",
+            transition: "color 0.18s, background 0.18s",
             borderRadius: "999px", cursor: "pointer",
           };
           const onEnter = (e: React.MouseEvent<HTMLElement>) => {
-            e.currentTarget.style.color = "#fff";
-            e.currentTarget.style.background = "rgba(255,255,255,0.07)";
-            e.currentTarget.style.textShadow = `0 0 10px ${TEAL}, 0 0 20px rgba(34,211,238,0.3)`;
+            e.currentTarget.style.color = "rgba(255,255,255,0.92)";
+            e.currentTarget.style.background = "rgba(255,255,255,0.08)";
           };
           const onLeave = (e: React.MouseEvent<HTMLElement>) => {
             e.currentTarget.style.color = "rgba(255,255,255,0.5)";
             e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.textShadow = "none";
           };
           return item.href
             ? <Link key={item.label} href={item.href} style={{ ...baseStyle, textDecoration: "none" }}
@@ -189,8 +187,10 @@ export default function Home() {
           position: "absolute", inset: 0,
           backgroundImage: "url('https://locator.riftbound.uvsgames.com/riftbound-bg.avif')",
           backgroundSize: "cover", backgroundPosition: "center 20%",
-          filter: "saturate(0.7) brightness(0.52)",
+          filter: "saturate(0) brightness(0.52)",
         }} />
+        {/* Faction color overlay — cycles through faction colors */}
+        <div className="faction-overlay" />
         {/* Radial dark vignette — keeps edges dark */}
         <div style={{
           position: "absolute", inset: 0,
@@ -207,39 +207,20 @@ export default function Home() {
           background: `linear-gradient(to bottom, transparent, ${BG})`,
         }} />
 
-        {[
-          { w: 320, left: "6%",   dur: "14s", delay: "-5s",   anim: "orbRise1", color: "34,211,238", op: 0.55 },
-          { w: 240, left: "28%",  dur: "11s", delay: "-9s",   anim: "orbRise2", color: "34,211,238", op: 0.42 },
-          { w: 280, left: "50%",  dur: "13s", delay: "-2s",   anim: "orbRise3", color: "56,189,248", op: 0.45 },
-          { w: 200, left: "70%",  dur: "10s", delay: "-7s",   anim: "orbRise1", color: "34,211,238", op: 0.38 },
-          { w: 300, left: "86%",  dur: "15s", delay: "-12s",  anim: "orbRise2", color: "34,211,238", op: 0.5  },
-        ].map((orb, i) => (
-          <div key={i} style={{
-            position: "absolute", zIndex: 1,
-            width: `${orb.w}px`, height: `${orb.w}px`,
-            bottom: "-60px", left: orb.left, borderRadius: "50%",
-            background: `radial-gradient(circle, rgba(${orb.color},${orb.op}) 0%, rgba(${orb.color},${orb.op * 0.2}) 55%, transparent 72%)`,
-            filter: `blur(${Math.round(orb.w * 0.17)}px)`,
-            animation: `${orb.anim} ${orb.dur} ${orb.delay} ease-in infinite`,
-            pointerEvents: "none",
-          }} />
-        ))}
-
-
         {/* Punti luce */}
         {[
           { top: "12%",  left: "8%",   size: 3, delay: "0s",    dur: "2.8s", color: "#fff" },
-          { top: "28%",  left: "18%",  size: 2, delay: "1.2s",  dur: "3.4s", color: TEAL },
+          { top: "28%",  left: "18%",  size: 2, delay: "1.2s",  dur: "3.4s", color: "#fff" },
           { top: "18%",  left: "72%",  size: 4, delay: "0.4s",  dur: "2.2s", color: "#fff" },
-          { top: "8%",   left: "55%",  size: 2, delay: "2.1s",  dur: "3.8s", color: TEAL },
+          { top: "8%",   left: "55%",  size: 2, delay: "2.1s",  dur: "3.8s", color: "#fff"},
           { top: "42%",  left: "6%",   size: 3, delay: "0.7s",  dur: "2.5s", color: "#fff" },
-          { top: "55%",  left: "88%",  size: 2, delay: "1.8s",  dur: "3.1s", color: TEAL },
+          { top: "55%",  left: "88%",  size: 2, delay: "1.8s",  dur: "3.1s", color: "#fff"},
           { top: "35%",  left: "82%",  size: 4, delay: "0.3s",  dur: "4.0s", color: "#fff" },
           { top: "65%",  left: "25%",  size: 2, delay: "2.6s",  dur: "2.7s", color: "#fff" },
-          { top: "72%",  left: "65%",  size: 3, delay: "1.0s",  dur: "3.3s", color: TEAL },
+          { top: "72%",  left: "65%",  size: 3, delay: "1.0s",  dur: "3.3s", color: "#fff"},
           { top: "80%",  left: "42%",  size: 2, delay: "1.5s",  dur: "2.9s", color: "#fff" },
           { top: "22%",  left: "92%",  size: 3, delay: "3.0s",  dur: "3.6s", color: "#fff" },
-          { top: "48%",  left: "48%",  size: 2, delay: "0.9s",  dur: "4.2s", color: TEAL },
+          { top: "48%",  left: "48%",  size: 2, delay: "0.9s",  dur: "4.2s", color: "#fff"},
         ].map((p, i) => (
           <div key={i} style={{
             position: "absolute",
@@ -247,7 +228,7 @@ export default function Home() {
             width: `${p.size}px`, height: `${p.size}px`,
             borderRadius: "50%",
             background: p.color,
-            boxShadow: `0 0 ${p.size * 3}px ${p.size}px ${p.color === TEAL ? "rgba(34,211,238,0.6)" : "rgba(255,255,255,0.6)"}`,
+            boxShadow: `0 0 ${p.size * 3}px ${p.size}px rgba(255,255,255,0.6)`,
             animation: `twinkle ${p.dur} ${p.delay} ease-in-out infinite`,
             pointerEvents: "none",
             zIndex: 1,
