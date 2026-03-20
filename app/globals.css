@@ -49,7 +49,25 @@ body {
   overflow-x: clip;
 }
 
-/* Background layers moved to AnimatedBackground component */
+/* ── Background image ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d220b74840b42967277782e45579b320ae141175-2312x1300.jpg?auto=format&fit=fill&q=80&w=2312')
+    center / cover no-repeat;
+  filter: saturate(0.3);
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(40, 40, 40, 0.55);
+  pointer-events: none;
+}
 
 .font-display {
   font-family: 'Tilt Warp', sans-serif;
