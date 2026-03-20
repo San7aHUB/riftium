@@ -17,7 +17,9 @@ interface Card {
   set_name: string;
   tags: string[];
   effect: string;
+  effect_hash: string;
   has_foil: boolean;
+  variant_count: number;
 }
 
 const COLORS = ["Calm", "Chaos", "Fury", "Valor", "Whimsy"];
@@ -56,7 +58,7 @@ export default function CardsPage() {
 
   // Load distinct sets
   useEffect(() => {
-    supabase.from("cards").select("set_name").then(({ data }) => {
+    supabase.from("cards_grouped").select("set_name").then(({ data }) => {
       if (!data) return;
       const unique = [...new Set(data.map((r) => r.set_name).filter(Boolean))].sort();
       setSets(unique);
@@ -66,8 +68,8 @@ export default function CardsPage() {
   const fetchCards = useCallback(async () => {
     setLoading(true);
     let query = supabase
-      .from("cards")
-      .select("id,name,image_url,card_type,supertype,color,cost,might,rarity,set_name,tags,effect,has_foil", { count: "exact" })
+      .from("cards_grouped")
+      .select("id,name,image_url,card_type,supertype,color,cost,might,rarity,set_name,tags,effect,effect_hash,has_foil,variant_count", { count: "exact" })
       .order("name")
       .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
 
@@ -209,7 +211,7 @@ export default function CardsPage() {
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "16px" }}>
             {cards.map((card) => (
-              <div key={card.id} onClick={() => setSelectedCardId(card.id)} style={{ cursor: "pointer", transition: "transform 0.2s" }} onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px) scale(1.02)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "")}>
+                      <div key={card.id} onClick={() => setSelectedCardId(card.effect_hash)} style={{ cursor: "pointer", transition: "transform 0.2s" }} onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px) scale(1.02)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "")}>
                 <div style={{ position: "relative", borderRadius: "10px", overflow: "hidden", aspectRatio: "63/88", background: "rgba(255,255,255,0.05)" }}>
                   {card.image_url && (
                     <img src={card.image_url} alt={card.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -221,6 +223,16 @@ export default function CardsPage() {
                     background: RARITY_COLOR[card.rarity] ?? "#fff",
                     boxShadow: `0 0 6px ${RARITY_COLOR[card.rarity] ?? "#fff"}`,
                   }} />
+                  {/* Variant badge */}
+                  {card.variant_count > 1 && (
+                    <div style={{
+                      position: "absolute", bottom: "6px", right: "6px",
+                      background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)",
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      borderRadius: "10px", padding: "2px 7px",
+                      fontSize: "9px", color: "rgba(255,255,255,0.8)", letterSpacing: "0.05em",
+                    }}>×{card.variant_count}</div>
+                  )}
                 </div>
                 <div style={{ marginTop: "6px", padding: "0 2px" }}>
                   <div style={{ fontSize: "11px", fontWeight: 600, color: "#fff", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{card.name}</div>
@@ -265,7 +277,7 @@ export default function CardsPage() {
       </div>
 
       {selectedCardId && (
-        <CardModal cardId={selectedCardId} onClose={() => setSelectedCardId(null)} />
+        <CardModal effectHash={selectedCardId} onClose={() => setSelectedCardId(null)} />
       )}
     </div>
   );

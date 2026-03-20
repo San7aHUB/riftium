@@ -58,21 +58,37 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function CardModal({ cardId, onClose }: { cardId: string; onClose: () => void }) {
+export default function CardModal({ effectHash, onClose }: { effectHash: string; onClose: () => void }) {
   const [card, setCard] = useState<Card | null>(null);
+  const [variants, setVariants] = useState<Card[]>([]);
+  const [selectedVariant, setSelectedVariant] = useState<Card | null>(null);
   const [price, setPrice] = useState<Price | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      supabase.from("cards").select("*").eq("id", cardId).single(),
-      supabase.from("card_prices").select("*").eq("card_id", cardId).order("recorded_at", { ascending: false }).limit(1).single(),
-    ]).then(([{ data: c }, { data: p }]) => {
-      setCard(c as Card);
-      setPrice(p as Price);
-      setLoading(false);
-    });
-  }, [cardId]);
+    supabase
+      .from("cards")
+      .select("*")
+      .eq("effect_hash", effectHash)
+      .order("promo", { ascending: true })
+      .order("id", { ascending: true })
+      .then(({ data }) => {
+        const all = (data as Card[]) ?? [];
+        const base = all[0] ?? null;
+        setCard(base);
+        setVariants(all);
+        setSelectedVariant(base);
+        if (base) {
+          supabase.from("card_prices").select("*").eq("card_id", base.id)
+            .order("recorded_at", { ascending: false }).limit(1).single()
+            .then(({ data: p }) => { setPrice(p as Price); setLoading(false); });
+        } else {
+          setLoading(false);
+        }
+      });
+  }, [effectHash]);
+
+  const displayCard = selectedVariant ?? card;
 
   // Close on Escape
   useEffect(() => {
@@ -87,7 +103,7 @@ export default function CardModal({ cardId, onClose }: { cardId: string; onClose
     return () => { document.body.style.overflow = ""; };
   }, []);
 
-  const rarityColor = card ? (RARITY_COLOR[card.rarity] ?? "#fff") : "#fff";
+  const rarityColor = displayCard ? (RARITY_COLOR[displayCard.rarity] ?? "#fff") : "#fff";
 
   return (
     <>
@@ -125,24 +141,48 @@ export default function CardModal({ cardId, onClose }: { cardId: string; onClose
             <div style={{ padding: "80px", textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: "13px", letterSpacing: "0.1em" }}>
               Loading...
             </div>
-          ) : !card ? (
+          ) : !displayCard ? (
             <div style={{ padding: "80px", textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: "13px" }}>Card not found</div>
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: "0" }}>
 
-              {/* Left — image */}
+              {/* Left — image + varianti */}
               <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
                 <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: `0 0 32px ${rarityColor}44`, aspectRatio: "63/88" }}>
-                  {card.image_url
-                    ? <img src={card.image_url} alt={card.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  {displayCard.image_url
+                    ? <img src={displayCard.image_url} alt={displayCard.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                     : <div style={{ width: "100%", height: "100%", background: "rgba(255,255,255,0.05)" }} />
                   }
                 </div>
-                {card.has_foil && (
+
+                {/* Selettore varianti */}
+                {variants.length > 1 && (
+                  <div>
+                    <div style={{ fontSize: "9px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", marginBottom: "6px" }}>
+                      {variants.length} Variants
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                      {variants.map((v) => (
+                        <button key={v.id} onClick={() => setSelectedVariant(v)} style={{
+                          padding: "5px 8px", borderRadius: "6px", textAlign: "left",
+                          background: selectedVariant?.id === v.id ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.04)",
+                          border: selectedVariant?.id === v.id ? "1px solid rgba(255,255,255,0.3)" : "1px solid rgba(255,255,255,0.08)",
+                          color: selectedVariant?.id === v.id ? "#fff" : "rgba(255,255,255,0.5)",
+                          fontSize: "10px", letterSpacing: "0.04em", cursor: "pointer",
+                          lineHeight: 1.3,
+                        }}>
+                          {v.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {displayCard.has_foil && (
                   <div style={{ textAlign: "center", fontSize: "10px", letterSpacing: "0.12em", color: "#a78bfa" }}>✦ Foil available</div>
                 )}
-                {card.cm_url && (
-                  <a href={card.cm_url} target="_blank" rel="noopener noreferrer" style={{
+                {displayCard.cm_url && (
+                  <a href={displayCard.cm_url} target="_blank" rel="noopener noreferrer" style={{
                     display: "block", textAlign: "center", padding: "8px",
                     background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: "8px", color: "rgba(255,255,255,0.5)", fontSize: "10px",
@@ -157,49 +197,49 @@ export default function CardModal({ cardId, onClose }: { cardId: string; onClose
                 {/* Name + rarity */}
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "4px", flexWrap: "wrap" }}>
                   <h2 style={{ fontFamily: "'Tilt Warp', sans-serif", fontSize: "clamp(20px,2.5vw,30px)", color: "#fff", letterSpacing: "0.06em", flex: 1 }}>
-                    {card.name}
+                    {displayCard.name}
                   </h2>
                   <span style={{ padding: "3px 10px", borderRadius: "20px", fontSize: "10px", letterSpacing: "0.1em", border: `1px solid ${rarityColor}`, color: rarityColor, background: `${rarityColor}18`, whiteSpace: "nowrap", marginTop: "4px" }}>
-                    {card.rarity}
+                    {displayCard.rarity}
                   </span>
                 </div>
 
                 {/* Type line */}
                 <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px", letterSpacing: "0.08em", marginBottom: "18px" }}>
-                  {[card.card_type, card.supertype].filter(Boolean).join(" · ")} · {card.set_name}
+                  {[displayCard.card_type, displayCard.supertype].filter(Boolean).join(" · ")} · {displayCard.set_name}
                 </div>
 
                 {/* Stats */}
                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>
-                  {card.cost != null && <Stat label="Cost" value={String(card.cost)} />}
-                  {card.might != null && <Stat label="Might" value={String(card.might)} />}
-                  {card.color?.length > 0 && <Stat label="Domain" value={card.color.join(", ")} />}
-                  {card.cycle && <Stat label="Cycle" value={card.cycle} />}
+                  {displayCard.cost != null && <Stat label="Cost" value={String(displayCard.cost)} />}
+                  {displayCard.might != null && <Stat label="Might" value={String(displayCard.might)} />}
+                  {displayCard.color?.length > 0 && <Stat label="Domain" value={displayCard.color.join(", ")} />}
+                  {displayCard.cycle && <Stat label="Cycle" value={displayCard.cycle} />}
                 </div>
 
                 {/* Tags */}
-                {card.tags?.length > 0 && (
+                {displayCard.tags?.length > 0 && (
                   <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginBottom: "16px" }}>
-                    {card.tags.map((t) => (
+                    {displayCard.tags.map((t) => (
                       <span key={t} style={{ padding: "2px 9px", borderRadius: "20px", fontSize: "10px", letterSpacing: "0.06em", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.55)" }}>{t}</span>
                     ))}
                   </div>
                 )}
 
                 {/* Effect */}
-                {card.effect && (
+                {displayCard.effect && (
                   <div style={{ padding: "14px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "8px", marginBottom: "10px" }}>
                     <div style={{ fontSize: "10px", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", marginBottom: "6px" }}>Effect</div>
                     <div style={{ fontSize: "13px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}
-                      dangerouslySetInnerHTML={{ __html: card.effect.replace(/<br\s*\/?>/gi, "<br/>") }}
+                      dangerouslySetInnerHTML={{ __html: displayCard.effect.replace(/<br\s*\/?>/gi, "<br/>") }}
                     />
                   </div>
                 )}
 
                 {/* Flavor */}
-                {card.flavor && (
+                {displayCard.flavor && (
                   <div style={{ padding: "10px 14px", borderLeft: "2px solid rgba(255,255,255,0.08)", marginBottom: "18px" }}>
-                    <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", fontStyle: "italic", lineHeight: 1.6 }}>{card.flavor}</p>
+                    <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", fontStyle: "italic", lineHeight: 1.6 }}>{displayCard.flavor}</p>
                   </div>
                 )}
 
@@ -211,13 +251,13 @@ export default function CardModal({ cardId, onClose }: { cardId: string; onClose
                       {["", "Price", "1D", "7D"].map((h) => (
                         <span key={h} style={{ fontSize: "9px", color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em" }}>{h}</span>
                       ))}
-                      {card.has_normal && <>
+                      {displayCard.has_normal && <>
                         <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}>Standard</span>
                         <span style={{ fontSize: "13px", fontWeight: 600, color: "#fff" }}>{price.price && price.price > 0 ? `€${price.price.toFixed(2)}` : "—"}</span>
                         <Delta val={price.delta_1d} />
                         <Delta val={price.delta_7d} />
                       </>}
-                      {card.has_foil && <>
+                      {displayCard.has_foil && <>
                         <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}>Foil</span>
                         <span style={{ fontSize: "13px", fontWeight: 600, color: "#fff" }}>{price.foil_price && price.foil_price > 0 ? `€${price.foil_price.toFixed(2)}` : "—"}</span>
                         <Delta val={price.delta_1d_foil} />
