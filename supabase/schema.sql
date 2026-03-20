@@ -7,7 +7,7 @@ create table if not exists public.cards (
   flavor      text,
   color       text[],                    -- es. ["Chaos"], ["Calm","Fury"]
   cost        integer,
-  type        text,                      -- Spell | Unit | Gear | ...
+  card_type   text,                      -- Spell | Unit | Gear | ...
   supertype   text,                      -- Champion | ""
   might       integer,
   tags        text[],                    -- es. ["Mech","Piltover"]
@@ -24,7 +24,7 @@ create table if not exists public.cards (
 );
 
 create index if not exists cards_name_idx      on public.cards using gin (to_tsvector('english', name));
-create index if not exists cards_type_idx      on public.cards (type);
+create index if not exists cards_type_idx      on public.cards (card_type);
 create index if not exists cards_rarity_idx    on public.cards (rarity);
 create index if not exists cards_set_idx       on public.cards (set_name);
 create index if not exists cards_color_idx     on public.cards using gin (color);

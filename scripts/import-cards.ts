@@ -89,7 +89,7 @@ async function main() {
     flavor: c.flavor ?? null,
     color: c.color ?? [],
     cost: c.cost ? parseInt(c.cost) : null,
-    type: c.type || null,
+    card_type: c.type || null,
     supertype: c.supertype || null,
     might: c.might ? parseInt(c.might) : null,
     tags: c.tags ?? [],
