@@ -55,7 +55,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/d220b74840b42967277782e45579b320ae141175-2312x1300.jpg?auto=format&fit=fill&q=80&w=2312')
+  background: url('https://locator.riftbound.uvsgames.com/riftbound-bg.avif')
     center / cover no-repeat;
   filter: saturate(0.3);
   pointer-events: none;
