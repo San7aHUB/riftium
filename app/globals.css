@@ -70,6 +70,15 @@ body {
 .mana-c { background: #6b7280; box-shadow: 0 0 6px rgba(107,114,128,0.4); }
 
 /* Animated background orbs */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 @keyframes orbDrift1 {
   0%   { transform: translate(0px, 0px) scale(1); }
   33%  { transform: translate(60px, 40px) scale(1.08); }
