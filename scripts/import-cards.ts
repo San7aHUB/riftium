@@ -102,6 +102,8 @@ async function main() {
     has_foil: c.hasFoil === "1",
     cm_url: c.cmurl ?? null,
     cm_id: c.cmid ? parseInt(c.cmid) : null,
+    base_card_name: c.name.replace(/\s*\([^)]*\)\s*$/, "").trim(),
+    character_name: c.name.includes(" - ") ? c.name.split(" - ")[0].trim() : null,
     updated_at: new Date().toISOString(),
   }));
 
