@@ -49,25 +49,7 @@ body {
   overflow-x: clip;
 }
 
-/* ── Background image ── */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: url('/riftbound-bg.avif')
-    center / cover no-repeat;
-  filter: saturate(0.3);
-  pointer-events: none;
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  background: rgba(40, 40, 40, 0.55);
-  pointer-events: none;
-}
+/* Background handled by AnimatedBackground component */
 
 .font-display {
   font-family: 'Tilt Warp', sans-serif;
