@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
 interface Card {
@@ -33,6 +34,7 @@ const RARITY_COLOR: Record<string, string> = {
 };
 
 export default function CardsPage() {
+  const router = useRouter();
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
@@ -207,7 +209,7 @@ export default function CardsPage() {
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "16px" }}>
             {cards.map((card) => (
-              <div key={card.id} style={{ cursor: "pointer", transition: "transform 0.2s", }} onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px) scale(1.02)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "")}>
+              <div key={card.id} onClick={() => router.push(`/cards/${card.id}`)} style={{ cursor: "pointer", transition: "transform 0.2s" }} onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px) scale(1.02)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "")}>
                 <div style={{ position: "relative", borderRadius: "10px", overflow: "hidden", aspectRatio: "63/88", background: "rgba(255,255,255,0.05)" }}>
                   {card.image_url && (
                     <img src={card.image_url} alt={card.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
