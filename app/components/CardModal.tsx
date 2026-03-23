@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 interface Card {
   id: string;
@@ -61,6 +62,7 @@ function Delta({ val }: { val: number | null }) {
 }
 
 export default function CardModal({ effectHash, onClose }: { effectHash: string; onClose: () => void }) {
+  const { isAdmin } = useAuth();
   const [variants, setVariants] = useState<Card[]>([]);
   const [selected, setSelected] = useState<Card | null>(null);
   const [price, setPrice] = useState<Price | null>(null);
@@ -130,6 +132,22 @@ export default function CardModal({ effectHash, onClose }: { effectHash: string;
           overflow: "hidden",
           position: "relative",
         }}>
+
+          {/* Admin gear */}
+          {isAdmin && (
+            <button title="Modifica carta" style={{
+              position: "absolute", top: "16px", right: "56px", zIndex: 10,
+              width: "30px", height: "30px", borderRadius: "50%",
+              border: "1px solid rgba(192,132,252,0.3)",
+              background: "rgba(192,132,252,0.08)", color: "rgba(192,132,252,0.7)",
+              fontSize: "14px", cursor: "pointer", display: "flex",
+              alignItems: "center", justifyContent: "center",
+              transition: "all 0.15s",
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(192,132,252,0.2)"; (e.currentTarget as HTMLElement).style.color = "#c084fc"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(192,132,252,0.08)"; (e.currentTarget as HTMLElement).style.color = "rgba(192,132,252,0.7)"; }}
+            >⚙</button>
+          )}
 
           {/* Close */}
           <button onClick={onClose} style={{
@@ -210,14 +228,6 @@ export default function CardModal({ effectHash, onClose }: { effectHash: string;
 
                 {/* Links */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "auto" }}>
-                  {card.has_foil && (
-                    <div style={{
-                      textAlign: "center", fontSize: "10px", letterSpacing: "0.1em",
-                      color: "#c084fc", padding: "6px",
-                      background: "rgba(192,132,252,0.06)", borderRadius: "8px",
-                      border: "1px solid rgba(192,132,252,0.15)",
-                    }}>✦ Foil available</div>
-                  )}
                   {card.cm_url && (
                     <a href={card.cm_url} target="_blank" rel="noopener noreferrer" style={{
                       display: "block", textAlign: "center", padding: "7px",

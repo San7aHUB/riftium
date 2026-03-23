@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useAuth } from "@/app/contexts/AuthContext";
+import AuthModal from "@/app/components/AuthModal";
+import AccountModal from "@/app/components/AccountModal";
 
 const NAV_LINKS = [
   { label: "News",         href: "/news" },
@@ -28,6 +31,9 @@ function onLeave(e: React.MouseEvent<HTMLAnchorElement>) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
+  const [showAccount, setShowAccount] = useState(false);
+  const { isLoggedIn, nickname, user, loading } = useAuth();
 
   return (
     <>
@@ -63,26 +69,47 @@ export default function Navbar() {
             </Link>
           ))}
           <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.1)", margin: "0 8px", flexShrink: 0 }} />
-          <button style={{
-            padding: "6px 16px", background: "transparent",
-            border: "1px solid rgba(255,255,255,0.15)", borderRadius: "999px",
-            color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif",
-            fontSize: "12px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em",
-            transition: "all 0.15s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "rgba(255,255,255,0.7)"; }}
-          >Log in</button>
-          <button style={{
-            padding: "6px 16px", background: "#fff",
-            border: "none", borderRadius: "999px",
-            color: "#000", fontFamily: "'Inter', sans-serif",
-            fontSize: "12px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.04em",
-            transition: "opacity 0.15s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
-          >Sign up</button>
+
+          {!loading && (isLoggedIn ? (
+            /* Logged in */
+            <>
+              <button onClick={() => setShowAccount(true)} style={{
+                padding: "6px 14px", background: "rgba(52,211,153,0.06)",
+                border: "1px solid rgba(52,211,153,0.5)", borderRadius: "999px",
+                color: "rgba(255,255,255,0.9)", fontFamily: "'Inter', sans-serif",
+                fontSize: "12px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em",
+                transition: "all 0.15s", maxWidth: "180px",
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(52,211,153,0.14)"; e.currentTarget.style.borderColor = "rgba(52,211,153,0.8)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(52,211,153,0.06)"; e.currentTarget.style.borderColor = "rgba(52,211,153,0.5)"; }}
+              >{nickname || user?.email}</button>
+            </>
+          ) : (
+            /* Logged out */
+            <>
+              <button onClick={() => setAuthModal("login")} style={{
+                padding: "6px 16px", background: "transparent",
+                border: "1px solid rgba(255,255,255,0.15)", borderRadius: "999px",
+                color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif",
+                fontSize: "12px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em",
+                transition: "all 0.15s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.color = "#fff"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "rgba(255,255,255,0.7)"; }}
+              >Log in</button>
+              <button onClick={() => setAuthModal("signup")} style={{
+                padding: "6px 16px", background: "#fff",
+                border: "none", borderRadius: "999px",
+                color: "#000", fontFamily: "'Inter', sans-serif",
+                fontSize: "12px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.04em",
+                transition: "opacity 0.15s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+              >Sign up</button>
+            </>
+          ))}
         </div>
 
         {/* Mobile — hamburger */}
@@ -147,22 +174,39 @@ export default function Navbar() {
             </Link>
           ))}
           <div style={{ height: "1px", background: "rgba(255,255,255,0.07)", margin: "4px 0" }} />
-          <div style={{ display: "flex", gap: "8px", padding: "4px 8px 4px" }}>
-            <button style={{
-              flex: 1, padding: "10px", background: "transparent",
-              border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px",
-              color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif",
-              fontSize: "13px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em",
-            }}>Log in</button>
-            <button style={{
-              flex: 1, padding: "10px", background: "#fff",
-              border: "none", borderRadius: "10px",
-              color: "#000", fontFamily: "'Inter', sans-serif",
-              fontSize: "13px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.04em",
-            }}>Sign up</button>
-          </div>
+
+          {!loading && (isLoggedIn ? (
+            <div style={{ padding: "4px 8px" }}>
+              <button onClick={() => { setShowAccount(true); setOpen(false); }} style={{
+                width: "100%", padding: "12px 16px",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)", borderRadius: "10px",
+                color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif",
+                fontSize: "13px", fontWeight: 600, cursor: "pointer",
+                letterSpacing: "0.04em", textAlign: "left",
+              }}>{nickname || user?.email}</button>
+            </div>
+          ) : (
+            <div style={{ display: "flex", gap: "8px", padding: "4px 8px 4px" }}>
+              <button onClick={() => { setAuthModal("login"); setOpen(false); }} style={{
+                flex: 1, padding: "10px", background: "transparent",
+                border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px",
+                color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif",
+                fontSize: "13px", fontWeight: 500, cursor: "pointer", letterSpacing: "0.04em",
+              }}>Log in</button>
+              <button onClick={() => { setAuthModal("signup"); setOpen(false); }} style={{
+                flex: 1, padding: "10px", background: "#fff",
+                border: "none", borderRadius: "10px",
+                color: "#000", fontFamily: "'Inter', sans-serif",
+                fontSize: "13px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.04em",
+              }}>Sign up</button>
+            </div>
+          ))}
         </div>
       )}
+
+      {authModal && <AuthModal initialMode={authModal} onClose={() => setAuthModal(null)} />}
+      {showAccount && <AccountModal onClose={() => setShowAccount(false)} />}
     </>
   );
 }

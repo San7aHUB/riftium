@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import AnimatedBackground from "./components/AnimatedBackground";
 import Navbar from "./components/Navbar";
+import { AuthProvider } from "./contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Riftium — Advanced Card Search",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased" suppressHydrationWarning>
-        <AnimatedBackground />
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <AnimatedBackground />
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
