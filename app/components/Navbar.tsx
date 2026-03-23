@@ -73,6 +73,10 @@ export default function Navbar() {
           {!loading && (isLoggedIn ? (
             /* Logged in */
             <>
+              <Link href="/collection" style={{ ...linkStyle, color: "rgba(52,211,153,0.7)" }}
+                onMouseEnter={e => { e.currentTarget.style.color = "#34d399"; e.currentTarget.style.background = "rgba(52,211,153,0.08)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(52,211,153,0.7)"; e.currentTarget.style.background = "transparent"; }}
+              >Collezione</Link>
               <button onClick={() => setShowAccount(true)} style={{
                 padding: "6px 14px", background: "rgba(52,211,153,0.06)",
                 border: "1px solid rgba(52,211,153,0.5)", borderRadius: "999px",
@@ -176,7 +180,17 @@ export default function Navbar() {
           <div style={{ height: "1px", background: "rgba(255,255,255,0.07)", margin: "4px 0" }} />
 
           {!loading && (isLoggedIn ? (
-            <div style={{ padding: "4px 8px" }}>
+            <div style={{ padding: "4px 8px", display: "flex", flexDirection: "column", gap: "4px" }}>
+              <Link href="/collection" onClick={() => setOpen(false)} style={{
+                display: "block", padding: "12px 16px",
+                fontFamily: "'Inter', sans-serif", fontSize: "15px",
+                fontWeight: 600, letterSpacing: "0.04em",
+                color: "rgba(52,211,153,0.8)", textDecoration: "none",
+                borderRadius: "10px", transition: "background 0.15s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(52,211,153,0.06)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+              >Collezione</Link>
               <button onClick={() => { setShowAccount(true); setOpen(false); }} style={{
                 width: "100%", padding: "12px 16px",
                 background: "rgba(255,255,255,0.04)",
