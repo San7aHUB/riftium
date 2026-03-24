@@ -93,9 +93,13 @@ async function main() {
   if (cardsErr) throw new Error("Failed to load cards: " + cardsErr.message);
   console.log(`✓ Loaded ${ourCards!.length} cards from Supabase\n`);
 
-  const cardsByNorm = new Map(
-    ourCards!.map((c) => [norm(c.base_card_name ?? c.name), c])
-  );
+  // Group all cards by normalized name (multiple variants share same base name)
+  const cardsByNorm = new Map<string, typeof ourCards>();
+  for (const c of ourCards!) {
+    const key = norm(c.base_card_name ?? c.name);
+    if (!cardsByNorm.has(key)) cardsByNorm.set(key, []);
+    cardsByNorm.get(key)!.push(c);
+  }
 
   let totalMapped = 0;
   let totalPrices = 0;
@@ -113,24 +117,27 @@ async function main() {
     }
     console.log(`  Blueprints: ${blueprints.length}`);
 
-    const blueprintToCard = new Map<number, string>(); // blueprint_id → card.id
+    const blueprintToCard = new Map<number, string[]>(); // blueprint_id → card ids
 
     for (const bp of blueprints) {
       const key = norm(bp.name);
-      const card = cardsByNorm.get(key);
-      if (!card) continue;
-
-      blueprintToCard.set(bp.id, card.id);
+      const cards = cardsByNorm.get(key);
+      if (!cards || cards.length === 0) continue;
 
       // Build CardTrader URL: /en/cards/{card-name-slug}-{expansion-slug}
       const cardSlug = bp.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       const expSlug = exp.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       const ctUrl = `https://www.cardtrader.com/en/cards/${cardSlug}-${expSlug}`;
 
-      if (!card.cardtrader_blueprint_id) {
-        await supabase.from("cards").update({ cardtrader_blueprint_id: bp.id, cardtrader_url: ctUrl }).eq("id", card.id);
-        card.cardtrader_blueprint_id = bp.id;
-        totalMapped++;
+      if (!blueprintToCard.has(bp.id)) blueprintToCard.set(bp.id, []);
+      for (const card of cards) {
+        blueprintToCard.get(bp.id)!.push(card.id);
+
+        if (!card.cardtrader_blueprint_id) {
+          await supabase.from("cards").update({ cardtrader_blueprint_id: bp.id, cardtrader_url: ctUrl }).eq("id", card.id);
+          card.cardtrader_blueprint_id = bp.id;
+          totalMapped++;
+        }
       }
     }
 
@@ -154,8 +161,8 @@ async function main() {
 
     for (const [bpIdStr, listings] of Object.entries(products)) {
       const bpId = parseInt(bpIdStr);
-      const cardId = blueprintToCard.get(bpId);
-      if (!cardId || seen.has(cardId)) continue;
+      const cardIds = blueprintToCard.get(bpId);
+      if (!cardIds) continue;
 
       let minNormal: number | null = null;
       let minFoil: number | null = null;
@@ -170,8 +177,11 @@ async function main() {
       }
 
       if (minNormal !== null || minFoil !== null) {
-        priceRows.push({ card_id: cardId, price: minNormal, foil_price: minFoil, source: "cardtrader" });
-        seen.add(cardId);
+        for (const cardId of cardIds) {
+          if (seen.has(cardId)) continue;
+          priceRows.push({ card_id: cardId, price: minNormal, foil_price: minFoil, source: "cardtrader" });
+          seen.add(cardId);
+        }
       }
     }
 
