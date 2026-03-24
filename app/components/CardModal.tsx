@@ -482,7 +482,7 @@ export default function CardModal({ effectHash, onClose }: { effectHash: string;
                         <div style={{ height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "18px" }} />
                         <div style={{ fontSize: "9px", letterSpacing: "0.14em", color: "rgba(255,255,255,0.25)", marginBottom: "12px" }}>MARKET PRICES</div>
                         <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                          {card.has_normal && price.price && price.price > 0 && (
+                          {price.price != null && price.price > 0 && (
                             <div style={{ padding: "12px 16px", borderRadius: "10px", minWidth: "120px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                               <div style={{ fontSize: "9px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", marginBottom: "6px" }}>STANDARD</div>
                               <div style={{ fontSize: "22px", fontWeight: 700, color: "#fff", marginBottom: "6px" }}>€{price.price.toFixed(2)}</div>
@@ -492,7 +492,7 @@ export default function CardModal({ effectHash, onClose }: { effectHash: string;
                               </div>
                             </div>
                           )}
-                          {card.has_foil && price.foil_price && price.foil_price > 0 && (
+                          {price.foil_price != null && price.foil_price > 0 && (
                             <div style={{ padding: "12px 16px", borderRadius: "10px", minWidth: "120px", background: "rgba(192,132,252,0.04)", border: "1px solid rgba(192,132,252,0.15)" }}>
                               <div style={{ fontSize: "9px", color: "#c084fc", letterSpacing: "0.1em", opacity: 0.7, marginBottom: "6px" }}>FOIL</div>
                               <div style={{ fontSize: "22px", fontWeight: 700, color: "#fff", marginBottom: "6px" }}>€{price.foil_price.toFixed(2)}</div>
