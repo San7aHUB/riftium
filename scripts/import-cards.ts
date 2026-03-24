@@ -11,6 +11,9 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
+import { config } from "dotenv";
+import { resolve } from "path";
+config({ path: resolve(process.cwd(), ".env.local") });
 
 const API_URL =
   "https://api.dotgg.gg/cgfw/getcards?game=riftbound&mode=indexed";
