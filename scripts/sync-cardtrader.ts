@@ -131,8 +131,6 @@ async function main() {
         await supabase.from("cards").update({ cardtrader_blueprint_id: bp.id, cardtrader_url: ctUrl }).eq("id", card.id);
         card.cardtrader_blueprint_id = bp.id;
         totalMapped++;
-      } else {
-        await supabase.from("cards").update({ cardtrader_url: ctUrl }).eq("id", card.id);
       }
     }
 
