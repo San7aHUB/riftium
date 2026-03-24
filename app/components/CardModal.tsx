@@ -23,6 +23,7 @@ interface Card {
   has_normal: boolean;
   has_foil: boolean;
   cm_url: string | null;
+  cardtrader_url: string | null;
   promo: boolean;
 }
 
@@ -220,8 +221,8 @@ export default function CardModal({ effectHash, onClose }: { effectHash: string;
                 )}
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "auto" }}>
-                  {card.cm_url && !editMode && (
-                    <a href={card.cm_url} target="_blank" rel="noopener noreferrer" style={{
+                  {card.cardtrader_url && !editMode && (
+                    <a href={card.cardtrader_url} target="_blank" rel="noopener noreferrer" style={{
                       display: "block", textAlign: "center", padding: "7px",
                       background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
                       borderRadius: "8px", color: "rgba(255,255,255,0.4)", fontSize: "10px",
@@ -229,7 +230,7 @@ export default function CardModal({ effectHash, onClose }: { effectHash: string;
                     }}
                       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#fff"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.4)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)"; }}
-                    >CardMarket ↗</a>
+                    >CardTrader ↗</a>
                   )}
                 </div>
               </div>

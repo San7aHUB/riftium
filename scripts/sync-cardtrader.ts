@@ -122,11 +122,18 @@ async function main() {
 
       blueprintToCard.set(bp.id, card.id);
 
-      // Update cardtrader_blueprint_id if not already set
+      // Build CardTrader URL
+      const slug = bp.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      const ctUrl = `https://www.cardtrader.com/en/riftbound/cards/${bp.id}-${slug}`;
+
+      // Update blueprint_id and url
       if (!card.cardtrader_blueprint_id) {
-        await supabase.from("cards").update({ cardtrader_blueprint_id: bp.id }).eq("id", card.id);
+        await supabase.from("cards").update({ cardtrader_blueprint_id: bp.id, cardtrader_url: ctUrl }).eq("id", card.id);
         card.cardtrader_blueprint_id = bp.id;
         totalMapped++;
+      } else {
+        // Always keep URL up to date
+        await supabase.from("cards").update({ cardtrader_url: ctUrl }).eq("id", card.id);
       }
     }
 
