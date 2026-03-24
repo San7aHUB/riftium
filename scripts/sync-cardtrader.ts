@@ -61,9 +61,20 @@ async function getExpansions(gameId: number): Promise<{ id: number; name: string
   return exps;
 }
 
-async function getBlueprints(expansionId: number): Promise<{ id: number; name: string; foil: boolean }[]> {
+interface Blueprint { id: number; name: string; category_id: number; image: { url: string } | null; }
+
+async function getBlueprints(expansionId: number): Promise<Blueprint[]> {
   const data = await ctGet(`/blueprints/export?expansion_id=${expansionId}`);
-  return data;
+  return Array.isArray(data) ? data : (data.array ?? Object.values(data));
+}
+
+function blueprintSlug(bp: Blueprint): string {
+  // Extract slug from image URL: /uploads/.../preview_slug.jpg → slug
+  const url = bp.image?.url ?? "";
+  const match = url.match(/\/([^/]+)\.jpg$/);
+  if (match) return match[1].replace(/^(show_|preview_|social_)/, "");
+  // Fallback: construct from name
+  return bp.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
 async function getMarketplaceProducts(expansionId: number) {
@@ -108,7 +119,7 @@ async function main() {
     console.log(`\nProcessing expansion: ${exp.name} (ID: ${exp.id})`);
 
     // 4. Get blueprints and map to our cards
-    let blueprints: { id: number; name: string }[] = [];
+    let blueprints: Blueprint[] = [];
     try {
       blueprints = await getBlueprints(exp.id);
     } catch (e) {
@@ -124,10 +135,7 @@ async function main() {
       const cards = cardsByNorm.get(key);
       if (!cards || cards.length === 0) continue;
 
-      // Build CardTrader URL: /en/cards/{card-name-slug}-{expansion-slug}
-      const cardSlug = bp.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      const expSlug = exp.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      const ctUrl = `https://www.cardtrader.com/en/cards/${cardSlug}-${expSlug}`;
+      const ctUrl = `https://www.cardtrader.com/en/cards/${blueprintSlug(bp)}`;
 
       if (!blueprintToCard.has(bp.id)) blueprintToCard.set(bp.id, []);
       for (const card of cards) {
